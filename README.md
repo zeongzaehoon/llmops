@@ -157,7 +157,7 @@ system_prompt, retrieval_data, history = await asyncio.gather(
 |------|---------|
 | 리포트 | AIReport, Docent, ReportChat, ScrollChat |
 | 분석 | Dashboard, DashboardChat, DashboardHell |
-| 지리정보 | GeoSimple, GeoJSON, GeoChat |
+| AIEO | GeoSimple, GeoJSON, GeoChat |
 | 고객분석 | VOC, UXGPT, ContactUs |
 | 에이전트 | JourneyMapMCP, CXDataTrendMCP, BI-MCP |
 
@@ -240,14 +240,13 @@ MongoDB
 
 ### 멀티 DB 인스턴스 구조
 
-데이터 격리를 위해 4개의 독립 MongoDB 클라이언트를 싱글톤으로 운영합니다.
+데이터 격리를 위해 2개의 독립 MongoDB 클라이언트를 싱글톤으로 운영합니다.
 
 | 클라이언트 | 용도 | 환경 |
 |-----------|------|------|
 | `MongoClient` | 메인 서비스 DB | Staging |
 | `ProductionMongoClient` | 메인 서비스 DB (SSL) | Production |
-| `SSMongoClient` | 삼성 전용 격리 DB | Staging |
-| `SSProductionMongoClient` | 삼성 전용 격리 DB (SSL) | Production |
+
 
 ---
 
