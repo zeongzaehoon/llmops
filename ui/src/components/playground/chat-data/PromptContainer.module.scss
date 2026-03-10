@@ -1,0 +1,35 @@
+.prompt-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100dvh - 76px);
+  background: #FFFFFF;
+  &.invisible {
+    filter: blur(5px);
+  }
+}
+
+.visible-button {
+  position: absolute;
+  top: 26px;
+  right: 30px;
+  img {
+    width: 25px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .prompt-container {
+    display: none;
+  }
+
+  .visible-button {
+    display: none;
+  }
+}
+
+.flexible-handle {
+  display: inline-block;
+  border-bottom: 3px dashed #000000;
+  cursor: ns-resize;
+}

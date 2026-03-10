@@ -1,0 +1,167 @@
+.card {
+  background: #FFFFFF;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+  overflow: hidden;
+  transition: border-color $sol-duration-fast;
+
+  &:hover {
+    border-color: #000000;
+    box-shadow: none;
+  }
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  cursor: pointer;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+.live {
+  background: #000000;
+}
+
+.dead {
+  background: #C0C0C0;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.name {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-semibold;
+  color: #000000;
+}
+
+.uri {
+  font-size: $sol-font-xxs;
+  color: #666666;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.toolCount {
+  font-size: $sol-font-xs;
+  color: #666666;
+}
+
+.status {
+  font-size: $sol-font-xxs;
+  font-weight: $sol-weight-semibold;
+  padding: 3px 8px;
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statusLive {
+  background: #E0E0E0;
+  color: #000000;
+}
+
+.statusDead {
+  background: #F0F0F0;
+  color: #666666;
+}
+
+.actions {
+  display: flex;
+  gap: 4px;
+}
+
+.actionBtn {
+  padding: 4px 10px;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+  background: transparent;
+  color: #666666;
+  font-size: $sol-font-xxs;
+  cursor: pointer;
+
+  &:hover {
+    background: #F0F0F0;
+  }
+}
+
+.deleteBtn {
+  &:hover {
+    background: #F0F0F0;
+    color: #000000;
+    border-color: #000000;
+  }
+}
+
+.arrow {
+  font-size: $sol-font-xxs;
+  color: #666666;
+  transition: transform $sol-duration-fast;
+}
+
+.arrowUp {
+  transform: rotate(180deg);
+}
+
+.toolList {
+  border-top: 1px solid #E0E0E0;
+  padding: 12px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toolItem {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px;
+  background: #F5F5F5;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+}
+
+.toolName {
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-semibold;
+  color: #000000;
+}
+
+.toolDesc {
+  font-size: $sol-font-xxs;
+  color: #666666;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .cardHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .right {
+    flex-wrap: wrap;
+  }
+}

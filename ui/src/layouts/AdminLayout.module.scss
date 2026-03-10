@@ -1,0 +1,138 @@
+.layout {
+  display: flex;
+  height: 100vh;
+  background: #F8FAFC;
+  color: $sol-gray-900;
+  font-family: $sol-font-family;
+  overflow: hidden;
+}
+
+// --- Sidebar ---
+.sidebar {
+  width: var(--sol-sidebar-width);
+  min-width: var(--sol-sidebar-width);
+  height: 100vh;
+  background: #FFFFFF;
+  border-right: 1px solid $sol-gray-200;
+  display: flex;
+  flex-direction: column;
+  z-index: $sol-z-sticky;
+}
+
+.sidebarLogo {
+  height: var(--sol-topbar-height);
+  display: flex;
+  align-items: center;
+  gap: $sol-space-2;
+  padding: 0 $sol-space-5;
+  font-family: $sol-font-display;
+  font-size: $sol-font-xl;
+  font-weight: $sol-weight-bold;
+  color: $sol-gray-900;
+  white-space: nowrap;
+  border-bottom: 1px solid $sol-gray-100;
+}
+
+.logoIcon {
+  font-size: $sol-font-xl;
+  color: $sol-primary;
+}
+
+.logoText {
+  font-weight: $sol-weight-bold;
+}
+
+.sidebarNav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: $sol-space-3 $sol-space-3;
+  gap: $sol-space-1;
+  overflow-y: auto;
+  @include scrollbar-thin;
+}
+
+.sidebarBottom {
+  display: flex;
+  flex-direction: column;
+  padding: $sol-space-3 $sol-space-3;
+  gap: $sol-space-1;
+  border-top: 1px solid $sol-gray-100;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-3;
+  padding: $sol-space-2 $sol-space-3;
+  color: $sol-gray-700;
+  text-decoration: none;
+  font-size: $sol-font-base;
+  font-weight: $sol-weight-medium;
+  white-space: nowrap;
+  cursor: pointer;
+  border-radius: $sol-radius-md;
+  transition: background $sol-duration-fast $sol-ease-default,
+              color $sol-duration-fast $sol-ease-default;
+
+  &:hover {
+    background: $sol-gray-50;
+    color: $sol-gray-900;
+  }
+
+  &.active {
+    background: $sol-primary-light;
+    color: $sol-primary-dark;
+    font-weight: $sol-weight-semibold;
+  }
+}
+
+.navIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $sol-font-lg;
+}
+
+.navLabel {
+  font-size: $sol-font-base;
+}
+
+// --- Main area ---
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+// --- TopBar ---
+.topbar {
+  height: var(--sol-topbar-height);
+  min-height: var(--sol-topbar-height);
+  display: flex;
+  align-items: center;
+  padding: 0 $sol-space-7;
+  background: #FFFFFF;
+  border-bottom: 1px solid $sol-gray-200;
+}
+
+.pageTitle {
+  font-size: $sol-font-lg;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-900;
+  margin: 0;
+}
+
+// --- Content ---
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: $sol-space-7;
+  background: #F8FAFC;
+  @include scrollbar-thin;
+}

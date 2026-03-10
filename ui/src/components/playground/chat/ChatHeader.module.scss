@@ -1,0 +1,206 @@
+.chat-header {
+  box-sizing: border-box;
+  width: 100%;
+  height: 76px;
+  background: var(--background-color);
+  border-bottom: 1px solid #000;
+  line-height: 1;
+}
+
+.chat-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  padding: 15px 20px;
+  @media (min-width: 1024px) {
+    padding-right: 68px;
+  }
+  @media (max-width: 768px) {
+    padding: 10px 20px;
+  }
+}
+
+.back-button {
+  width: 20px;
+  padding-right: 8px;
+  cursor: pointer;
+}
+
+.solomon-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+  border: 1px solid #000;
+  border-radius: 0;
+  background: var(--background-color);
+
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 0;
+  }
+  @media (max-width: 768px) {
+    width: 35px;
+    height: 35px;
+    margin-right: 15px;
+    img {
+      width: 35px;
+      height: 35px;
+    }
+  }
+}
+
+.solomon-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+}
+
+.solomon-name {
+  display: flex;
+  align-items: center;
+  padding-bottom: 4px;
+  p {
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  img {
+    width: 20px;
+    padding-left: 5px;
+  }
+  @media (max-width: 768px) {
+    p {
+      font-size: 15px;
+    }
+    img {
+      width: 18px;
+      padding-bottom: 1px;
+    }
+  }
+}
+
+.status {
+  font-size: 14px;
+  color: var(--sub-text-color);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  &.disabled {
+    color: var(--dark-theme-color);
+  }
+  @media (max-width: 768px) {
+    font-size: 12.5px;
+  }
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 10px;
+  p {
+    color: var(--sub-text-color);
+    width: 75px;
+  }
+  @media (max-width: 1024px) {
+    p {
+      display: none;
+    }
+  }
+}
+
+.toggle-cont {
+  position: relative;
+  width: 31px;
+  height: 15px;
+  background: #E0E0E0;
+  border: 3px solid #E0E0E0;
+  border-radius: 0;
+  cursor: pointer;
+  &:hover {
+    opacity: 70%;
+  }
+}
+
+.toggle-cont-button {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 15px;
+  height: 15px;
+  background: #FFFFFF;
+  border-radius: 0;
+  transition: all 0.4s ease 0s;
+  box-shadow: none;
+}
+
+.toggle-cont.on {
+  background: #000000;
+  border: 3px solid #000000;
+}
+
+.toggle-cont.on .toggle-cont-button {
+  transform: translateX(15px);
+}
+
+.new-chat-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  img {
+    width: 22px;
+  }
+}
+
+.new-chat-tooltip {
+  position: absolute;
+  right: 13px;
+  bottom: -50px;
+  width: 150px;
+  padding: 3px;
+  background: #000000;
+  border-radius: 0;
+  color: #FFFFFF;
+  font-size: 12px;
+  z-index: 2;
+}
+
+.tooltip-title {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.setting-button {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0 15px;
+  div {
+    width: 4px;
+    height: 4px;
+    background-color: #000000;
+    border-radius: 0;
+  }
+}
+
+.history-button {
+  img {
+    width: 26px;
+  }
+  margin: 0 5px;
+  padding-top: 4px;
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}

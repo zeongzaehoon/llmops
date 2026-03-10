@@ -1,0 +1,141 @@
+.detail {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.empty {
+  @include flex-center;
+  height: 100%;
+  color: $sol-gray-400;
+  font-size: $sol-font-sm;
+}
+
+.toolbar {
+  @include flex-between;
+  padding: $sol-space-3 $sol-space-4;
+  border-bottom: 1px solid $sol-gray-200;
+  gap: $sol-space-3;
+}
+
+.memoField {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-2;
+  flex: 1;
+  min-width: 0;
+}
+
+.memoInput {
+  flex: 1;
+  padding: $sol-space-2 $sol-space-3;
+  background: #FFFFFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+  color: $sol-gray-900;
+  font-size: $sol-font-sm;
+  outline: none;
+  transition: border-color $sol-duration-fast;
+
+  &::placeholder {
+    color: $sol-gray-400;
+  }
+
+  &:focus {
+    border-color: $sol-primary;
+  }
+}
+
+.ratingBar {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-2;
+  padding: $sol-space-2 $sol-space-4;
+  background: $sol-gray-50;
+}
+
+.ratingLabel {
+  font-size: $sol-font-xs;
+  color: $sol-gray-500;
+}
+
+.ratingValue {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-900;
+}
+
+.metaBar {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-4;
+  padding: $sol-space-2 $sol-space-4;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  font-size: $sol-font-xs;
+  color: $sol-gray-400;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: $sol-space-4;
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-4;
+  @include scrollbar-thin;
+}
+
+.bubble {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-1;
+  padding: $sol-space-3 $sol-space-4;
+  border-radius: $sol-radius-lg;
+  max-width: 85%;
+
+  &.user {
+    align-self: flex-end;
+    background: $sol-primary;
+    color: #FFFFFF;
+    border-bottom-right-radius: $sol-radius-sm;
+
+    .role {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .content {
+      color: #FFFFFF;
+    }
+  }
+
+  &.assistant {
+    align-self: flex-start;
+    background: $sol-gray-50;
+    border: 1px solid $sol-gray-200;
+    border-bottom-left-radius: $sol-radius-sm;
+
+    .role {
+      color: $sol-gray-500;
+    }
+
+    .content {
+      color: $sol-gray-900;
+    }
+  }
+}
+
+.role {
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-semibold;
+}
+
+.content {
+  font-size: $sol-font-sm;
+  line-height: $sol-leading-relaxed;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

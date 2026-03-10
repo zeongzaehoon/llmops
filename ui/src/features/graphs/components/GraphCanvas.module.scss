@@ -1,0 +1,275 @@
+.canvas {
+  background: $sol-gray-50;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-lg;
+  padding: $sol-space-6;
+  min-height: 280px;
+  overflow-x: auto;
+  @include scrollbar-thin;
+}
+
+.canvasInner {
+  min-width: fit-content;
+}
+
+// ── Arrow connector (horizontal) ──
+.arrow {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 48px;
+  flex-shrink: 0;
+}
+
+.arrowLine {
+  flex: 1;
+  height: 2px;
+  background: $sol-gray-300;
+}
+
+.arrowHead {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid $sol-gray-300;
+}
+
+.arrowLabel {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: $sol-font-xs;
+  color: $sol-gray-500;
+  white-space: nowrap;
+}
+
+// ── Add button ──
+.addBtnWrapper {
+  display: flex;
+  align-items: center;
+  margin-left: $sol-space-3;
+  flex-shrink: 0;
+}
+
+.addBtnWrapperCentered {
+  display: flex;
+  justify-content: center;
+  margin-top: $sol-space-4;
+}
+
+// ════════════════════════════════════
+// LINEAR layout
+// ════════════════════════════════════
+.linearFlow {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.linearItem {
+  display: flex;
+  align-items: center;
+}
+
+// ════════════════════════════════════
+// DEBATE layout
+// ════════════════════════════════════
+.debateFlow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $sol-space-4;
+}
+
+.debateAgents {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.debateItem {
+  display: flex;
+  align-items: center;
+}
+
+.debateArrows {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 40px;
+  flex-shrink: 0;
+  font-size: $sol-font-lg;
+  color: $sol-gray-700;
+  font-weight: $sol-weight-bold;
+}
+
+.debateArrowRight,
+.debateArrowLeft {
+  line-height: 1;
+}
+
+.debateBottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $sol-space-2;
+}
+
+.debateConnector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.verticalLine {
+  width: 2px;
+  height: 24px;
+  background: $sol-gray-300;
+}
+
+.moderatorNode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $sol-space-1;
+  padding: $sol-space-3 $sol-space-5;
+  border-radius: $sol-radius-lg;
+  border: 2px dashed $sol-gray-300;
+  background: #FFFFFF;
+}
+
+.moderatorLabel {
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-700;
+}
+
+.moderatorName {
+  font-size: $sol-font-sm;
+  color: $sol-gray-600;
+}
+
+// ════════════════════════════════════
+// PARALLEL layout
+// ════════════════════════════════════
+.parallelFlow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $sol-space-5;
+}
+
+.parallelFanOut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.parallelBranches {
+  display: flex;
+  gap: $sol-space-5;
+  align-items: flex-start;
+}
+
+.parallelBranch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $sol-space-2;
+}
+
+.branchLine {
+  width: 2px;
+  height: 20px;
+  background: $sol-gray-300;
+}
+
+.aggregatorNode {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-2;
+  padding: $sol-space-3 $sol-space-5;
+  border-radius: $sol-radius-lg;
+  border: 2px solid $sol-primary;
+  background: #FFFFFF;
+}
+
+.aggregatorIcon {
+  font-size: $sol-font-lg;
+  color: $sol-primary;
+  font-weight: $sol-weight-bold;
+}
+
+.aggregatorLabel {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-900;
+}
+
+// ════════════════════════════════════
+// ROUTER layout
+// ════════════════════════════════════
+.routerFlow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $sol-space-5;
+}
+
+.routerNode {
+  @include flex-center;
+  flex-direction: column;
+  gap: $sol-space-1;
+  width: 64px;
+  height: 64px;
+  border-radius: $sol-radius-lg;
+  border: 2px solid $sol-primary;
+  background: #FFFFFF;
+}
+
+.routerIcon {
+  font-size: $sol-font-xl;
+  font-weight: $sol-weight-bold;
+  color: $sol-primary;
+}
+
+.routerLabel {
+  font-size: $sol-font-xs;
+  color: $sol-gray-700;
+  font-weight: $sol-weight-medium;
+}
+
+.routerBranches {
+  display: flex;
+  gap: $sol-space-5;
+  align-items: flex-start;
+}
+
+.routerBranch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $sol-space-2;
+}
+
+.routerArrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  position: relative;
+}
+
+.routerCondition {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-bold;
+  color: $sol-gray-900;
+  background: $sol-gray-100;
+  width: 20px;
+  height: 20px;
+  @include flex-center;
+  border-radius: $sol-radius-sm;
+}

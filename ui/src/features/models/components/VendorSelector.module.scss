@@ -1,0 +1,48 @@
+.group {
+  display: flex;
+  gap: $sol-space-2;
+  flex-wrap: wrap;
+}
+
+.vendorBtn {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-2;
+  padding: $sol-space-2 $sol-space-4;
+  background: #FFFFFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+  color: $sol-gray-600;
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-medium;
+  cursor: pointer;
+  transition: all $sol-duration-fast;
+
+  &:hover {
+    border-color: $sol-primary;
+    color: $sol-gray-900;
+  }
+
+  &.active {
+    background: $sol-primary;
+    border-color: $sol-primary;
+    color: #FFFFFF;
+
+    .count {
+      background: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+    }
+  }
+}
+
+.name {
+  white-space: nowrap;
+}
+
+.count {
+  font-size: $sol-font-xs;
+  padding: 1px $sol-space-2;
+  border-radius: $sol-radius-full;
+  background: $sol-gray-100;
+  color: $sol-gray-500;
+}

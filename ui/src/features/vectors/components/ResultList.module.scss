@@ -1,0 +1,123 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-3;
+}
+
+.resultCard {
+  padding: $sol-space-5;
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-3;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-lg;
+  background: #FFFFFF;
+  box-shadow: $sol-shadow-sm;
+  transition: border-color $sol-duration-fast;
+
+  &:hover {
+    border-color: $sol-gray-300;
+  }
+}
+
+.cardHeader {
+  @include flex-between;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-3;
+}
+
+.score {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-bold;
+  font-family: $sol-font-display;
+  padding: $sol-space-1 $sol-space-2;
+  border-radius: $sol-radius-md;
+}
+
+.scoreHigh {
+  color: $sol-primary-dark;
+  background: $sol-primary-light;
+}
+
+.scoreMid {
+  color: $sol-gray-700;
+  background: $sol-gray-100;
+}
+
+.scoreLow {
+  color: $sol-gray-500;
+  background: $sol-gray-50;
+}
+
+.vectorId {
+  font-size: $sol-font-xs;
+  color: $sol-gray-400;
+  font-family: $sol-font-display;
+}
+
+.content {
+  cursor: pointer;
+  @include line-clamp(3);
+  transition: all $sol-duration-fast;
+
+  &.expanded {
+    -webkit-line-clamp: unset;
+    display: block;
+  }
+}
+
+.text {
+  font-size: $sol-font-sm;
+  color: $sol-gray-700;
+  line-height: $sol-leading-relaxed;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.expandBtn {
+  background: none;
+  border: none;
+  color: $sol-primary;
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-medium;
+  cursor: pointer;
+  padding: 0;
+  align-self: flex-start;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.metadata {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-1;
+  padding-top: $sol-space-2;
+  border-top: 1px solid $sol-gray-100;
+}
+
+.metaLabel {
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-medium;
+  color: $sol-gray-500;
+}
+
+.metaCode {
+  background: $sol-gray-50;
+  border-radius: $sol-radius-md;
+  padding: $sol-space-2 $sol-space-3;
+  overflow-x: auto;
+  @include scrollbar-thin;
+
+  code {
+    font-size: $sol-font-xs;
+    color: $sol-gray-700;
+    font-family: 'JetBrains Mono', 'SF Mono', monospace;
+    line-height: $sol-leading-normal;
+  }
+}

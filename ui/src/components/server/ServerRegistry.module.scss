@@ -1,0 +1,195 @@
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title {
+  font-family: $sol-font-display;
+  font-size: $sol-font-xl;
+  font-weight: $sol-weight-bold;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.count {
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-semibold;
+  background: #000000;
+  color: #FFFFFF;
+  padding: 2px 8px;
+  border-radius: 0;
+}
+
+.addButton {
+  padding: 8px 16px;
+  border-radius: 0;
+  border: 1px solid #000000;
+  cursor: pointer;
+  background: #000000;
+  color: #FFFFFF;
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-semibold;
+  font-family: $sol-font-family;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: opacity $sol-duration-fast;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.content {
+  min-height: 200px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeletonList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton {
+  height: 80px;
+  border-radius: 0;
+  background: #F0F0F0;
+}
+
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  background: #F5F5F5;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+}
+
+.emptyTitle {
+  font-family: $sol-font-display;
+  font-size: $sol-font-lg;
+  font-weight: $sol-weight-semibold;
+  color: #000000;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.emptyDesc {
+  font-size: $sol-font-sm;
+  color: #666666;
+  margin-bottom: 20px;
+}
+
+.emptyButton {
+  padding: 10px 20px;
+  border-radius: 0;
+  border: 1px solid #000000;
+  cursor: pointer;
+  background: #000000;
+  color: #FFFFFF;
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-semibold;
+  font-family: $sol-font-family;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.confirmModal {
+  background: #FFFFFF;
+  border-radius: 0;
+  border: 1px solid #000000;
+  padding: 24px;
+  min-width: 320px;
+  max-width: 400px;
+}
+
+.confirmTitle {
+  font-family: $sol-font-display;
+  font-size: $sol-font-lg;
+  font-weight: $sol-weight-semibold;
+  color: #000000;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.confirmDesc {
+  font-size: $sol-font-sm;
+  color: #666666;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.confirmButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.cancelButton {
+  padding: 8px 16px;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+  background: transparent;
+  color: #000000;
+  cursor: pointer;
+  font-size: $sol-font-sm;
+  font-family: $sol-font-family;
+}
+
+.deleteButton {
+  padding: 8px 16px;
+  border-radius: 0;
+  border: 1px solid #000000;
+  background: #000000;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-semibold;
+  font-family: $sol-font-family;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 16px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+}

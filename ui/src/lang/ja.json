@@ -1,0 +1,517 @@
+{
+  "common": {
+    "confirm": "確認",
+    "cancel": "キャンセル",
+    "close": "閉じる",
+    "submit": "送信"
+  },
+  "route": {
+    "schemaTag": "GEOスキーマ診断レポート {'|'} Beusable GEO"
+  },
+  "time": {
+    "h": "時間",
+    "m": "分",
+    "s": "秒"
+  },
+  "contactUs": {
+    "welcomeMessage": "こんにちは、solomon(ソロモン)です！ ご質問を入力してください。",
+    "headerDesc": "BEUSABLE SOLOMON(ソロモン)に質問してください！",
+    "reset": "リセット",
+    "questionGuide": "質問ガイド",
+    "loading": "回答を考え中",
+    "recommendTitle": "よくある質問です！",
+    "recommend": [
+      "クレジットカード情報の変更方法を教えてください。",
+      "Beusableのプランには何がありますか？",
+      "プランの変更について伺いたいです。",
+      "サービスごとの無料プランについて教えてください。",
+      "マッチタイプについて教えてください。",
+      "Beusableはどう使えばいいですか？",
+      "サービスごとの月間PV上限について教えてください。",
+      "どんなページが分析できますか？",
+      "Journey Mapでドメイン登録ができません。",
+      "JAMとは何ですか？",
+      "コードを入れたのに分析されません。なぜですか？",
+      "UXヒートマップはいつ見られますか？",
+      "UXヒートマップの分析ができません。",
+      "ページの登録ができません。",
+      "ポップアップを非表示にすることはできますか？",
+      "BeusableのCX連絡先を教えてください。"
+    ],
+    "askPlaceHolder": "質問を入力してください",
+    "survey": {
+      "title": {
+        "init": "さらにサポートが必要ですか？",
+        "sended": "送信が完了しました。"
+      },
+      "answer": {
+        "yes": "はい",
+        "no": "いいえ",
+        "needMoreInfo": "追加案内を希望します。",
+        "enoughInfo": "解決しました！"
+      },
+      "button": {
+        "getMoreSupport": "メールで受け取る",
+        "end": "終了する",
+        "close": "閉じる"
+      },
+      "confirmEmail": "チャット内容を確認後、<br>メールにてご連絡いたします。",
+      "endConversation": "UX GPTアシスタントの<br>チャットを終了します。",
+
+      "inputPlaceHolder": "メールアドレスを入力",
+      "inputError": "有効なメールアドレスを入力してください。",
+      "closeTimeOut": "{closeCount}秒後に自動的に閉じます。",
+      "send": "送信"
+    }
+  },
+  "aireport": {
+    "common": {
+      "dashboard": "CXエキスパート モード",
+      "dashboardHell": "Hellモード",
+      "reportSize": "データ容量",
+      "tokens": "トークン",
+      "insight": "CX分析インサイト",
+      "insightSub": "Powered by UX GPT",
+      "processingTitle": "頭脳フル回転中…",
+      "processingDesc": "ブラウザを閉じても、<br>レポートは正常に分析されます。",
+      "sessionError": "ビューザブルのログインセッションが<br />期限切れになりました。",
+      "sessionErrorText": "リポートを発行したアカウントで再度ログインし、<br />リポートをリフレッシュしてください。",
+      "login": "ビューザブル ログイン",
+      "reportError": "リポートを読み込めません。",
+      "reportErrorText": "リポートURLを再確認してください。",
+      "dashboardTitle": "AIカスタムダッシュボード",
+      "mashupTitle": "総合アナリティクスレポート",
+      "mashupSingle": "分析",
+      "mashupCompare": "比較分析",
+      "mashupConjunction": "と",
+      "gptReportTitle": "データ分析リポート",
+      "more": "詳細を見る",
+      "invalid": "無効値",
+      "category": {
+        "title": "ページタイプ分類",
+        "category2Title": "ページ構成",
+        "category3Title": "主な分析目的",
+        "industryAverage": "業界平均データ",
+        "longGuide": "'*.{domain}'では、'{category2}'タイプのページが最も多いです。'{category2}'ページでは、{category2Description}分析目的を特定できる第3分類で、'{category3}'が最も多く見られました。サービス改善のためのガイドを提供いたします。"
+      },
+      "listIdx": {
+        "0": "最初に",
+        "1": "二番目に",
+        "2": "三番目に",
+        "3": "四番目に"
+      },
+      "infoTable": {
+        "title": "リポート閲覧セグメントと規模",
+        "description": "データ間には{diffCount}個の異なるセグメントがあり、異なるセグメントは「{diffSegments}」です。これらのセグメントが適用されたデータの規模は、PV基準で最小値から最大値まで{pvGap}%異なるため、分析時にご参考ください。",
+        "thead": {
+          "type": "リポート\nタイプ",
+          "domain": "ドメイン",
+          "firstPath": "Pathリスト",
+          "date": "期間",
+          "device": "デバイス",
+          "marketing": "Marketing",
+          "refer": "流入経路",
+          "exist": "訪問タイプ",
+          "session": "Session",
+          "pv": "PV"
+        },
+        "survey": {
+          "target": "アンケート対象者",
+          "noTarget": "アンケート非対象者",
+          "answer": "未回答",
+          "noAnswer": "回答済み",
+          "etc": "その他"
+        }
+      },
+      "rawWordRefUrl": "https://forum.beusable.net/ja/solomon/post/2297",
+      "rawWordRefAlt": "[Beusable Forum] CXレポート - セグメント"
+    },
+    "banner": {
+      "title": "CXビッグデータ深掘り分析<br><span class='highlight'>レポートの一部を公開</span>します",
+      "description": "業界との比較評価やインサイト発掘に本当に役立つ、<br>「自分たちのためのリアルなデータ」。",
+      "guide": "今すぐレポートをご覧ください！",
+      "buttonLabel": "GO"
+    },
+    "claim": {
+      "title": "問題を報告する",
+      "description": "LLMの特性上、以下の不具合が発生する場合があります。<br>AIレポートを再生成すると解消されます。<br><br>① エンコード不具合：文字化け<br>② 画面高さの不具合：チャート生成中にページが長くなる<br>③ チャート未生成：処理または推論中のエラー<br><br>不具合報告時、エラーにより消費されたJAMは返金されます。",
+      "placeholder": "問題について詳しく教えてください。",
+      "success": {
+        "title": "送信完了",
+        "desc": "ご報告内容をご確認の上、回答させていただきます。"
+      },
+      "fail": {
+        "title": "問題報告失敗",
+        "desc": "しばらくしてからもう一度お試しください。"
+      }
+    },
+    "editor": {
+      "editAuth": "AIリポート編集機能は<br />有料プランで利用できます。",
+      "toolbar": {
+        "title": "レポート編集",
+        "description": "編集完了後、修正されたAIレポートが新しいバージョンとして追加されます。"
+      },
+      "complete": {
+        "title": "AIレポート編集完了",
+        "description": "AIレポートの編集が完了しました。<br />更新されたバージョンを確認してください。"
+      },
+      "excess": {
+        "title": "編集時に<br />以前のバージョンが削除されます。",
+        "description": "記録は最大10件まで保存できます。<br />編集完了後、最も古いバージョンが削除され、<br />新しいバージョンが保存されます。"
+      },
+      "exit": {
+        "title": "編集モードを終了しますか？",
+        "description": "編集内容は保存されません。"
+      },
+      "error": {
+        "title": "編集が完了しませんでした。",
+        "description": "一時的なエラーで編集内容が保存されませんでした。<br />再度お試しください。"
+      },
+      "button": {
+        "edit": "編集",
+        "done": "編集完了"
+      }
+    },
+    "journey": {
+      "title": "Journey全体行程分析",
+      "journeyTable": {
+        "title": "全体行程情報",
+        "step": "段階",
+        "journey": "行程",
+        "remainder": "残存\nセッション数"
+      },
+      "captureTable": {
+        "seq": "段階",
+        "title": "ページタイトル",
+        "url": "URL"
+      },
+      "activated": {
+        "title": "選択されたジャーニー分析",
+        "subTitle": "選択されたジャーニー",
+        "singleSeqDesc": "分析レポート照会時に活性化されていた「選択されたジャーニー」のユーザーは、「{startPageTitle}({startPageDomain}, {startPagePathName})」から{startSessionValue}セッションからジャーニーを開始し、すぐに離脱しました。このページは、ユーザーの最初のタッチポイントであり、主要な探索が行われる重要なページです。<br>ページ内の平均滞在時間は{interval}で、ユーザーはこのページを閲覧した後、追加の探索を行わずに離脱しました。ランディングページであることを考慮すると、滞在時間が30秒以上の場合、ユーザーはこのページで必要な情報を確認した後、離脱した可能性があります。一方、30秒未満の場合は、求めていた情報を得られずにすぐに離脱した可能性があります。",
+        "multiSeqDesc": "分析レポート照会時に活性化されていた「選択されたジャーニー」のユーザーは、「{startPageTitle}({startPageDomain}, {startPagePathName})」から{startSessionValue}セッションからジャーニーを開始し、「{endPageTitle}({endPageDomain}, {endPagePathName})」ページまで{endSessionRatio}%（{endSessionValue}セッション）が移動しました。<br>最も注目すべきは「{majorPageTitle}({majorPageDomain}, {majorPagePathName})」ページです。他のページと比べて{indicator}が相対的に高いため、ユーザーの探索を妨げる要因がないか検討してみましょう。",
+        "compare": {
+          "title": "選択されたジャーニー比較分析",
+          "equalDesc": "分析レポート照会時に活性化されていた「選択されたジャーニー」を比較することで、ユーザーの流入経路や離脱パターンの違いを分析できます。<br>まず、データ1のランディングページは「{startPageTitle1}({startPageDomain1}, {startPagePathName1})」（{startSessionValue1}セッション）、データ2のランディングページは「{startPageTitle2}({startPageDomain2}, {startPagePathName2})」（{startSessionValue2}セッション）です。データ1とデータ2のランディングページでの遷移率は{cvrRate}％と同じであり、ランディングページでの遷移効率と探索誘導効果に違いは見られません。",
+          "diffDesc": "分析レポート照会時に活性化されていた「選択されたジャーニー」を比較することで、ユーザーの流入経路や離脱パターンの違いを分析できます。<br>まず、データ1のランディングページは「{startPageTitle1}({startPageDomain1}, {startPagePathName1})」（{startSessionValue1}セッション）、データ2のランディングページは「{startPageTitle2}({startPageDomain2}, {startPagePathName2})」（{startSessionValue2}セッション）です。流入トラフィックを遷移に繋げるのに効果的なページは「{cvrHighPageTitle}({cvrHighPageDomain}, {cvrHighPagePathName})」ページで、データ{cvrRowData}に比べ、ランディングページでの遷移率が{cvrDiff}%p高くなっています。",
+          "dropDesc": "最も離脱率が高いページは、データ1では「{dropPageTitle1} ({dropPageDomain1}, {dropPagePathName1})」（{dropRate1}%）、データ2では「{dropPageTitle2} ({dropPageDomain2}, {dropPagePathName2})」（{dropRate2}%）です。同じページで離脱が多く発生している場合、そのページがボトルネックになっている可能性が高いため、改善が必要です。一方、離脱が多いページが異なる場合、各ジャーニーのユーザーの意図や流入経路の違いを考慮し、ページごとに最適化を行いましょう。"
+        },
+        "dropRate": "離脱率",
+        "rollbackCnt": "ロールバック",
+        "reloadCnt": "更新ボタン",
+        "interval": "滞在時間"
+      },
+      "major": {
+        "title": "全体ジャーニー分析",
+        "subTitle": "コアジャーニートップ{majorCount}",
+        "compareSubTitle": "コアジャーニー比較分析",
+        "description": "コアジャーニーは、サイト内で最も多く発生したカスタマージャーニーです。コアジャーニーの開始セッション数は{sessionValue}セッションで、ユーザー全体の{sessionRatio}％を占めています。<br>離脱率{dropRate}％と、コアジャーニー内で最も離脱率の高い「{pageTitle}({pageDomain}, {pagePathName})」ページを改善することで、最小限の施策でより多くのユーザーに影響を与え、効率的に成果目標を達成できます。",
+        "compare": {
+          "title": "全体ジャーニー比較分析",
+          "subTitle": "コアジャーニー比較分析",
+          "equalDesc": "データ1とデータ2のコアジャーニーが同じであることから、この経路がサイト内で最も効率の良いジャーニーであり、最適なファネル設計を行うべき重要なポイントであることが分かります。",
+          "equalDropDesc": "最も離脱率が高いページは、データ1では「{dropPageTitle1} ({dropPageDomain1}, {dropPagePathName1})」（{dropRate1}%）、データ2では「{dropPageTitle2} ({dropPageDomain2}, {dropPagePathName2})」（{dropRate2}%）です。同じページで離脱が多く発生している場合、優先的に改善が必要です。一方、離脱が多いページが異なる場合、ユーザーの期待や探索経路はジャーニーごとに異なるため、離脱の原因を分析し、個別に改善を行いましょう。",
+          "diffDesc": "データ1とデータ2のコアジャーニーが異なることから、ユーザーが目標に到達するまでのパターンが異なることが分かります。ジャーニーの開始ページを見ると、データ1は「{startPageTitle1}({startPageDomain1}, {startPagePathName1})」、データ2は「{startPageTitle1}({startPageDomain1}, {startPagePathName1})」から探索が始まっています。セッション全体のうち、データ{higherSessionData}のジャーニーを開始したセッションは{higherSessionRatio}％と{sessionDesc}。",
+          "diffDropDesc": "最も離脱率が高いページは、データ1では「{dropPageTitle1} ({dropPageDomain1}, {dropPagePathName1})」（{dropRate1}%）、データ2では{dropPageTitle2} ({dropPageDomain2}, {dropPagePathName2})」（{dropRate2}%）です。遷移率が高いジャーニーを分析し、効率的な探索経路をベンチマークして、離脱が多いページのユーザー体験を改善しましょう。",
+          "both": "1とデータ2",
+          "equal": "同じです",
+          "more": "より高いです"
+        }
+      },
+      "flow": "ジャーニー",
+      "remainder": "最終セッション数",
+      "captureSection": {
+        "drop": {
+          "title": "全体行程における離脱率の確認",
+          "description": "{seq}シーケンス内で離脱率改善が最も必要なページは、以下の行程の{pageTitle}({pageDomain}, {pagePathName})ページです。問題ページや行程がサービスの主な行程に関連している場合は、画面の変換体験を必ず改善してください。",
+          "compare": {
+            "both": "3シーケンス内で離脱率改善が最も必要なページは、[データ1]では{pageDomain1}, {pagePathName1}ページ、[データ2]では{pageDomain2}, {pagePathName2}ページです。以下の行程を参考に、問題ページや行程がサービスの主要行程に関連している場合、画面の変換体験を必ず改善してください。",
+            "bothV2": "離脱率改善が最も必要なページは、[データ1]では{pageDomain1}, {pagePathName1}ページ、[データ2]では{pageDomain2}, {pagePathName2}ページです。以下の行程を参考に、問題ページや行程がサービスの主要行程に関連している場合、画面の変換体験を必ず改善してください。",
+            "single": ""
+          }
+        },
+        "rollback": {
+          "title": "全体行程におけるロールバック率の確認",
+          "description": "{seq}シーケンス内でロールバック率が最も高いページは、以下の行程の{pageTitle}({pageDomain}, {pagePathName})ページです。該当ページの次の変換ページを確認し、戻った原因を検討してください。",
+          "compare": {
+            "both": "3シーケンス内でロールバック率が最も高いページは、[データ1]では{pageDomain1}, {pagePathName1}ページ、[データ2]では{pageDomain2}, {pagePathName2}ページです。以下の行程を参考に、問題ページや行程がサービスの主要行程に関連している場合、画面の変換体験を必ず改善してください。",
+            "bothV2": "ロールバック率が最も高いページは、[データ1]では{pageDomain1}, {pagePathName1}ページ、[データ2]では{pageDomain2}, {pagePathName2}ページです。以下の行程を参考に、問題ページや行程がサービスの主要行程に関連している場合、画面の変換体験を必ず改善してください。",
+            "single": "3シーケンス内でロールバック率が最も高いページは、[データ{existIdx}]では{pageDomain}, {pagePathName}ページで、[データ{emptyIdx}]ではロールバック率がすべて0%のため、該当するページが存在しません。以下の行程を参考に、問題ページや行程がサービスの主な行程に関連している場合、画面の変換体験を必ず改善してください。",
+            "singleV2": "ロールバック率が最も高いページは、[データ{existIdx}]では{pageDomain}, {pagePathName}ページで、[データ{emptyIdx}]ではロールバック率がすべて0%のため、該当するページが存在しません。以下の行程を参考に、問題ページや行程がサービスの主な行程に関連している場合、画面の変換体験を必ず改善してください。"
+          }
+        },
+        "reload": {
+          "title": "全体行程における更新ボタン率の確",
+          "description": "{seq}シーケンス内で更新ボタン率が最も高いページは、以下の行程の{pageTitle}({pageDomain}, {pagePathName})ページです。該当ページ自体の問題なのか、次のページに進むための問題がないかを確認してください。",
+          "compare": {
+            "both": "3シーケンス内で更新ボタン率が最も高いページは、[データ1]では{pageDomain1}, {pagePathName1}ページ、[データ2]では{pageDomain2}, {pagePathName2}ページです。以下の行程を参考に、該当ページ自体の問題なのか、次のページに進むための問題がないかを確認してください。",
+            "bothV2": "更新ボタン率が最も高いページは、[データ1]では{pageDomain1}, {pagePathName1}ページ、[データ2]では{pageDomain2}, {pagePathName2}ページです。以下の行程を参考に、該当ページ自体の問題なのか、次のページに進むための問題がないかを確認してください。",
+            "single": "3シーケンス内で更新ボタン率が最も高いページは、[データ{existIdx}]では{pageDomain}, {pagePathName}ページで、[データ{emptyIdx}]では更新ボタン率がすべて0%のため、該当するページが存在しません。以下の行程を参考に、該当ページ自体の問題なのか、次のページに進むための問題がないかを確認してください。",
+            "singleV2": "更新ボタン率が最も高いページは、[データ{existIdx}]では{pageDomain}, {pagePathName}ページで、[データ{emptyIdx}]では更新ボタン率がすべて0%のため、該当するページが存在しません。以下の行程を参考に、該当ページ自体の問題なのか、次のページに進むための問題がないかを確認してください。"
+          }
+        }
+      }
+    },
+    "ranking": {
+      "title": "Ranking主要指標分析",
+      "description": "該当期間のユーザーは{interval}の間サイトに滞在し、{pageCnt}ページを閲覧しました。",
+      "compare": {
+        "description": "[データ1]ユーザーは{interval1}の間サイトに滞在し、{pageCnt1}ページを閲覧しましたが、<br />[データ2]ユーザーは{interval2}の間サイトに滞在し、{pageCnt2}ページを閲覧しました。（データ1対比で{intervalDir}{intervalDiff}, {pageCntDir}{pageCntDiff}ページ閲覧）"
+      },
+      "pvTop20": {
+        "title": "PVトップ20ページ統計",
+        "description": "全体PVのうち、上位{topPageCnt}ページが占める割合は{topPageRate}%です。これらのページは全体トラフィックの大部分を占めているため、ページのパフォーマンスはサービス全体に直接影響を与えます。上位ページの分析を通じて、ユーザーの関心事や行動パターンを理解し、問題点を特定し、改善が可能です。",
+        "compareDescription": "全体PVのうち、上位ページ（データ1の{top20Cnt1}ページ、データ2の{top20Cnt2}ページ）が占める割合は、[データ1]{top20Ratio1}%、[データ2]{top20Ratio2}%です。これらのページは全体トラフィックの大部分を占めているため、ページのパフォーマンスはサービス全体に直接影響を与えます。上位ページの分析を通じて、ユーザーの関心事や行動パターンを理解し、問題点を特定し、改善が可能です。",
+        "subTitle": "注目すべき指標",
+        "cvrDrop": "コンバージョン/離脱",
+        "stayin": "コンバージョン",
+        "drop": "離脱",
+        "interval": "滞在時間",
+        "rollback": "ロールバック",
+        "reload": "更新ボタン",
+        "empty": "{type} が発生したページは存在しません。"
+      }
+    },
+    "trend": {
+      "title": "Trend全体分析",
+      "chart": {
+        "title": "段階別離脱率",
+        "description": "6番目のシーケンスまでコンバージョンを進めた訪問者は全体の{finalConversionRate}%です。{seq1}シーケンスから{seq2}シーケンスへの変換における離脱率が最も高いため、行程の観点からこの段階での変換を改善すれば、残存訪問者を効率的に増加させることができます。",
+        "compareDescription": "6番目のシーケンスまでコンバージョンを進めた訪問者は、[データ1]では全体の{finalConversionRate1}%、[データ2]では{finalConversionRate2}%で、[データ{maxData}]が{finalConversionDiff}%P高いです。離脱率が最も高い区間は、[データ1]では{seq1_1}シーケンスから{seq1_2}シーケンスへの変換区間であり、[データ2]では{seq2_1}シーケンスから{seq2_2}シーケンスへの変換区間です。この区間を比較して、行程の観点からこの段階での変換を改善すれば、残存訪問者を効率的に増加させることができます。"
+      },
+      "capture": {
+        "title": "コンバージョン離脱規模",
+        "description": "離脱規模が最も大きいページは{topDropCntSeq}シーケンスの{topDropCntPage}ページで、離脱率が最も高いページは{topDropRateSeq}シーケンスの{topDropRatePage}ページです。コンバージョン規模が大きいページは{topCvrCntSeq}シーケンスの{topCvrCntPage}ページ、コンバージョン率が最も高いページは{topCvrRateSeq}シーケンスの{topCvrRatePage}ページです。{topDropCntSeq}シーケンスの{topDropCntPage}ページの離脱問題を改善すれば、多くの訪問者の離脱を効率的に改善することができます。",
+        "compareDescription": "最も離脱規模が大きいページは、[データ1]では{topDropCntSeq1}シーケンスの{topDropCntPage1}ページであり、[データ2]では{topDropCntSeq2}シーケンスの{topDropCntPage2}ページです。離脱率が最も高いページは、[データ1]では{topDropRateSeq1}シーケンスの{topDropRatePage1}ページ、[データ2]では{topDropRateSeq2}シーケンスの{topDropRatePage2}ページです。コンバージョン規模が大きいページは、[データ1]では{topCvrCntSeq1}シーケンスの{topCvrCntPage1}ページ、[データ2]では{topCvrCntSeq2}シーケンスの{topCvrCntPage2}ページです。また、コンバージョン率が最も高いページは、[データ1]では{topCvrRateSeq1}シーケンスの{topCvrRatePage1}ページ、[データ2]では{topCvrRateSeq2}シーケンスの{topCvrRatePage2}ページです。[データ1]の{topDropCntSeq1}シーケンスの{topDropCntPage1}ページと[データ2]の{topDropCntSeq2}シーケンスの{topDropCntPage2}ページにおける離脱問題を改善することで、多くの訪問者の離脱を効率的に減らすことができます。"
+      }
+    },
+    "target": {
+      "title": "ターゲット分析",
+      "subTitle": "ターゲットページ",
+      "subTitle2": "ターゲットジャーニー",
+      "thList": {
+        "title": "ページタイトル",
+        "url": "URL",
+        "type": "ターゲットタイプ"
+      },
+      "direction": {
+        "forward": "타겟 랜딩으로 시작한 여정",
+        "backward": "ターゲット到達までのジャーニー"
+      }
+    },
+    "crawlerModal": {
+      "title": "AIプラットフォーム別 反映メカニズム",
+      "perplexity": {
+        "name": "Perplexity",
+        "time": "数分〜約48時間",
+        "desc": "リアルタイムWeb探索（Query Fan-out）方式で動作します。dateModifiedが最新のコンテンツは引用対象として優先される傾向があります。スキーマ（Article、FAQ）が適用されている場合、AIが重要情報を抽出しやすくなり、出典として引用される可能性が高まる傾向があります。"
+      },
+      "chatgpt": {
+        "name": "ChatGPT (SearchGPT)",
+        "time": "約24時間",
+        "desc": "OAI-SearchBotによる直接クロールに加え、Microsoft Bingの検索インデックスを広範に活用します。そのため、Bing Webmaster Toolsでのインデックス状況はChatGPTへの反映速度に直接影響する可能性があります。",
+        "tip": "IndexNowプロトコルを適用すると、Bing、Copilot、ChatGPTすべてのインデックスおよび反映速度の向上が期待できます。"
+      },
+      "google": {
+        "name": "Google AI Overview",
+        "time": "数日〜約2週間",
+        "desc": "既存のGoogle SEOメカニズムに準拠します。権威性の高いサイトは数時間以内、一般的なサイトは通常数日程度で更新される傾向があります。",
+        "tip": "検索結果Top10へのランクインが一般的な前提となります。上位圏外のコンテンツは、スキーマが適用されていてもAI Overviewに表示されない可能性が高いです。"
+      },
+      "claude": {
+        "name": "Claude",
+        "time": "学習型（長期）",
+        "desc": "Claudeはリアルタイム検索時に外部検索エンジン（Google、Bingなど）を活用します。ClaudeBotは主にモデル学習データ収集目的で運用されるため、スキーマ変更がClaudeの回答に反映されるにはモデル更新サイクルを経る必要があります。",
+        "tip": "ただし、ClaudeのWeb検索機能は外部検索エンジンを通じて動作するため、GoogleおよびBing最適化はそのままClaude検索最適化につながります。"
+      },
+      "knowledgeGraph": {
+        "name": "Google Knowledge Graph",
+        "time": "1〜6か月",
+        "desc": "Wikipediaやニュースなど信頼性の高いソースとのクロス検証が完了すると反映される傾向があります。sameAs属性でSNS、Wikipedia、公式サイトを連携すると検証時間の短縮が期待できます。"
+      },
+      "insight": {
+        "title": "主要インサイト",
+        "desc1": "スキーマを適用すると、サイト権威性やコンテンツ品質に応じて、AI引用確率が平均約30〜40％向上する傾向が観測されています。（Conductor、Semrushデータ）",
+        "desc2": "サイトの権威性（Authority）が高いほどクロール頻度が増加する傾向があります。ボットの訪問周期はサイトごとに数時間〜月1回程度まで差があります。",
+        "desc3": "Bing最適化は一般的にChatGPTおよびCopilot最適化にも寄与します。IndexNowプロトコルを適用すると、3プラットフォームすべての反映速度向上が期待できます。",
+        "desc4": "サーバーサイドレンダリング（SSR）はクライアントサイドレンダリングと比較して、クロール認識速度の面で一般的に有利です。"
+      },
+      "source": "出典: "
+    },
+    "scroll": {
+      "title": "スクロールデータ分析レポート",
+      "gptReportTitle": "ユーザー行動分析レポート",
+      "overview": {
+        "title": "概要",
+        "atfNote": "*ATF = Average The Fold",
+        "table": {
+          "documentHeight": "ページ長",
+          "atf": "ATF",
+          "twoXAtfReachRate": "2xATF Reach Rate",
+          "peakAttentionPosition": "Peak Attention Position below ATF"
+        }
+      },
+      "chart": {
+        "title": "スクロール到達ヒートマップ及び注目グラフ",
+        "legend": {
+          "reachRate": "到達率",
+          "attention": "注目度"
+        }
+      },
+      "info": {
+        "title": "レポート概要",
+        "segment": "セグメント",
+        "table": {
+          "reportType": "レポートタイプ",
+          "reportName": "レポート名",
+          "url": "URL",
+          "analysisPeriod": "分析期間",
+          "marketing": "マーケティング",
+          "device": "デバイス",
+          "referralPath": "流入経路",
+          "visit": "訪問",
+          "timeSlot": "時間帯",
+          "visitFrequency": "訪問頻度",
+          "cta": "CTA"
+        }
+      }
+    },
+    "weekly": {
+      "common": {
+        "title": "週間レポート",
+        "date": "{year}年{month}月第{week}週",
+        "summaryTitle": "先週収集されたデータの分析サマリーです。",
+        "collected": {
+          "title": "先週収集された<br>データ",
+          "pv": "PV (ページビュー)",
+          "session": "セッション",
+          "intervalPerSession": "１セッション当たり平均滞在時間",
+          "pvPerSession": "１セッション当たりページ数",
+          "stayin": "平均遷移率",
+          "drop": "平均離脱率",
+          "note": "※平均遷移率と平均離脱率は、PV Top 20ページの平均指標です。"
+        },
+        "typeTitle": "必ず知っておきたい週間データ分析結果",
+        "openButton": "Beusable AIの分析結果全体を見る",
+        "foldButton": "要約を見る"
+      },
+      "journey": {
+        "title": "3×3ジャーニーで離脱率の改善が必要なページはどこでしょうか？",
+        "exceptionTitle": "3×3ジャーニーで離脱率の改善が必要なページはありません。",
+        "description": "{domain}の{device}（訪問カスタマー全体の{deviceRatio}）データを分析した結果、第3シーケンスまでで最も離脱率の改善が必要なページは、{nodeIndex}段階目の「{pageTitle}({pageDomain}, {pagePathName})」でした。下記ジャーニーを参考に、問題のページやジャーニーがサービスの重要フローに関連している場合は、画面遷移設計の改善を検討しましょう。",
+        "exceptionDesc": "{domain}の{device}（訪問カスタマー全体の{deviceRatio}）データを分析した結果、第3シーケンスまですべてのページで離脱率が0%となり、すべてのカスタマーが次のページに遷移していることが分かりました。下記リンクからJourneyレポートにアクセスし、第3シーケンス以降でカスタマーがどのページに遷移しているのか、また最初に離脱が発生しているページはどこなのかを確認しましょう。",
+        "listStep": "離脱率が<br>最も高い<br>ジャーニー"
+      },
+      "ranking": {
+        "title": "遷移率と離脱率が最も高いページはどこでしょうか？",
+        "cvrTitle": "遷移率が最も高いページはどこでしょうか？",
+        "dropTitle": "離脱率が最も高いページはどこでしょうか？",
+        "note": "※下記はPV Top 20ページに関するデータです。",
+        "description": "{domain}のデータを分析した結果、PV Top 20ページの中で他のページへの遷移が最も多かったページは「{cvrTitle}({cvrDomain}, {cvrPathname})」、離脱が最も多かったページは「{dropTitle}({dropDomain}, {dropPathname})」でした。遷移率と離脱率が高いページを分析し、離脱の原因を特定して、離脱率改善のための目標を設定しましょう。",
+        "cvrDesc": "{domain}のデータを分析した結果、PV Top 20ページの中で他のページへの遷移が最も多かったページは「{cvrTitle}({cvrDomain}, {cvrPathname})」でした。 遷移率が最も高いページを分析し、離脱の原因を特定して、離脱率改善のための目標を設定しましょう。",
+        "dropDesc": "{domain}のデータを分析した結果、PV Top 20ページの中で他のページへの離脱が最も多かったページは「{dropTitle}({dropDomain}, {dropPathname})」でした。離脱率が最も高いページを確認し、離脱の原因を特定して、離脱率改善のための目標を設定しましょう。",
+        "cvr": "遷移率",
+        "drop": "離脱率"
+      },
+      "trend": {
+        "title": "離脱率が最も高いのはどの段階でしょうか？",
+        "description": "{domain}の{device}（訪問カスタマー全体の{deviceRatio}）データを分析した結果、第{seqLength}シーケンスまで到達したカスタマーは全体の13%でした。その中で、第{seq1}シーケンスから第{seq2}シーケンス間の離脱率が最も高くなっています。この段階での遷移に関連するジャーニーを改善することで、残存カスタマーを効率的に増加させることができます。"
+      }
+    }
+  },
+  "reportChat": {
+    "welcomeMessage": "こんにちは、AI Docentです！<br>ご覧になっている内容のご不明点などございませんか？",
+    "questionLimit": "残り質問数(日)",
+    "questionLimitAlert": "本日分の質問数をすべて使用しました。",
+    "askPlaceholder": "質問をお寄せください!",
+    "loading": "回答を考え中",
+    "rating": "回答を評価",
+    "reset": "リセット",
+    "pause": "停止する",
+    "copy": "メッセージをコピーしました。",
+    "error": {
+      "default": "一時的なエラーにより、回答できません。<br>しばらくしてから再試行してください。<br>問題が解決しない場合は、CXチーム（contact{'@'}4grit.com）までお問い合わせください。",
+      "limit": "チャット容量を超過したため、これ以上メッセージを送信できません。<br>「リセット」ボタンをクリックして、新しいチャットを始めてください。<br>※必要なテキストは、あらかじめコピーしておくことをおすすめします！",
+      "aborted": "リクエストにより、回答の作成を中断しました。<br>こちらはすでに回答済みの質問のため、残余質問数が1件消費されました。"
+    },
+    "limitPlaceHolder": "「リセット」ボタンをクリックして、新しいチャットを始めてください。"
+  },
+  "agent": {
+    "common": {
+      "edit": "編集",
+      "delete": "削除",
+      "back": "戻る"
+    },
+    "hub": {
+      "categories": "カテゴリ",
+      "servers": "サーバー",
+      "agentCategories": "エージェントカテゴリ",
+      "manageServers": "サーバー管理",
+      "createAgent": "エージェント作成",
+      "deploy": "デプロイ",
+      "emptyTitle": "エージェントがありません",
+      "emptyDesc": "最初のエージェントを作成してAI自動化を始めましょう。",
+      "deployConfirmTitle": "エージェントのデプロイ",
+      "deployConfirmDesc": "{{name}}を{{category}}カテゴリのライブエージェントとしてデプロイします。現在のアクティブエージェントは無効化されます。",
+      "deleteConfirmTitle": "エージェントの削除",
+      "deleteConfirmDesc": "{{name}}を削除してもよろしいですか？この操作は取り消せません。"
+    },
+    "builder": {
+      "createTitle": "エージェント作成",
+      "editTitle": "エージェント編集",
+      "sourcePanel": "ツールサーバー",
+      "workspace": "設定",
+      "preview": "プレビュー",
+      "name": "エージェント名",
+      "namePlaceholder": "エージェント名を入力してください",
+      "agent": "エージェント",
+      "description": "説明",
+      "descPlaceholder": "エージェントの説明を入力してください",
+      "selectedTools": "選択済みツール",
+      "noToolsSelected": "左側のサーバーからツールを選択してください。各ツールはエージェントに新しい機能を追加します。",
+      "summary": "概要",
+      "toolCount": "ツール数",
+      "serverCount": "サーバー数",
+      "status": "ステータス",
+      "draft": "Draft",
+      "create": "エージェント作成",
+      "update": "エージェント更新",
+      "addAll": "すべて追加",
+      "offline": "オフライン"
+    },
+    "server": {
+      "title": "ツールサーバー",
+      "register": "サーバー登録",
+      "registerTitle": "サーバー登録",
+      "editTitle": "サーバー編集",
+      "name": "サーバー名",
+      "namePlaceholder": "サーバー名を入力してください",
+      "uri": "サーバーURI",
+      "token": "認証トークン",
+      "tokenPlaceholder": "Bearerトークンを入力してください",
+      "description": "説明",
+      "descPlaceholder": "サーバーの説明を入力してください",
+      "testConnection": "テスト",
+      "connected": "接続済み",
+      "connectFail": "接続失敗",
+      "availableTools": "利用可能なツール",
+      "update": "更新",
+      "tools": "ツール",
+      "live": "Live",
+      "offline": "Offline",
+      "emptyTitle": "登録されたサーバーがありません",
+      "emptyDesc": "MCPサーバーを接続してエージェントにツールを提供してください。",
+      "deleteConfirmTitle": "サーバーの削除",
+      "deleteConfirmDesc": "サーバー{{name}}を削除しますか？",
+      "deleteError": "このサーバーを使用しているエージェントがあるため削除できません。"
+    }
+  },
+  "schemaChat" : {
+    "geoWelcomeMessage": "Beusable AIで診断するURLのみ正確に入力してください。\n\n※ ログインが必要なページはスキーマタグ分析の対象外です。",
+    "geoHeaderDesc": "スキーマタグを診断するURLを入力してください。",
+    "messageFooter": "すぐに適用できるスキーマタグが必要ですか？<br/>Beusable GEOで詳細レポートと最適化されたスキーマタグを確認できます。",
+    "diagnosisLink": "【Beusable GEO 無料で開始 →】",
+    "placeholder": "Beusable AIで診断するURLのみ正確に入力してください。",
+    "limit": "無料のスキーマタグ診断は1回のみ提供されます。"
+  }
+}

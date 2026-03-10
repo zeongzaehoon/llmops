@@ -1,0 +1,191 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-6;
+}
+
+.tabBar {
+  border-bottom: 1px solid $sol-gray-200;
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+}
+
+// --- Shared section styles ---
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-3;
+  margin-bottom: $sol-space-6;
+}
+
+.sectionTitle {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-500;
+  margin: 0;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: $sol-space-4;
+  border-top: 1px solid $sol-gray-100;
+}
+
+.loading {
+  @include flex-center;
+  padding: $sol-space-8 0;
+  color: $sol-gray-500;
+  font-size: $sol-font-sm;
+}
+
+.muted {
+  font-size: $sol-font-sm;
+  color: $sol-gray-400;
+}
+
+// --- Model tab ---
+.modelTab {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-4;
+}
+
+.currentModel {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-2;
+  padding: $sol-space-3 $sol-space-4;
+  background: #FFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+}
+
+.vendorName {
+  font-size: $sol-font-base;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-900;
+}
+
+.separator {
+  color: $sol-gray-300;
+}
+
+.modelName {
+  font-size: $sol-font-base;
+  font-weight: $sol-weight-medium;
+  color: $sol-gray-700;
+}
+
+// --- Prompt tab ---
+.promptTab {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-5;
+}
+
+.panels {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: $sol-space-5;
+  min-height: 400px;
+}
+
+.timelinePanel {
+  padding: $sol-space-5;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-lg;
+  background: #FFFFFF;
+}
+
+.editorPanel {
+  padding: $sol-space-5;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-lg;
+  background: #FFFFFF;
+}
+
+.deployCard {
+  padding: $sol-space-5;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-lg;
+  background: #FFFFFF;
+}
+
+// --- Toolset tab ---
+.toolsetTab {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-5;
+}
+
+.toolsetHeader {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toolsetGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $sol-space-4;
+}
+
+// --- Servers tab ---
+.serversTab {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-5;
+}
+
+// --- Confirm dialog ---
+.confirmOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $sol-z-modal;
+}
+
+.confirmBox {
+  background: #FFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-xl;
+  box-shadow: $sol-shadow-xl;
+  padding: $sol-space-6;
+  max-width: 400px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-4;
+}
+
+.confirmTitle {
+  font-size: $sol-font-lg;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-900;
+  margin: 0;
+}
+
+.confirmDesc {
+  font-size: $sol-font-base;
+  color: $sol-gray-600;
+  margin: 0;
+  line-height: $sol-leading-normal;
+}
+
+.confirmActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: $sol-space-3;
+}

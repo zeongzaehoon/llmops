@@ -1,0 +1,519 @@
+{
+  "common": {
+    "confirm": "확인",
+    "cancel": "취소",
+    "close": "닫기",
+    "submit": "전송"
+  },
+  "route": {
+    "schemaTag": "GEO 스키마 진단 보고서 {'|'} Beusable GEO"
+  },
+  "time": {
+    "h": "시간",
+    "m": "분",
+    "s": "초"
+  },
+  "contactUs": {
+    "welcomeMessage": "안녕하세요 솔로몬입니다! 무엇이 궁금하신가요?",
+    "headerDesc": "BEUSABLE SOLOMON에게 질문하세요!",
+    "reset": "초기화",
+    "questionGuide": "질문 가이드",
+    "loading": "답변 고민 중",
+    "recommendTitle": "자주 묻는 질문이에요!",
+    "recommend": [
+      "무통장 결제 방법을 알려주세요.",
+      "카드 결제 방법을 알려주세요.",
+      "카드 변경 방법 알려주세요.",
+      "Beusable 플랜 종류가 궁금해요.",
+      "플랜 변경 문의드립니다.",
+      "서비스 별 무료 플랜에 대해 알려주세요.",
+      "매치 유형에 대해 알려주세요.",
+      "Beusable은 어떻게 활용하나요?",
+      "서비스 별 월간 PV 제한에 대해 알려주세요.",
+      "어떤 웹페이지 분석이 가능한가요?",
+      "Journey Map 도메인 등록이 되지 않아요.",
+      "JAM 이란 무엇인가요?",
+      "코드가 설치되어 있는데 분석이 진행되지 않아요.",
+      "UX Heatmap 분석 확인 언제부터 되나요?",
+      "UX Heatmap 분석이 불가능해요.",
+      "페이지 등록이 불가능해요.",
+      "팝업창 안보이게 설정할 수 있나요?",
+      "Beusable CX팀 문의처 알려주세요."
+    ],
+    "askPlaceHolder": "궁금한 내용을 질문하세요.",
+    "survey": {
+      "title": {
+        "init": "추가 지원이 필요하신가요?",
+        "sended": "전송이 완료되었습니다."
+      },
+      "answer": {
+        "yes": "네.",
+        "no": "아니오!",
+        "needMoreInfo": "정보가 더 필요해요!",
+        "enoughInfo": "이 정도면 충분해요!"
+      },
+      "button": {
+        "getMoreSupport": "지원 더 받기",
+        "end": "종료하기",
+        "close": "닫기"
+      },
+      "confirmEmail": "대화 내용을 확인 후 기재하신<br>이메일로 연락드립니다.",
+      "endConversation": "UX GPT 기반 상담원 '솔로몬'과 대화를 종료합니다.",
+
+      "inputPlaceHolder": "받아보실 이메일 주소를 남겨주세요.",
+      "inputError": "유효한 이메일 주소를 입력해주세요.",
+      "closeTimeOut": "{closeCount}초 후에 자동으로 닫힙니다.",
+      "send": "전송"
+    }
+  },
+  "aireport": {
+    "common": {
+      "dashboard": "CX 전문가 모드",
+      "dashboardHell": "Hell 모드",
+      "reportSize": "문서 용량",
+      "tokens": "tokens",
+      "insight": "CX 분석 인사이트",
+      "insightSub": "Powered by UX GPT",
+      "processingTitle": "두뇌 풀가동 중...",
+      "processingDesc": "창을 닫아도 리포트는 정상적으로 분석돼요.",
+      "sessionError": "뷰저블 로그인 세션이 만료되었습니다.",
+      "sessionErrorText": "리포트를 발행한 계정으로 다시 로그인 후,<br />리포트를 새로고침 해주세요.",
+      "login": "뷰저블 로그인",
+      "reportError": "리포트를 불러올 수 없습니다.",
+      "reportErrorText": "리포트 URL을 다시 확인해주세요.",
+      "dashboardTitle": "AI 커스텀 대시보드",
+      "mashupTitle": "종합 분석 리포트",
+      "mashupSingle": "분석",
+      "mashupCompare": "비교 분석",
+      "mashupConjunction": "과",
+      "gptReportTitle": "데이터 분석 리포트",
+      "more": "상세 보기",
+      "invalid": "무효수치",
+      "category": {
+        "title": "페이지 유형 분류",
+        "category2Title": "페이지 구성",
+        "category3Title": "주요 분석 목적",
+        "industryAverage": "업계 평균 데이터",
+        "longGuide": "'*.{domain}'에서는 '{category2}' 성격의 페이지가 가장 많아요. '{category2}'페이지에서는 {category2Description} 분석 목적을 파악할 수 있는 3차 분류에서는 '{category3}'가 가장 많았어요. 서비스 개선에 참고할 가이드를 전달드릴게요."
+      },
+      "listIdx": {
+        "0": "첫번째로",
+        "1": "두번째로",
+        "2": "세번째로",
+        "3": "네번째로"
+      },
+      "infoTable": {
+        "title": "리포트 조회 세그먼트 및 규모",
+        "description": "Data간 총 {diffCount}개의 세그먼트가 다르며, 다르게 설정된 세그먼트는 ‘{diffSegments}’ 입니다. 세그먼트가 적용된 Data간 규모는 PV기준 최소값 대비 최대값이 {pvGap}% 이므로 분석시 참고해 주세요.",
+        "thead": {
+          "type": "리포트 타입",
+          "domain": "도메인",
+          "firstPath": "시작 패스",
+          "date": "분석 기간",
+          "device": "디바이스",
+          "marketing": "마케팅",
+          "refer": "유입경로",
+          "exist": "방문",
+          "session": "Session",
+          "pv": "PV"
+        },
+        "survey": {
+          "target": "설문 대상자",
+          "noTarget": "설문 비대상자",
+          "answer": "응답함",
+          "noAnswer": "응답안함",
+          "etc": "기타"
+        }
+      },
+      "rawWordRefUrl": "https://forum.beusable.net/ko/solomon/post/2295",
+      "rawWordRefAlt": "[Beusable Forum] CX Report - 세그먼트 소개"
+    },
+    "banner": {
+      "title": "CX 빅데이터 심층분석<br><span class='highlight'>리포트의 일부를 공개</span>합니다",
+      "description": "업계 대비 평가 & 인사이트 발굴에 참고할 수 있는,<br>나에게 필요한 \"진짜 데이터\"",
+      "guide": "지금 바로 리포트를 확인해보세요!",
+      "buttonLabel": "GO"
+    },
+    "claim": {
+      "title": "문제 신고",
+      "description": "LLM 특성상 다음과 같은 오류가 발생할 수 있으며,<br>AI 리포트를 다시 생성하면 해결됩니다.<br><br>① 인코딩 오류: 텍스트 깨짐<br>② 화면 높이 무한 증가: 차트 생성 중 페이지 길이 오류<br>③ 차트 미생성: 차트 복잡성 또는 대안 추론 중 오류<br><br>신고 접수 시 오류로 소진된 JAM은 환불됩니다.",
+      "placeholder": "문제에 대해 자세히 설명해 주세요.",
+      "success": {
+        "title": "전송 완료",
+        "desc": "신고하신 내용 확인하여 답변드리겠습니다."
+      },
+      "fail": {
+        "title": "전송 실패",
+        "desc": "잠시 후에 다시 시도해 주세요."
+      }
+    },
+    "editor": {
+      "editAuth": "AI 리포트 편집 기능은 유료 플랜<br />에서 사용하실 수 있습니다.",
+      "toolbar": {
+        "title": "리포트 편집",
+        "description": "편집 완료 시, 수정된 AI 리포트가 새 버전으로 추가됩니다."
+      },
+      "complete": {
+        "title": "AI 리포트 편집 완료",
+        "description": "AI 리포트 편집이 완료되었습니다.<br />업데이트된 버전을 확인해 보세요."
+      },
+      "excess": {
+        "title": "편집 시 이전 버전이 삭제됩니다.",
+        "description": "최대 10개의 기록만 저장할 수 있습니다.<br />편집 완료 시, 가장 오래된 수정본이 삭제되고<br />새로운 버전이 저장됩니다."
+      },
+      "exit": {
+        "title": "편집 모드에서 나가시겠습니까?",
+        "description": "편집 내용은 저장되지 않습니다."
+      },
+      "error": {
+        "title": "편집이 완료되지 않았습니다.",
+        "description": "일시적인 오류로 편집 내용이 저장되지 않았습니다.<br />작업을 다시 한번 시도해 주세요."
+      },
+      "button": {
+        "edit": "편집",
+        "done": "편집 완료"
+      }
+    },
+    "journey": {
+      "title": "Journey 전체 여정 분석",
+      "journeyTable": {
+        "title": "전체 여정 정보",
+        "step": "단계",
+        "journey": "여정",
+        "remainder": "잔존 세션 수"
+      },
+      "captureTable": {
+        "seq": "단계",
+        "title": "페이지 타이틀",
+        "url": "URL"
+      },
+      "activated": {
+        "title": "선택된 여정 분석",
+        "subTitle": "선택된 여정",
+        "singleSeqDesc": "리포트 조회 시점에 활성화된 ‘선택된 여정'의 사용자는 {startPageTitle}({startPageDomain}, {startPagePathName})에서 {startSessionValue}세션으로 여정을 시작하고 바로 이탈했어요. 이 페이지는 사용자의 첫 접점이자 주요 탐색이 이루어지는 곳으로, 핵심적인 역할을 하고 있어요.<br>페이지 내 평균 체류시간은 {interval} 이며, 사용자는 해당 페이지를 확인한 후 추가 탐색 없이 이탈했어요. 랜딩 페이지인 점을 감안하여 체류시간이 30초 이상이라면, 사용자가 해당 페이지에서 정보를 확인한 후 별다른 추가 탐색 없이 이탈했을 가능성이 있어요. 반대로 30초 미만이라면, 원하는 정보를 찾지 못하고 빠르게 이탈했을 수 있어요.",
+        "multiSeqDesc": "리포트 조회 시점에 활성화된 ‘선택된 여정'의 사용자는 {startPageTitle}({startPageDomain}, {startPagePathName})에서 {startSessionValue}세션으로 여정을 시작하여, {endPageTitle}({endPageDomain}, {endPagePathName}) 페이지까지 {endSessionRatio}% ({endSessionValue}세션)의 사용자가 탐색을 유지했어요.<br>가장 주목해야 할 페이지는 {majorPageTitle}({majorPageDomain}, {majorPagePathName}) 페이지예요. 여정 내 다른 페이지와 비교했을 때, {indicator}이 상대적으로 높은 편이므로, 사용자의 흐름을 방해하는 요인이 있는지 점검해볼 필요가 있어요.",
+        "compare": {
+          "title": "선택된 여정 비교 분석",
+          "equalDesc": "리포트 조회 시점에 활성화된 ‘선택된 여정’을 비교하면, 사용자의 진입 경로와 이탈 패턴 차이를 분석할 수 있어요.<br>먼저, Data 1의 랜딩 페이지는 {startPageTitle1}({startPageDomain1}, {startPagePathName1}) ({startSessionValue1} 세션)이며, Data 2의 랜딩 페이지는 {startPageTitle2}({startPageDomain2}, {startPagePathName2}) ({startSessionValue2} 세션) 이에요. Data 1,2의 랜딩 페이지 모두 전이율이 {cvrRate}%로 동일하여, 랜딩 페이지에서의 전이 효율과 탐색 유도 효과에 차이가 없어요.",
+          "diffDesc": "리포트 조회 시점에 활성화된 ‘선택된 여정’을 비교하면, 사용자의 진입 경로와 이탈 패턴 차이를 분석할 수 있어요.<br>먼저, Data 1의 랜딩 페이지는 {startPageTitle1}({startPageDomain1}, {startPagePathName1}) ({startSessionValue1} 세션)이며, Data 2의 랜딩 페이지는 {startPageTitle2}({startPageDomain2}, {startPagePathName2}) ({startSessionValue2} 세션) 이에요. 유입된 트래픽 전이에 효과적인 페이지는 Data {cvrHighData}의 {cvrHighPageTitle}({cvrHighPageDomain}, {cvrHighPagePathName}) 페이지로, Data {cvrRowData}에 비해 랜딩 페이지 전이율이 {cvrDiff}%p 더 높아요.",
+          "dropDesc": "가장 이탈률이 높은 페이지는 Data 1에서는 {dropPageTitle1} ({dropPageDomain1}, {dropPagePathName1}), ({dropRate1}%), Data 2에서는 {dropPageTitle2} ({dropPageDomain2}, {dropPagePathName2}), ({dropRate2}%)로 나타났어요. 이탈 지점이 동일하다면, 해당 페이지가 병목 구간일 가능성이 높으므로 개선이 필요해요. 반면, 이탈 지점이 다르다면 각 여정의 사용자 의도와 유입 경로 차이를 고려해 페이지별 최적화 전략을 수립하세요."
+        },
+        "dropRate": "이탈률",
+        "rollbackCnt": "롤백",
+        "reloadCnt": "새로고침",
+        "interval": "체류시간"
+      },
+      "major": {
+        "title": "전체 여정 분석",
+        "subTitle": "핵심 여정 Top{majorCount}",
+        "compareSubTitle": "핵심 여정 비교",
+        "description": "핵심 여정은 서비스에서 가장 많이 발생한 여정이에요. 핵심 여정의 시작 세션 수는 {sessionValue}이며, 전체 사용자 중 {sessionRatio}%을 차지하고 있어요. 핵심 여정 내 가장 높은 이탈률 {dropRate}% 가진 {pageTitle}({pageDomain}, {pagePathName}) 페이지를 개선하면, 더 많은 사용자에게 영향을 미쳐 최소한의 개선으로도 목표 성과를 효과적으로 달성할 수 있어요.",
+        "compare": {
+          "title": "전체 여정 비교 분석",
+          "subTitle": "핵심 여정 비교",
+          "equalDesc": "두 개의 핵심 여정이 동일한 것으로 보아, 해당 경로가 서비스 내에서 가장 개선 효율이 높은 여정이며, 최적화 퍼널을 설계할 중요한 지점임을 알 수 있어요.",
+          "equalDropDesc": "이탈률이 가장 높은 페이지는 Data 1에서는 {dropPageTitle1} ({dropPageDomain1}, {dropPagePathName1}), ({dropRate1}%), Data 2에서는 {dropPageTitle2} ({dropPageDomain2}, {dropPagePathName2}), ({dropRate2}%)로 나타났습니다. 이탈 구간이 동일하다면 우선 순위를 높여 개선하고, 최대의 효과를 기대할 수 있어요. 이탈 구간이 다르다면 사용자의 기대와 탐색 흐름이 여정마다 다르게 작용할 수 있으므로, 이탈 원인을 분석하고 맞춤형 개선 전략을 수립해보세요.",
+          "diffDesc": "두 개의 핵심 여정이 다른 것으로 보아, 사용자가 목표에 도달하는 방식이 다르게 나타나는 것을 알 수 있어요. 여정의 시작을 비교했을 때, Data 1은 {startPageTitle1}({startPageDomain1}, {startPagePathName1}) 페이지이며, Data 2는 {startPageTitle2}({startPageDomain2}, {startPagePathName2}) 페이지에서 탐색을 시작해요. 전체 세션 대비 시작 규모는 Data {higherSessionData} 여정 시작의 규모가 {higherSessionRatio}%로 {sessionDesc}.",
+          "diffDropDesc": "이탈률이 가장 높은 페이지는 Data 1에서는 {dropPageTitle1} ({dropPageDomain1}, {dropPagePathName1}), ({dropRate1}%), Data 2에서는 {dropPageTitle2} ({dropPageDomain2}, {dropPagePathName2}), ({dropRate2}%)로 나타났어요. 전이율이 더 높은 여정을 분석하여 효율적인 탐색 경로를 벤치마킹하고, 이탈이 집중되는 구간의 사용자 경험을 점검해보세요.",
+          "both": "1,2 모두",
+          "equal": "동일했어요",
+          "more": "더 많았어요"
+        }
+      },
+      "flow": "여정",
+      "remainder": "최종 세션 규모",
+      "captureSection": {
+        "drop": {
+          "title": "전체 여정 내 이탈률 검토",
+          "description": "{seq}시퀀스 내에서 이탈률 개선이 가장 필요한 페이지는 아래 여정의 {pageTitle}({pageDomain}, {pagePathName}) 페이지입니다. 문제 페이지와 여정이 서비스의 주요 여정과 관련이 있다면 화면의 전환 경험을 반드시 개선해보세요.",
+          "compare": {
+            "both": "3시퀀스 내에서 이탈률 개선이 가장 필요한 페이지는 [데이터1]에서는 {pageDomain1}, {pagePathName1} 페이지, [데이터2]에서는 {pageDomain2}, {pagePathName2} 페이지입니다. 아래 여정을 참고하여 문제 페이지와 여정이 서비스의 주요 여정과 관련이 있다면 화면의 전환 경험을 반드시 개선해보세요.",
+            "bothV2": "이탈률 개선이 가장 필요한 페이지는 [데이터1]에서는 {pageDomain1}, {pagePathName1} 페이지, [데이터2]에서는 {pageDomain2}, {pagePathName2} 페이지입니다. 아래 여정을 참고하여 문제 페이지와 여정이 서비스의 주요 여정과 관련이 있다면 화면의 전환 경험을 반드시 개선해보세요.",
+            "single": ""
+          }
+        },
+        "rollback": {
+          "title": "전체 여정 내 롤백율 검토",
+          "description": "{seq}시퀀스 내에서 롤백율이 가장 높은 페이지는 아래 여정의 {pageTitle}({pageDomain}, {pagePathName}) 페이지입니다. 해당 페이지의 다음 전환 페이지들을 검토해보고, 다시 되돌아온 원인을 검토해보세요.",
+          "compare": {
+            "both": "3시퀀스 내에서 롤백율이 가장 높은 페이지는 [데이터1]에서는 {pageDomain1}, {pagePathName1} 페이지, [데이터2]에서는 {pageDomain2}, {pagePathName2} 페이지입니다. 아래 여정을 참고하여 문제 페이지와 여정이 서비스의 주요 여정과 관련이 있다면 화면의 전환 경험을 반드시 개선해보세요.",
+            "bothV2": "롤백율이 가장 높은 페이지는 [데이터1]에서는 {pageDomain1}, {pagePathName1} 페이지, [데이터2]에서는 {pageDomain2}, {pagePathName2} 페이지입니다. 아래 여정을 참고하여 문제 페이지와 여정이 서비스의 주요 여정과 관련이 있다면 화면의 전환 경험을 반드시 개선해보세요.",
+            "single": "3시퀀스 내에서 롤백율이 가장 높은 페이지는 [데이터{existIdx}]에서는 {pageDomain}, {pagePathName} 페이지이며 [데이터{emptyIdx}]은 롤백율이 모두 0%로 가장 높은 페이지가 존재하지 않습니다. 아래 여정을 참고하여 문제 페이지와 여정이 서비스의 주요 여정과 관련이 있다면 화면의 전환 경험을 반드시 개선해보세요.",
+            "singleV2": "롤백율이 가장 높은 페이지는 [데이터{existIdx}]에서는 {pageDomain}, {pagePathName} 페이지이며 [데이터{emptyIdx}]은 롤백율이 모두 0%로 가장 높은 페이지가 존재하지 않습니다. 아래 여정을 참고하여 문제 페이지와 여정이 서비스의 주요 여정과 관련이 있다면 화면의 전환 경험을 반드시 개선해보세요."
+          }
+        },
+        "reload": {
+          "title": "전체 여정 내 새로고침율 검토",
+          "description": "{seq}시퀀스 내에서 새로고침율이 가장 높은 페이지는 아래 여정의 {pageTitle}({pageDomain}, {pagePathName}) 페이지입니다. 해당 페이지 자체의 문제인지, 혹은 다음 페이지로 전환되기에 문제가 존재하지 않는지 검토해보세요.",
+          "compare": {
+            "both": "3시퀀스 내에서 새로고침율이 가장 높은 페이지는 [데이터1]에서는  {pageDomain1}, {pagePathName1} 페이지, [데이터2]에서는  {pageDomain2}, {pagePathName2} 페이지입니다. 아래 여정을 참고하여 해당 페이지 자체의 문제인지, 혹은 다음 페이지로 전환되기에 문제가 존재하지 않는지 검토해보세요.",
+            "bothV2": "새로고침율이 가장 높은 페이지는 [데이터1]에서는  {pageDomain1}, {pagePathName1} 페이지, [데이터2]에서는  {pageDomain2}, {pagePathName2} 페이지입니다. 아래 여정을 참고하여 해당 페이지 자체의 문제인지, 혹은 다음 페이지로 전환되기에 문제가 존재하지 않는지 검토해보세요.",
+            "single": "3시퀀스 내에서 새로고침율이  가장 높은 페이지는 [데이터{existIdx}]에서는 {pageDomain}, {pagePathName} 페이지이며 [데이터{emptyIdx}]은 새로고침율이 모두 0%로 가장 높은 페이지가 존재하지 않습니다. 아래 여정을 참고하여 해당 페이지 자체의 문제인지, 혹은 다음 페이지로 전환되기에 문제가 존재하지 않는지 검토해보세요.",
+            "singleV2": "새로고침율이  가장 높은 페이지는 [데이터{existIdx}]에서는 {pageDomain}, {pagePathName} 페이지이며 [데이터{emptyIdx}]은 새로고침율이 모두 0%로 가장 높은 페이지가 존재하지 않습니다. 아래 여정을 참고하여 해당 페이지 자체의 문제인지, 혹은 다음 페이지로 전환되기에 문제가 존재하지 않는지 검토해보세요."
+          }
+        }
+      }
+    },
+    "ranking": {
+      "title": "Rank 주요 지표 분석",
+      "description": "해당 기간의 사용자들은 {interval} 동안 사이트에 머물며 {pageCnt}개의 페이지를 조회했습니다.",
+      "compare": {
+        "description": "[Data1]사용자들은 {interval1} 동안 사이트에 머물며 {pageCnt1}개의 페이지를 조회했으며,<br />[Data2]사용자들은 {interval2} 동안 사이트에 머물며 {pageCnt2}개의 페이지를 조회했습니다. (Data1 대비 {intervalDir} {intervalDiff}, {pageCntDir} {pageCntDiff}조회페이지)"
+      },
+      "pvTop20": {
+        "title": "PV Top20 페이지 통계",
+        "description": "전체 PV 중 상위 {topPageCnt}개 페이지가 차지하는 비율은 {topPageRate}% 입니다. 이 페이지들은 전체 트래픽의 큰 부분을 차지하고 있기 때문에 페이지의 성과가 서비스 전체에 직접적인 영향을 미칩니다. 상위 페이지의 분석을 통해 사용자 관심사와 행동 패턴을 이해하고, 문제점을 식별하며 개선할 수 있습니다.",
+        "compareDescription": "전체 PV 중 상위 페이지(Data1의 {top20Cnt1}개, Data2의 {top20Cnt2}개)가 차지하는 비율은 [Data1] {top20Ratio1}%, [Data2] {top20Ratio2}%입니다. 이 페이지들은 전체 트래픽의 큰 부분을 차지하고 있기 때문에 페이지의 성과가 서비스 전체에 직접적인 영향을 미칩니다. 상위 페이지의 분석을 통해 사용자 관심사와 행동 패턴을 이해하고, 문제점을 식별하며 개선할 수 있습니다.",
+        "subTitle": "주목해야 할 지표",
+        "cvrDrop": "전환/이탈",
+        "stayin": "전환",
+        "drop": "이탈",
+        "interval": "체류시간",
+        "rollback": "롤백",
+        "reload": "새로고침",
+        "empty": "{type} 이 발생한 페이지가 존재하지 않습니다."
+      }
+    },
+    "trend": {
+      "title": "Trend 전체 분석",
+      "chart": {
+        "title": "단계별 이탈률",
+        "description": "여섯 번째 시퀀스까지 전환을 진행한 방문자는 전체의 {finalConversionRate}% 입니다. {seq1}시퀀스에서 {seq2}시퀀스 간 전환의 이탈율이 가장 높으므로, 여정 관점에서 이 단계의 전환을 개선한다면 잔류 방문자를 효율적으로 높일 수 있습니다.",
+        "compareDescription": "여섯 번째 시퀀스까지 전환을 진행한 방문자는 [데이터1]은 전체의 {finalConversionRate1}%, [데이터2]는 {finalConversionRate2}%로, [데이터{maxData}]이/가 {finalConversionDiff}%P 높습니다. 이탈율이 가장 높은 구간은 [데이터1]에서는 {seq1_1}시퀀스에서 {seq1_2}시퀀스로 전환하는 구간이며, [데이터2]에서는 {seq2_1}시퀀스에서 {seq2_2}시퀀스로 전환하는 구간입니다. 이 구간을 비교해보고 여정 관점에서 이 단계의 전환을 개선한다면 잔류 방문자를 효율적으로 높일 수 있습니다."
+      },
+      "capture": {
+        "title": "전환 이탈 규모",
+        "description": "이탈규모가 가장 높은 페이지는 {topDropCntSeq}시퀀스의 {topDropCntPage} 페이지이며, 이탈률이 가장 높은 페이지는 {topDropRateSeq}시퀀스의 {topDropRatePage} 페이지입니다. 전환규모가 높은 페이지는 {topCvrCntSeq}시퀀스의 {topCvrCntPage} 페이지, 전환율이 가장 높은 페이지는 {topCvrRateSeq}시퀀스의 {topCvrRatePage} 페이지입니다. {topDropCntSeq}시퀀스의 {topDropCntPage} 페이지의 이탈 문제를 개선한다면 많은 방문자들의 이탈을 효율적으로 개선할 수 있습니다.",
+        "compareDescription": "이탈규모가 가장 높은 페이지는 [데이터1]에서는 {topDropCntSeq1}시퀀스의 {topDropCntPage1} 페이지이며, [데이터2]에서는 {topDropCntSeq2}시퀀스의 {topDropCntPage2} 페이지 입니다. 이탈률이 가장 높은 페이지는 [데이터1]에서는 {topDropRateSeq1}시퀀스의 {topDropRatePage1}페이지이며, [데이터2]에서는 {topDropRateSeq2}시퀀스의 {topDropRatePage2} 페이지 입니다.<br />전환규모가 높은 페이지는 [데이터1]에서 {topCvrCntSeq1}시퀀스의 {topCvrCntPage1} 페이지, [데이터2]에서 {topCvrCntSeq2} 시퀀스의 {topCvrCntPage2} 페이지이며 전환율이 가장 높은 페이지는 [데이터1]에서 {topCvrRateSeq1}시퀀스의 {topCvrRatePage1} 페이지, [데이터2]에서 {topCvrRateSeq2}시퀀스의 {topCvrRatePage2} 페이지입니다. [데이터1]의 {topDropCntSeq1}시퀀스의 {topDropCntPage1} 페이지와 [데이터2]의 {topDropCntSeq2}시퀀스의 {topDropCntPage2} 페이지에 대한 이탈 문제를 개선한다면 많은 방문자들의 이탈을 효율적으로 개선할 수 있습니다."
+      }
+    },
+    "target": {
+      "title": "타겟 분석",
+      "subTitle": "타겟 페이지",
+      "subTitle2": "타겟 여정",
+      "thList": {
+        "title": "페이지 타이틀",
+        "url": "URL",
+        "type": "타겟 유형"
+      },
+      "direction": {
+        "forward": "타겟 랜딩으로 시작한 여정",
+        "backward": "타겟에 도달하기까지의 여정"
+      }
+    },
+    "crawlerModal": {
+      "title": "AI 플랫폼별 반영 원리",
+      "perplexity": {
+        "name": "Perplexity",
+        "time": "수 분 ~ 48시간",
+        "desc": "실시간 웹 탐색(Query Fan-out) 방식으로 작동합니다. dateModified가 최신인 콘텐츠를 우선 인용하며, 스키마(Article, FAQ)가 적용되어 있으면 AI가 핵심 정보를 추출하기 쉬워져 출처(Source)로 인용될 확률이 높아집니다."
+      },
+      "chatgpt": {
+        "name": "ChatGPT (SearchGPT)",
+        "time": "~24시간",
+        "desc": "OAI-SearchBot의 직접 크롤링뿐만 아니라 Microsoft Bing 검색 인덱스를 광범위하게 활용합니다. 따라서 Bing Webmaster Tools에서의 인덱싱 상태가 ChatGPT 반영 속도에 직접적인 영향을 미칩니다.",
+        "tip": "IndexNow 프로토콜 적용 시 Bing과 Copilot뿐 아니라 ChatGPT의 반영 속도도 함께 향상됩니다."
+      },
+      "google": {
+        "name": "Google AI Overview",
+        "time": "며칠 ~ 2주",
+        "desc": "기존 Google SEO 메커니즘을 그대로 따릅니다. 권위 있는 사이트는 수시간 내, 일반 사이트는 며칠 내 갱신됩니다.",
+        "tip": "검색 결과 Top 10 진입이 전제됩니다. 상위권 밖의 문서는 스키마가 있어도 AI Overview에 노출되지 않습니다."
+      },
+      "claude": {
+        "name": "Claude",
+        "time": "학습형 (장기)",
+        "desc": "Claude는 실시간 검색 시 외부 검색 엔진(Google, Bing 등)을 활용합니다. ClaudeBot은 주로 모델의 학습 데이터 수집 목적으로 운영되므로, 스키마 변경이 Claude 답변에 반영되려면 모델 업데이트 주기를 거쳐야 합니다.",
+        "tip": "단, Claude의 웹 검색 기능은 외부 검색 엔진을 통해 작동하므로, Google/Bing 최적화가 곧 Claude 검색 최적화입니다."
+      },
+      "knowledgeGraph": {
+        "name": "Google Knowledge Graph",
+        "time": "1 ~ 6개월",
+        "desc": "위키피디아, 뉴스 등 신뢰할 수 있는 소스와 교차 검증이 완료되어야 반영됩니다. sameAs 속성으로 SNS, 위키, 공식 사이트를 연결하면 검증 시간을 단축할 수 있습니다."
+      },
+      "insight": {
+        "title": "핵심 인사이트",
+        "desc1": "스키마 적용 시 AI 인용 확률 30~40% 상승 — 스키마가 잘 구현된 페이지는 AI 답변에 인용될 확률이 유의미하게 높아집니다. (Conductor, Semrush 데이터)",
+        "desc2": "사이트 권위(Authority)가 높을수록 크롤링 빈도가 증가합니다. 봇의 방문 주기는 사이트마다 수 시간에서 월 1회까지 차이가 있습니다.",
+        "desc3": "Bing 최적화 = ChatGPT + Copilot 최적화. IndexNow 프로토콜을 적용하면 Bing, Copilot, ChatGPT 반영 속도를 동시에 확보할 수 있습니다.",
+        "desc4": "서버 사이드 렌더링(SSR)이 클라이언트 사이드 렌더링보다 크롤링 인식 속도에서 유리합니다."
+      },
+      "source": "출처: "
+    },
+    "scroll": {
+      "title": "스크롤 데이터 분석 보고서",
+      "gptReportTitle": "사용자 행동 분석 보고서",
+      "overview": {
+        "title": "개요",
+        "atfNote": "*ATF = Average The Fold",
+        "table": {
+          "documentHeight": "페이지 길이",
+          "atf": "ATF",
+          "twoXAtfReachRate": "2xATF Reach Rate",
+          "peakAttentionPosition": "Peak Attention Position below ATF"
+        }
+      },
+      "chart": {
+        "title": "스크롤 도달 히트맵 및 주목 그래프",
+        "legend": {
+          "reachRate": "도달율",
+          "attention": "주목도"
+        }
+      },
+      "info": {
+        "title": "리포트 개요",
+        "segment": "세그먼트",
+        "table": {
+          "reportType": "리포트 타입",
+          "reportName": "리포트명",
+          "url": "URL",
+          "analysisPeriod": "분석 기간",
+          "marketing": "마케팅",
+          "device": "디바이스",
+          "referralPath": "유입경로",
+          "visit": "방문",
+          "timeSlot": "시간대",
+          "visitFrequency": "방문빈도",
+          "cta": "CTA"
+        }
+      }
+    },
+    "weekly": {
+      "common": {
+        "title": "주간리포트",
+        "date": "{year}년 {month}월 {week}주차",
+        "summaryTitle": "지난주 수집된 데이터에 대한 전체적인 분석 요약이에요.",
+        "collected": {
+          "title": "지난주 수집된<br>데이터",
+          "pv": "PV (Page Views)",
+          "session": "Session",
+          "intervalPerSession": "1세션당 평균 체류시간",
+          "pvPerSession": "1세션당 방문한 평균 페이지 수",
+          "stayin": "평균 전이율",
+          "drop": "평균 이탈률",
+          "note": "*평균 전이율과 이탈률은 PV Top 20 페이지의 평균 지표입니다."
+        },
+        "typeTitle": "꼭 아셔야 할 분석 내용 전달드려요.",
+        "openButton": "뷰저블 AI가 분석한 전체 내용을 확인하세요!",
+        "foldButton": "요약된 내용만 보기"
+      },
+      "journey": {
+        "title": "3x3여정 내에서 이탈률 개선이 필요한 페이지는 어디일까요?",
+        "exceptionTitle": "3x3여정 내에서는 이탈률 개선이 필요한 페이지가 없어요.",
+        "description": "{domain}의 {device}, {deviceRatio} 방문 고객의 여정을 살펴보았을 때, 3시퀀스 내에서 이탈률 개선이 가장 필요한 페이지는 {nodeIndex}단계의 {pageTitle}({pageDomain}, {pagePathName}) 페이지입니다. 아래 여정을 참고하여 문제 페이지와 여정이 서비스의 주요 여정과 관련이 있다면 화면의 전환 경험을 반드시 개선해보세요.",
+        "exceptionDesc": "{domain}의 {device}, {deviceRatio} 방문 고객의 여정을 살펴보았을 때, 3시퀀스 내에서는 모든 페이지가 이탈률 0%로, 모든 고객이 다음 페이지로 전환하고 있습니다. 아래 여정을 통해 Journey 리포트로 이동해서 3시퀀스 이후로는 어떤 페이지로 전환하고 있는지, 어디에서 처음으로 이탈이 발생하는지 이어서 확인해 보세요!",
+        "listStep": "이탈률 가장 높은 여정"
+      },
+      "ranking": {
+        "title": "전이율과 이탈률이 가장 높은 페이지는 어디일까요?",
+        "cvrTitle": "전이율이 가장 높은 페이지는 어디일까요?",
+        "dropTitle": "이탈률이 가장 높은 페이지는 어디일까요?",
+        "note": "*PV Top 20 페이지에 해당하는 데이터입니다.",
+        "description": "{domain}의 방문 페이지를 살펴보았을 때, PV Top 20 페이지 중에서 다른 페이지로의 이동이 가장 많이 나타난 페이지는 {cvrTitle}({cvrDomain}, {cvrPathname}), 고객 이탈이 가장 많이 나타난 페이지는 {dropTitle}({dropDomain}, {dropPathname}) 페이지입니다. 전이율과 이탈률이 가장 높은 페이지를 확인해 그 원인을 파악하고 이탈률 개선 목표를 세워보세요.",
+        "cvrDesc": "{domain}의 방문 페이지를 살펴보았을 때, PV Top 20 페이지 중에서 다른 페이지로의 이동이 가장 많이 나타난 페이지는 {cvrTitle}({cvrDomain}, {cvrPathname})입니다. 전이율이 가장 높은 페이지를 확인해 그 원인을 파악하고 이탈률이 높은 페이지의 개선에 참고해 보세요.",
+        "dropDesc": "{domain}의 방문 페이지를 살펴보았을 때, PV Top 20 페이지 중에서 고객 이탈이 가장 많이 나타난 페이지는 {dropTitle}({dropDomain}, {dropPathname}) 입니다. 이탈률이 가장 높은 페이지를 확인해 그 원인을 파악하고 이탈률 개선 목표를 세워보세요.",
+        "cvr": "전이율",
+        "drop": "이탈률"
+      },
+      "trend": {
+        "title": "이탈률이 가장 높은 단계는 어디일까요?",
+        "description": "{domain}의 {device}, {deviceRatio} 고객의 방문 경향을 살펴보았을 때, {seqLength}시퀀스까지 전환을 진행한 방문자는 전체의 {finalConversionRate}%입니다. 그 중, {seq1}시퀀스에서 {seq2}시퀀스 간 전환의 이탈율이 가장 높으므로, 여정 관점에서 이 단계의 전환을 개선한다면 잔류 방문자를 효율적으로 높일 수 있어요."
+      }
+    }
+  },
+  "reportChat": {
+    "welcomeMessage": "안녕하세요! AI 도슨트입니다.<br>지금 보고 계신 내용 중 궁금한 점이 있으신가요?",
+    "questionLimit": "잔여 질문(일)",
+    "questionLimitAlert": "오늘 질문 가능 횟수를 모두 사용하셨습니다.",
+    "askPlaceholder": "궁금한 내용을 질문하세요.",
+    "loading": "답변 고민 중",
+    "rating": "답변 평가하기",
+    "reset": "초기화",
+    "pause": "생성 멈추기",
+    "copy": "메시지를 복사했습니다.",
+    "error": {
+      "default": "일시적인 오류로 답변이 어려워요.<br>잠시 후 다시 시도해 주세요. 동일한 문제가 반복된다면, CX팀(beusable{'@'}4grit.com)으로 문의해 주세요.",
+      "limit": "대화 내용이 많아져서, 더 이상 대화를 이어갈 수 없습니다.<br>’초기화'를 하시면 새롭게 대화를 시작하실 수 있어요. 필요한 내용은 미리 복사해두시는 걸 추천드려요!",
+      "aborted": "요청에 따라 답변 생성을 중단했습니다.<br>생성이 시작된 질문이므로, 잔여 질문 1건이 차감되었습니다."
+    },
+    "limitPlaceHolder": "’초기화'를 하시면 새롭게 대화를 시작하실 수 있어요."
+  },
+  "agent": {
+    "common": {
+      "edit": "수정",
+      "delete": "삭제",
+      "back": "뒤로"
+    },
+    "hub": {
+      "categories": "카테고리",
+      "servers": "서버",
+      "agentCategories": "에이전트 카테고리",
+      "manageServers": "서버 관리",
+      "createAgent": "에이전트 생성",
+      "deploy": "배포",
+      "emptyTitle": "에이전트가 없습니다",
+      "emptyDesc": "첫 에이전트를 만들어 AI 자동화를 시작하세요.",
+      "deployConfirmTitle": "에이전트 배포",
+      "deployConfirmDesc": "{{name}}을(를) {{category}} 카테고리의 라이브 에이전트로 배포합니다. 기존 활성 에이전트는 비활성화됩니다.",
+      "deleteConfirmTitle": "에이전트 삭제",
+      "deleteConfirmDesc": "{{name}}을(를) 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다."
+    },
+    "builder": {
+      "createTitle": "에이전트 생성",
+      "editTitle": "에이전트 수정",
+      "sourcePanel": "도구 서버",
+      "workspace": "구성",
+      "preview": "미리보기",
+      "name": "에이전트 이름",
+      "namePlaceholder": "에이전트 이름을 입력하세요",
+      "agent": "에이전트",
+      "description": "설명",
+      "descPlaceholder": "에이전트에 대한 설명을 입력하세요",
+      "selectedTools": "선택된 도구",
+      "noToolsSelected": "왼쪽에서 서버의 도구를 선택하세요. 각 도구는 에이전트에 새로운 기능을 부여합니다.",
+      "summary": "요약",
+      "toolCount": "도구 수",
+      "serverCount": "서버 수",
+      "status": "상태",
+      "draft": "Draft",
+      "create": "에이전트 생성",
+      "update": "에이전트 수정",
+      "addAll": "전체 추가",
+      "offline": "오프라인"
+    },
+    "server": {
+      "title": "Tool Server",
+      "register": "서버 등록",
+      "registerTitle": "서버 등록",
+      "editTitle": "서버 수정",
+      "name": "서버 이름",
+      "namePlaceholder": "서버 이름을 입력하세요",
+      "uri": "서버 URI",
+      "token": "인증 토큰",
+      "tokenPlaceholder": "Bearer 토큰을 입력하세요",
+      "description": "설명",
+      "descPlaceholder": "서버에 대한 설명을 입력하세요",
+      "testConnection": "연결 테스트",
+      "connected": "연결됨",
+      "connectFail": "연결 실패",
+      "availableTools": "사용 가능한 도구",
+      "update": "수정",
+      "tools": "도구",
+      "live": "Live",
+      "offline": "Offline",
+      "emptyTitle": "등록된 서버가 없습니다",
+      "emptyDesc": "MCP 서버를 연결하여 에이전트에 도구를 제공하세요.",
+      "deleteConfirmTitle": "서버 삭제",
+      "deleteConfirmDesc": "{{name}} 서버를 삭제하시겠습니까?",
+      "deleteError": "이 서버를 사용하는 에이전트가 있어 삭제할 수 없습니다."
+    }
+  },
+  "schemaChat": {
+    "geoWelcomeMessage": "뷰저블 AI로 진단할 URL만 정확히 입력해 주세요.\n\n※ 로그인이 필요한 페이지는 스키마 태그 분석 대상이 아닙니다.",
+    "geoHeaderDesc": "스키마 태그를 진단할 URL을 입력하세요.",
+    "messageFooter": "URL에 바로 적용할 수 있는 스키마 태그가 필요하신가요? <br/>뷰저블 GEO에서 심층 분석 리포트와 맞춤 스키마 태그를 확인하실 수 있습니다.",
+    "diagnosisLink": "[뷰저블 GEO 무료 시작하기 →]",
+    "placeholder": "뷰저블 AI로 진단할 URL만 정확히 입력해 주세요.",
+    "limit": "무료 스키마 태그 진단은 1회 제공됩니다."
+  }
+}

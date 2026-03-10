@@ -1,0 +1,153 @@
+// ============================================================
+// Solomon Design Tokens — Clean & Rounded (Chatform-style)
+// Light mode, warm accent, Inter font, rounded corners.
+// All vars use --sol- prefix to avoid collisions.
+// ============================================================
+
+// --- Spacing scale (4px base) ---
+$sol-space-0: 0;
+$sol-space-1: 4px;
+$sol-space-2: 8px;
+$sol-space-3: 12px;
+$sol-space-4: 16px;
+$sol-space-5: 20px;
+$sol-space-6: 24px;
+$sol-space-7: 32px;
+$sol-space-8: 40px;
+$sol-space-9: 48px;
+$sol-space-10: 56px;
+$sol-space-12: 64px;
+$sol-space-16: 80px;
+
+// --- Typography ---
+$sol-font-family: 'Inter', 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+$sol-font-display: 'Inter', 'Pretendard Variable', sans-serif;
+$sol-font-serif: 'Inter', Georgia, serif;
+
+$sol-font-xs: 11px;
+$sol-font-sm: 13px;
+$sol-font-md: 14px;
+$sol-font-base: 14px;
+$sol-font-lg: 16px;
+$sol-font-xl: 18px;
+$sol-font-2xl: 20px;
+$sol-font-3xl: 24px;
+$sol-font-4xl: 30px;
+$sol-font-5xl: 36px;
+$sol-font-6xl: 48px;
+$sol-font-7xl: 64px;
+
+$sol-weight-regular: 400;
+$sol-weight-medium: 500;
+$sol-weight-semibold: 600;
+$sol-weight-bold: 700;
+
+$sol-leading-tight: 1.25;
+$sol-leading-normal: 1.5;
+$sol-leading-relaxed: 1.625;
+
+// --- Border radius (rounded) ---
+$sol-radius-xs: 4px;
+$sol-radius-sm: 6px;
+$sol-radius-md: 8px;
+$sol-radius-lg: 12px;
+$sol-radius-xl: 16px;
+$sol-radius-2xl: 20px;
+$sol-radius-full: 9999px;
+
+// --- Shadows (soft) ---
+$sol-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$sol-shadow-md: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+$sol-shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.08);
+$sol-shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.1);
+
+// --- Z-index layers ---
+$sol-z-dropdown: 100;
+$sol-z-sticky: 200;
+$sol-z-overlay: 300;
+$sol-z-modal: 400;
+$sol-z-popover: 500;
+$sol-z-toast: 600;
+$sol-z-tooltip: 700;
+
+// --- Animation ---
+$sol-duration-fast: 150ms;
+$sol-duration-normal: 250ms;
+$sol-duration-slow: 350ms;
+$sol-ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+$sol-ease-in: cubic-bezier(0.4, 0, 1, 1);
+$sol-ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+// --- Gray palette (neutral cool) ---
+$sol-gray-950: #0F172A;
+$sol-gray-900: #1E293B;
+$sol-gray-850: #273548;
+$sol-gray-800: #334155;
+$sol-gray-750: #475569;
+$sol-gray-700: #64748B;
+$sol-gray-600: #94A3B8;
+$sol-gray-500: #94A3B8;
+$sol-gray-400: #CBD5E1;
+$sol-gray-300: #D1D5DB;
+$sol-gray-200: #E5E7EB;
+$sol-gray-100: #F1F5F9;
+$sol-gray-50: #F8FAFC;
+
+// --- Brand colors (warm orange accent) ---
+$sol-primary: #F97316;
+$sol-primary-light: #FFF7ED;
+$sol-primary-dark: #EA580C;
+$sol-accent: #F97316;
+$sol-accent-light: #FFF7ED;
+$sol-accent-dark: #EA580C;
+
+// --- Semantic colors ---
+$sol-success: #16A34A;
+$sol-warning: #EAB308;
+$sol-danger: #EF4444;
+$sol-info: #3B82F6;
+
+// --- CSS custom properties ---
+:root {
+  // Surfaces
+  --sol-surface-app: #FFFFFF;
+  --sol-surface-primary: #FFFFFF;
+  --sol-surface-secondary: #{$sol-gray-50};
+  --sol-surface-elevated: #FFFFFF;
+  --sol-surface-hover: #{$sol-gray-100};
+  --sol-surface-active: #{$sol-gray-200};
+
+  // Text
+  --sol-text-primary: #{$sol-gray-900};
+  --sol-text-secondary: #{$sol-gray-700};
+  --sol-text-tertiary: #{$sol-gray-600};
+  --sol-text-disabled: #{$sol-gray-400};
+  --sol-text-inverse: #FFFFFF;
+
+  // Borders
+  --sol-border-primary: #{$sol-gray-200};
+  --sol-border-secondary: #{$sol-gray-100};
+  --sol-border-focus: #{$sol-primary};
+
+  // Brand
+  --sol-brand-primary: #{$sol-primary};
+  --sol-brand-primary-light: #{$sol-primary-light};
+  --sol-brand-primary-dark: #{$sol-primary-dark};
+  --sol-brand-accent: #{$sol-accent};
+
+  // Status
+  --sol-status-success: #{$sol-success};
+  --sol-status-warning: #{$sol-warning};
+  --sol-status-danger: #{$sol-danger};
+  --sol-status-info: #{$sol-info};
+
+  // Shadows
+  --sol-shadow-sm: #{$sol-shadow-sm};
+  --sol-shadow-md: #{$sol-shadow-md};
+  --sol-shadow-lg: #{$sol-shadow-lg};
+
+  // Misc
+  --sol-sidebar-width: 240px;
+  --sol-topbar-height: 56px;
+  --sol-statusbar-height: 0px;
+}

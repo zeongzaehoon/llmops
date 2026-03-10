@@ -1,0 +1,19 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-6;
+}
+
+.results {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  @include scrollbar-thin;
+}
+
+.loading {
+  @include flex-center;
+  padding: $sol-space-12 0;
+  color: $sol-gray-600;
+  font-size: $sol-font-sm;
+}

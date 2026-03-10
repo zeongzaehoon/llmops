@@ -1,0 +1,111 @@
+.messageContainer {
+  display: flex;
+  width: 100%;
+  padding: $sol-space-7 $sol-space-7;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.messageProfileHuman {
+  width: 32px;
+  height: 32px;
+  padding: $sol-space-1;
+  background-color: #F0F0F0;
+  border: 1px solid #E0E0E0;
+  box-sizing: border-box;
+
+  img {
+    width: 100%;
+  }
+}
+
+.messageTextContainer {
+  flex: 1;
+  padding: 5.5px 0 5.5px $sol-space-5;
+}
+
+.messageText {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-2;
+  font-size: $sol-font-lg;
+  font-weight: $sol-weight-medium;
+  line-height: 24px;
+  color: #000000;
+
+  a,
+  :-webkit-any-link {
+    color: #000000;
+    text-decoration: underline;
+  }
+
+  &.loading {
+    width: fit-content;
+
+    &::before {
+      content: '.';
+      position: absolute;
+      top: 0;
+      right: -10px;
+      opacity: 0;
+      animation: blick-effect1 2s step-end infinite;
+    }
+
+    &::after {
+      content: '.';
+      position: absolute;
+      top: 0;
+      right: -20px;
+      opacity: 0;
+      animation: blick-effect2 2s step-end infinite;
+    }
+  }
+}
+
+.isSolomon {
+  &.messageContainer {
+    background: #FAFAFA;
+  }
+
+  .messageProfileSolomon {
+    display: block;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 0;
+    background-size: cover;
+    box-shadow: none;
+    border: 1px solid #000000;
+    background-image: url('@/assets/icon-solomon-profile.svg');
+  }
+}
+
+@keyframes blick-effect1 {
+  33% {
+    opacity: 1;
+  }
+}
+
+@keyframes blick-effect2 {
+  66% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .messageContainer {
+    padding: $sol-space-6 $sol-space-4;
+
+    .messageTextContainer {
+      padding: 6px 0 6px $sol-space-4;
+
+      .messageText {
+        font-size: $sol-font-md;
+        font-weight: $sol-weight-regular;
+        line-height: 19.5px;
+      }
+    }
+  }
+}

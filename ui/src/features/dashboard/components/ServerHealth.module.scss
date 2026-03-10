@@ -1,0 +1,104 @@
+.container {
+  background: #FFFFFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-lg;
+  padding: $sol-space-6;
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-4;
+  box-shadow: $sol-shadow-sm;
+}
+
+.heading {
+  font-size: $sol-font-base;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-900;
+  margin: 0;
+}
+
+.empty {
+  font-size: $sol-font-sm;
+  color: $sol-gray-500;
+  margin: 0;
+  padding: $sol-space-4 0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-3;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-3;
+  border-bottom: 1px solid $sol-gray-200;
+  padding-bottom: $sol-space-3;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.serverInfo {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-2;
+  min-width: 140px;
+  flex-shrink: 0;
+}
+
+.serverName {
+  font-size: $sol-font-md;
+  font-weight: $sol-weight-medium;
+  color: $sol-gray-900;
+  @include truncate;
+}
+
+.barWrap {
+  flex: 1;
+  height: 6px;
+  background: $sol-gray-200;
+  border-radius: $sol-radius-full;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  border-radius: $sol-radius-full;
+  transition: width $sol-duration-normal $sol-ease-out;
+  min-width: 4px;
+}
+
+.barLive {
+  background: $sol-success;
+}
+
+.barDown {
+  background: $sol-gray-400;
+}
+
+.toolCount {
+  font-family: $sol-font-display;
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-medium;
+  color: $sol-gray-600;
+  min-width: 24px;
+  text-align: right;
+}
+
+// Loading state
+.shimmerRow {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-3;
+  height: 28px;
+}
+
+.shimmerBlock {
+  height: 14px;
+  border-radius: $sol-radius-sm;
+  background: $sol-gray-100;
+}

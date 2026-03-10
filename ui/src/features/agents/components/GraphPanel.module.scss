@@ -1,0 +1,73 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-4;
+}
+
+.toolbar {
+  max-width: 320px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $sol-space-4;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-3;
+  padding: $sol-space-5;
+  border: 1px solid $sol-gray-200;
+  background: #FFFFFF;
+  border-radius: $sol-radius-lg;
+  box-shadow: $sol-shadow-sm;
+  transition: box-shadow $sol-duration-fast;
+
+  &:hover {
+    box-shadow: $sol-shadow-md;
+  }
+}
+
+.cardHeader {
+  @include flex-between;
+}
+
+.graphName {
+  font-family: $sol-font-display;
+  font-size: $sol-font-xl;
+  font-weight: $sol-weight-bold;
+  color: $sol-gray-900;
+}
+
+.description {
+  font-size: $sol-font-sm;
+  color: $sol-gray-600;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.previewWrapper {
+  @include flex-center;
+  padding: $sol-space-3;
+  background: $sol-gray-50;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+  min-height: 60px;
+}
+
+.preview {
+  width: 120px;
+  height: 40px;
+}
+
+.actions {
+  display: flex;
+  gap: $sol-space-2;
+  margin-top: auto;
+  padding-top: $sol-space-3;
+  border-top: 1px solid $sol-gray-200;
+}

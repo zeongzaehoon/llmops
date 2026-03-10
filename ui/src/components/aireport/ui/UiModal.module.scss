@@ -1,0 +1,90 @@
+.app_dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+
+  &.dimmed {
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    transform: none;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .dialog_content {
+    position: relative;
+    width: 430px;
+    box-sizing: border-box;
+    padding: $sol-space-9 $sol-space-9 $sol-space-6 $sol-space-9;
+    border-radius: 0;
+    box-shadow: none;
+    border: 1px solid #000000;
+    background-color: #FFFFFF;
+    text-align: center;
+    pointer-events: auto;
+
+    .icon {
+      margin-bottom: $sol-space-3;
+    }
+
+    .title {
+      font-family: $sol-font-display;
+      font-size: $sol-font-2xl;
+      font-weight: $sol-weight-medium;
+      color: #000000;
+      margin-bottom: $sol-space-3;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+
+      &.warning {
+        color: #000000;
+      }
+    }
+
+    .description {
+      font-size: $sol-font-base;
+      color: #333333;
+      margin-bottom: $sol-space-9;
+      line-height: $sol-leading-normal;
+      white-space: pre-line;
+      word-break: break-all;
+
+      &:lang(ja) {
+        font-size: $sol-font-md;
+      }
+
+      ul {
+        display: inline-block;
+        text-align: left;
+
+        li {
+          position: relative;
+          margin: 10px 0 10px 10px;
+
+          &::before {
+            position: absolute;
+            top: -1px;
+            left: -10px;
+            content: '-';
+          }
+        }
+      }
+    }
+
+    .action {
+      button {
+        margin: 0 3px;
+      }
+    }
+  }
+}

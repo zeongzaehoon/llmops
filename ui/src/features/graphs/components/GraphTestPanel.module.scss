@@ -1,0 +1,167 @@
+.panel {
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-lg;
+  background: #FFFFFF;
+  overflow: hidden;
+  box-shadow: $sol-shadow-sm;
+}
+
+.panelHeader {
+  @include flex-between;
+  width: 100%;
+  padding: $sol-space-4 $sol-space-5;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: $sol-gray-900;
+  font-family: inherit;
+}
+
+.panelTitle {
+  font-size: $sol-font-base;
+  font-weight: $sol-weight-semibold;
+  font-family: $sol-font-display;
+}
+
+.chevron {
+  font-size: $sol-font-xs;
+  color: $sol-gray-500;
+  transition: transform $sol-duration-fast $sol-ease-default;
+  display: inline-block;
+  transform: rotate(90deg);
+
+  &.expanded {
+    transform: rotate(-90deg);
+  }
+}
+
+.panelBody {
+  padding: 0 $sol-space-5 $sol-space-5;
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-3;
+}
+
+.inputRow {
+  display: flex;
+  gap: $sol-space-3;
+  align-items: center;
+}
+
+.questionInput {
+  flex: 1;
+  padding: $sol-space-2 $sol-space-4;
+  border-radius: $sol-radius-md;
+  border: 1px solid $sol-gray-200;
+  background: #FFFFFF;
+  color: $sol-gray-900;
+  font-size: $sol-font-base;
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color $sol-duration-fast $sol-ease-default;
+
+  &:focus {
+    border-color: $sol-primary;
+  }
+
+  &::placeholder {
+    color: $sol-gray-400;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+  }
+}
+
+.hint {
+  font-size: $sol-font-sm;
+  color: $sol-gray-500;
+  margin: 0;
+}
+
+.results {
+  background: $sol-gray-50;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+  padding: $sol-space-4;
+  max-height: 300px;
+  overflow-y: auto;
+  @include scrollbar-thin;
+}
+
+.agentStatus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $sol-space-2;
+  margin-bottom: $sol-space-3;
+  padding-bottom: $sol-space-3;
+  border-bottom: 1px solid $sol-gray-200;
+}
+
+.agentTag {
+  display: inline-flex;
+  align-items: center;
+  gap: $sol-space-1;
+  font-size: $sol-font-xs;
+  color: $sol-gray-700;
+  background: $sol-gray-100;
+  padding: $sol-space-1 $sol-space-2;
+  border-radius: $sol-radius-full;
+}
+
+.agentDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: $sol-primary;
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.streamContent {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-1;
+}
+
+.streamLabel {
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-700;
+}
+
+.streamText {
+  font-size: $sol-font-base;
+  color: $sol-gray-900;
+  line-height: $sol-leading-relaxed;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.errorMessage {
+  font-size: $sol-font-sm;
+  color: $sol-danger;
+  padding: $sol-space-2;
+  background: rgba($sol-danger, 0.06);
+  border: 1px solid rgba($sol-danger, 0.2);
+  border-radius: $sol-radius-md;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 16px;
+  background: $sol-primary;
+  animation: blink 0.8s step-end infinite;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}

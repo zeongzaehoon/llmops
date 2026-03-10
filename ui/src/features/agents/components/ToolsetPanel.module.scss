@@ -1,0 +1,44 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-4;
+}
+
+.toolbar {
+  max-width: 320px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $sol-space-2;
+}
+
+.chip {
+  padding: $sol-space-1 $sol-space-3;
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-medium;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-full;
+  background: transparent;
+  color: $sol-gray-600;
+  cursor: pointer;
+  transition: all $sol-duration-fast;
+
+  &:hover {
+    border-color: $sol-primary;
+    color: $sol-gray-900;
+  }
+}
+
+.chipActive {
+  background: $sol-primary;
+  border-color: $sol-primary;
+  color: #FFFFFF;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: $sol-space-4;
+}

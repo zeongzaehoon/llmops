@@ -1,0 +1,204 @@
+version: "3.8"
+
+services:
+
+
+  solomon-web:
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+    image: solomon-web
+    container_name: solomon-web
+    depends_on:
+      - solomon-api
+    volumes:
+      - ./ui/package.json:/app/package.json
+    networks:
+      - solomon-network
+
+
+  solomon-api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+      ssh:
+        - default
+    image: solomon-api
+    container_name: solomon-api
+    depends_on:
+      solomon-redis:
+        condition: service_started
+      solomon-database:
+        condition: service_started
+      solomon-vector:
+        condition: service_healthy
+    extends:
+      file: env/api.yaml
+      service: config_node
+    volumes:
+      - ./api:/home/app
+      - /home/app/.venv
+    networks:
+      - solomon-network
+
+
+  solomon-redis:
+    build:
+      context: ./redis
+      dockerfile: Dockerfile
+    image: solomon-redis
+    container_name: solomon-redis
+    networks:
+      - solomon-network
+
+
+  solomon-nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: solomon-nginx
+    container_name: solomon-nginx
+    ports:
+      - "9876:9876"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - solomon-api
+      - solomon-web
+    networks:
+      - solomon-network
+
+  solomon-database:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    image: solomon-mongodb
+    container_name: solomon-mongodb
+    ports:
+      - "27017:27017"
+    extends:
+      file: env/database.yaml
+      service: config_node
+    volumes:
+      - mongo_data:/data/db
+      - ./database/init.js:/docker-entrypoint-initdb.d/init.js:ro
+    networks:
+      - solomon-network
+  
+  solomon-vector:
+    build:
+      context: ./vector
+      dockerfile: Dockerfile-vector
+    image: solomon-vector
+    container_name: solomon-vector
+    security_opt:
+    - seccomp:unconfined
+    volumes:
+      - ./volumes/vector/data/vector:/var/lib/milvus
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9091/healthz"]
+      interval: 30s
+      start_period: 90s
+      timeout: 20s
+      retries: 3
+    depends_on:
+      - solomon-vector-etcd
+      - solomon-vector-minio
+    extends:
+      file: env/vector.yaml
+      service: config_node
+    networks:
+      - solomon-network
+
+  solomon-vector-etcd:
+    build:
+      context: ./vector
+      dockerfile: Dockerfile-etcd
+    image: solomon-vector-etcd
+    container_name: solomon-vector-etcd
+    volumes:
+      - ./volumes/vector/data/etcd:/etcd
+    healthcheck:
+      test: ["CMD", "etcdctl", "endpoint", "health"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    extends:
+      file: env/vector.yaml
+      service: config_node
+    networks:
+      - solomon-network
+
+  solomon-vector-minio:
+    build:
+      context: ./vector
+      dockerfile: Dockerfile-minio
+    image: solomon-vector-minio
+    container_name: solomon-vector-minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - ./volumes/vector/data/minio:/minio_data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    extends:
+      file: env/vector.yaml
+      service: config_node
+    networks:
+      - solomon-network
+
+  solomon-vector-attu:
+    build:
+      context: ./vector
+      dockerfile: Dockerfile-attu
+    image: solomon-vector-attu
+    container_name: solomon-vector-attu
+    depends_on:
+      - solomon-vector
+    extends:
+      file: env/vector.yaml
+      service: config_node
+    networks:
+      - solomon-network
+
+  solomon-llm-proxy:
+    build:
+      context: ./llm-proxy
+      dockerfile: Dockerfile
+    image: solomon-llm-proxy
+    container_name: solomon-llm-proxy
+    ports:
+    - "9999:9999"
+    volumes:
+      - ./llm-proxy:/home/app
+    extends:
+      file: env/llm-proxy.yaml
+      service: config_node
+    networks:
+      - solomon-network
+  
+  solomon-mcp:
+    build:
+      context: ./mcp-agent
+      dockerfile: Dockerfile
+    image: solomon-mcp
+    container_name: solomon-mcp
+    volumes:
+      - ./mcp-agent:/home/app
+    extends:
+      file: env/mcp.yaml
+      service: config_node
+    networks:
+      - solomon-network
+
+volumes:
+  mongo_data:
+
+networks:
+  solomon-network:
+    external: true
+    name: solomon-network

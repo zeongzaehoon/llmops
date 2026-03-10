@@ -1,0 +1,106 @@
+.container {
+  background: #FFFFFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-lg;
+  padding: $sol-space-4;
+  box-shadow: $sol-shadow-sm;
+}
+
+.title {
+  font-size: $sol-font-md;
+  font-weight: $sol-weight-semibold;
+  font-family: $sol-font-display;
+  color: $sol-gray-900;
+  margin: 0 0 $sol-space-3;
+}
+
+.row {
+  display: flex;
+  gap: $sol-space-5;
+  align-items: flex-start;
+
+  @include tablet {
+    flex-direction: column;
+  }
+}
+
+.field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-2;
+}
+
+.label {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-medium;
+  color: $sol-gray-700;
+}
+
+.sliderGroup {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-3;
+}
+
+.slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: $sol-gray-200;
+  border-radius: $sol-radius-full;
+  outline: none;
+  cursor: pointer;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: $sol-radius-full;
+    background: $sol-primary;
+    cursor: pointer;
+    transition: box-shadow $sol-duration-fast $sol-ease-default;
+
+    &:hover {
+      box-shadow: 0 0 0 4px rgba($sol-primary, 0.15);
+    }
+  }
+
+  &::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: $sol-radius-full;
+    background: $sol-primary;
+    cursor: pointer;
+    border: none;
+  }
+}
+
+.sliderValue {
+  font-size: $sol-font-lg;
+  font-weight: $sol-weight-bold;
+  color: $sol-gray-900;
+  min-width: 24px;
+  text-align: center;
+}
+
+.select {
+  width: 100%;
+  padding: $sol-space-2 $sol-space-3;
+  border-radius: $sol-radius-md;
+  border: 1px solid $sol-gray-200;
+  background: #FFFFFF;
+  color: $sol-gray-900;
+  font-size: $sol-font-base;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: border-color $sol-duration-fast $sol-ease-default;
+
+  &:focus {
+    border-color: $sol-primary;
+  }
+}

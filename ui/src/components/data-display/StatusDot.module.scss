@@ -1,0 +1,41 @@
+.container {
+  display: inline-flex;
+  align-items: center;
+  gap: $sol-space-2;
+}
+
+.dot {
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+.sm {
+  width: 6px;
+  height: 6px;
+}
+
+.md {
+  width: 8px;
+  height: 8px;
+}
+
+.live {
+  background: $sol-success;
+}
+
+.staging {
+  background: $sol-warning;
+}
+
+.offline {
+  background: $sol-gray-300;
+}
+
+.warning {
+  background: $sol-warning;
+}
+
+.label {
+  font-size: $sol-font-sm;
+  color: $sol-gray-600;
+}

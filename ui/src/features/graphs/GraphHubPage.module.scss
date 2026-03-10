@@ -1,0 +1,88 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-6;
+}
+
+.toolbar {
+  max-width: 320px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $sol-space-5;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-3;
+  padding: $sol-space-6;
+  border: 1px solid $sol-gray-200;
+  background: #FFFFFF;
+  border-radius: $sol-radius-lg;
+  box-shadow: $sol-shadow-sm;
+  transition: border-color $sol-duration-fast, box-shadow $sol-duration-fast;
+
+  &:hover {
+    border-color: $sol-primary;
+    box-shadow: $sol-shadow-md;
+  }
+}
+
+.cardHeader {
+  @include flex-between;
+}
+
+.graphName {
+  font-family: $sol-font-display;
+  font-size: $sol-font-xl;
+  font-weight: $sol-weight-bold;
+  color: $sol-gray-900;
+}
+
+.description {
+  font-size: $sol-font-sm;
+  color: $sol-gray-600;
+  line-height: $sol-leading-normal;
+  @include line-clamp(2);
+}
+
+.previewWrapper {
+  @include flex-center;
+  padding: $sol-space-3;
+  background: $sol-gray-50;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+  min-height: 60px;
+}
+
+.preview {
+  width: 120px;
+  height: 40px;
+}
+
+.agentList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $sol-space-1;
+}
+
+.agentTag {
+  font-size: $sol-font-xs;
+  padding: 1px $sol-space-2;
+  background: $sol-gray-50;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-sm;
+  color: $sol-gray-600;
+  font-family: monospace;
+}
+
+.actions {
+  display: flex;
+  gap: $sol-space-2;
+  margin-top: auto;
+  padding-top: $sol-space-3;
+  border-top: 1px solid $sol-gray-200;
+}

@@ -1,0 +1,110 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 49px;
+  padding: 0 $sol-space-5;
+  border-bottom: 1px solid $sol-gray-200;
+  background: #FFFFFF;
+  flex-shrink: 0;
+  gap: $sol-space-4;
+  box-sizing: border-box;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-3;
+}
+
+.categoryName {
+  font-size: $sol-font-lg;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-900;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-3;
+  flex-wrap: wrap;
+}
+
+.selectGroup {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-2;
+}
+
+.selectLabel {
+  font-size: $sol-font-xs;
+  color: $sol-gray-500;
+  white-space: nowrap;
+  font-weight: $sol-weight-medium;
+}
+
+.select {
+  padding: $sol-space-1 $sol-space-3;
+  padding-right: $sol-space-6;
+  background: #FFFFFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+  color: $sol-gray-900;
+  font-size: $sol-font-sm;
+  font-family: $sol-font-family;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748B' d='M3 5l3 3 3-3'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  transition: border-color $sol-duration-fast;
+
+  &:focus {
+    border-color: $sol-primary;
+  }
+}
+
+.toggleGroup {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-2;
+}
+
+.toggleLabel {
+  font-size: $sol-font-xs;
+  color: $sol-gray-500;
+  font-weight: $sol-weight-medium;
+}
+
+.toggle {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  background: $sol-gray-200;
+  border-radius: $sol-radius-full;
+  border: none;
+  cursor: pointer;
+  transition: background $sol-duration-fast;
+  padding: 0;
+
+  &.active {
+    background: $sol-primary;
+  }
+
+  .toggleKnob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    background: #FFFFFF;
+    border-radius: $sol-radius-full;
+    transition: transform $sol-duration-fast;
+    box-shadow: $sol-shadow-sm;
+  }
+
+  &.active .toggleKnob {
+    transform: translateX(16px);
+  }
+}

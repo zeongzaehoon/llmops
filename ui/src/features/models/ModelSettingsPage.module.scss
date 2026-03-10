@@ -1,0 +1,70 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-6;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-3;
+}
+
+.sectionTitle {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-semibold;
+  font-family: $sol-font-display;
+  color: $sol-gray-900;
+  margin: 0;
+}
+
+.currentModel {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-2;
+  padding: $sol-space-3 $sol-space-4;
+  background: #FFFFFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+  box-shadow: $sol-shadow-sm;
+}
+
+.currentVendor {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-900;
+}
+
+.currentSep {
+  color: $sol-gray-400;
+}
+
+.currentName {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-medium;
+  color: $sol-gray-700;
+}
+
+.noModel {
+  font-size: $sol-font-sm;
+  color: $sol-gray-500;
+}
+
+.loadingText {
+  font-size: $sol-font-sm;
+  color: $sol-gray-500;
+}
+
+.loading {
+  @include flex-center;
+  padding: $sol-space-12 0;
+  color: $sol-gray-600;
+  font-size: $sol-font-sm;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: $sol-space-4;
+  border-top: 1px solid $sol-gray-200;
+}

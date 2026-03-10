@@ -1,0 +1,648 @@
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+/* Loading State */
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 16px;
+  color: #666666;
+  font-size: $sol-font-sm;
+}
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #E0E0E0;
+  border-top-color: #000000;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.miniSpinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #E0E0E0;
+  border-top-color: #000000;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 12px auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Top Bar */
+.topBar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.backButton {
+  padding: 6px 12px;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+  background: transparent;
+  color: #000000;
+  font-size: $sol-font-sm;
+  font-family: $sol-font-family;
+  cursor: pointer;
+  transition: border-color $sol-duration-fast;
+
+  &:hover {
+    border-color: #000000;
+  }
+}
+
+.pageTitle {
+  font-family: $sol-font-display;
+  font-size: $sol-font-xl;
+  font-weight: $sol-weight-bold;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* 3-Column Layout */
+.columns {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.panelTitle {
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-semibold;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+}
+
+/* Source Panel (Left) */
+.sourcePanel {
+  width: 300px;
+  flex-shrink: 0;
+  background: #F5F5F5;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+  padding: 20px;
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
+}
+
+.serverAccordion {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.accordionItem {
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.accordionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  cursor: pointer;
+  border-radius: 0;
+  transition: background $sol-duration-fast;
+
+  &:hover {
+    background: #E0E0E0;
+  }
+}
+
+.accordionLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chevron {
+  font-size: 10px;
+  color: #666666;
+  transition: transform $sol-duration-fast;
+  display: inline-block;
+
+  &.expanded {
+    transform: rotate(90deg);
+  }
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 0;
+  flex-shrink: 0;
+
+  &.live {
+    background: #000000;
+  }
+
+  &.dead {
+    background: #C0C0C0;
+  }
+}
+
+.accordionName {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-medium;
+  color: #000000;
+}
+
+.addAllBtn {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 0;
+  border: 1px solid #000000;
+  background: transparent;
+  color: #000000;
+  cursor: pointer;
+  font-weight: $sol-weight-semibold;
+  font-family: $sol-font-family;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  transition: background $sol-duration-fast, color $sol-duration-fast;
+
+  &:hover {
+    background: #000000;
+    color: #FFFFFF;
+  }
+}
+
+.accordionBody {
+  padding: 0 8px 8px;
+}
+
+.toolsLoading {
+  padding: 8px;
+  text-align: center;
+}
+
+.toolList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toolItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background $sol-duration-fast;
+
+  &:hover {
+    background: #E0E0E0;
+  }
+
+  &.selected {
+    background: #E0E0E0;
+  }
+}
+
+.toolCheckbox {
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+
+.checkbox {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #E0E0E0;
+  border-radius: 0;
+  transition: background $sol-duration-fast, border-color $sol-duration-fast;
+
+  &.checked {
+    background: #000000;
+    border-color: #000000;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 1px;
+      width: 5px;
+      height: 9px;
+      border: solid #FFFFFF;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+}
+
+.toolInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.toolName {
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-medium;
+  color: #000000;
+  word-break: break-word;
+}
+
+.toolDesc {
+  font-size: 11px;
+  color: #666666;
+  line-height: 1.4;
+}
+
+.noTools {
+  font-size: $sol-font-xs;
+  color: #666666;
+  padding: 8px 10px;
+  font-style: italic;
+}
+
+.noServers {
+  font-size: $sol-font-sm;
+  color: #666666;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Workspace (Center) */
+.workspace {
+  flex: 1;
+  min-width: 0;
+  background: #FFFFFF;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+  padding: 20px;
+}
+
+.formGroup {
+  margin-bottom: 16px;
+}
+
+.label {
+  display: block;
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-semibold;
+  color: #000000;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+  background: #FFFFFF;
+  color: #000000;
+  font-size: $sol-font-sm;
+  font-family: $sol-font-family;
+  outline: none;
+  transition: border-color $sol-duration-fast;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: #000000;
+  }
+
+  &::placeholder {
+    color: #999999;
+  }
+}
+
+.select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+  background: #FFFFFF;
+  color: #000000;
+  font-size: $sol-font-sm;
+  font-family: $sol-font-family;
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: #000000;
+  }
+}
+
+.readonlyField {
+  padding: 10px 12px;
+  border-radius: 0;
+  background: #F5F5F5;
+  border: 1px solid #E0E0E0;
+  color: #666666;
+  font-size: $sol-font-sm;
+}
+
+.textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+  background: #FFFFFF;
+  color: #000000;
+  font-size: $sol-font-sm;
+  font-family: $sol-font-family;
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: #000000;
+  }
+
+  &::placeholder {
+    color: #999999;
+  }
+}
+
+/* Selected Tools Section */
+.selectedSection {
+  margin-top: 24px;
+}
+
+.selectedTitle {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-semibold;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.selectedCount {
+  font-size: $sol-font-xxs;
+  font-weight: $sol-weight-semibold;
+  background: #000000;
+  color: #FFFFFF;
+  padding: 1px 7px;
+  border-radius: 0;
+}
+
+.selectedEmpty {
+  padding: 32px 16px;
+  text-align: center;
+  border: 1px dashed #E0E0E0;
+  border-radius: 0;
+  color: #666666;
+  font-size: $sol-font-xs;
+}
+
+.selectedGroups {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.selectedGroup {
+  border: 1px solid #E0E0E0;
+  border-radius: 0;
+  padding: 12px;
+}
+
+.selectedGroupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.selectedGroupName {
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-semibold;
+  color: #000000;
+}
+
+.removeGroupBtn {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  color: #000000;
+  cursor: pointer;
+  font-weight: $sol-weight-medium;
+  font-family: $sol-font-family;
+
+  &:hover {
+    background: #F0F0F0;
+  }
+}
+
+.selectedTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.selectedTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: $sol-font-xxs;
+  padding: 4px 10px;
+  border-radius: 0;
+  background: #F5F5F5;
+  border: 1px solid #E0E0E0;
+  color: #000000;
+}
+
+.removeTagBtn {
+  background: none;
+  border: none;
+  color: #666666;
+  cursor: pointer;
+  font-size: $sol-font-sm;
+  line-height: 1;
+  padding: 0;
+  margin-left: 2px;
+
+  &:hover {
+    color: #000000;
+  }
+}
+
+/* Preview Panel (Right) */
+.previewPanel {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.previewCard {
+  background: #F5F5F5;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.previewField {
+  margin-bottom: 12px;
+}
+
+.previewLabel {
+  display: block;
+  font-size: 11px;
+  font-weight: $sol-weight-semibold;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+}
+
+.previewValue {
+  font-size: $sol-font-sm;
+  color: #000000;
+  word-break: break-word;
+}
+
+.previewDivider {
+  height: 1px;
+  background: #E0E0E0;
+  margin: 16px 0;
+}
+
+.previewStats {
+  display: flex;
+  gap: 24px;
+}
+
+.previewStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.previewStatNum {
+  font-size: 24px;
+  font-weight: $sol-weight-bold;
+  color: #000000;
+}
+
+.previewStatLabel {
+  font-size: $sol-font-xxs;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.previewGroup {
+  margin-bottom: 12px;
+}
+
+.previewGroupName {
+  font-size: $sol-font-xxs;
+  font-weight: $sol-weight-semibold;
+  color: #666666;
+  margin-bottom: 4px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.previewToolList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.previewToolItem {
+  font-size: $sol-font-xs;
+  color: #000000;
+  padding: 2px 0;
+
+  &::before {
+    content: '\2014';
+    color: #000000;
+    margin-right: 6px;
+  }
+}
+
+/* Submit Button */
+.submitButton {
+  width: 100%;
+  padding: 12px;
+  border-radius: 0;
+  border: 1px solid #000000;
+  background: #000000;
+  color: #FFFFFF;
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-bold;
+  font-family: $sol-font-family;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: opacity $sol-duration-fast;
+
+  &:hover:not(:disabled) {
+    opacity: 0.85;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 16px;
+  }
+
+  .columns {
+    flex-direction: column;
+  }
+
+  .sourcePanel {
+    width: 100%;
+    max-height: 300px;
+  }
+
+  .workspace {
+    width: 100%;
+  }
+
+  .previewPanel {
+    width: 100%;
+  }
+
+  .topBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

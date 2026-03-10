@@ -1,0 +1,95 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-5;
+  padding: $sol-space-6;
+  background: #FFFFFF;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-family: $sol-font-display;
+  font-size: $sol-font-xl;
+  font-weight: $sol-weight-bold;
+  color: $sol-gray-900;
+  margin: 0;
+}
+
+.badge {
+  display: inline-block;
+  padding: $sol-space-1 $sol-space-3;
+  border-radius: $sol-radius-full;
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-bold;
+  border: 1px solid $sol-gray-200;
+}
+
+.deployBadge {
+  background: $sol-primary-light;
+  color: $sol-primary;
+  border-color: $sol-primary;
+}
+
+.rollbackBadge {
+  background: $sol-gray-900;
+  color: #FFFFFF;
+  border-color: $sol-gray-900;
+}
+
+.bounce {
+  // reserved for animation
+}
+
+.warning {
+  font-size: $sol-font-sm;
+  color: $sol-gray-600;
+  line-height: 1.5;
+  margin: 0;
+  padding: $sol-space-3;
+  background: $sol-gray-50;
+  border-radius: $sol-radius-md;
+  border-left: 3px solid $sol-warning;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-2;
+}
+
+.label {
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-medium;
+  color: $sol-gray-600;
+}
+
+.input {
+  padding: $sol-space-2 $sol-space-3;
+  background: #FFFFFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+  color: $sol-gray-900;
+  font-size: $sol-font-sm;
+  outline: none;
+  box-shadow: $sol-shadow-sm;
+  transition: border-color $sol-duration-fast;
+
+  &::placeholder {
+    color: $sol-gray-400;
+  }
+
+  &:focus {
+    border-color: $sol-primary;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: $sol-space-3;
+}

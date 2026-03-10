@@ -1,0 +1,106 @@
+.chatBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 59px);
+  width: 100%;
+  border: 1px solid #000000;
+  background: #FFFFFF;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+.chatBodyHeader {
+  padding: $sol-space-7;
+
+  .headerImg {
+    width: 100%;
+
+    &.mobile {
+      display: none;
+    }
+  }
+}
+
+.recommendQuestionList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $sol-space-2;
+  padding: 0 $sol-space-7 $sol-space-2 $sol-space-7;
+
+  .recommendedQuestionItem {
+    display: inline-block;
+    max-width: 100%;
+    height: fit-content;
+    padding: $sol-space-3;
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    font-size: $sol-font-md;
+    letter-spacing: -0.02em;
+    white-space: pre-line;
+    cursor: pointer;
+
+    &:hover {
+      border-color: #000000;
+      background: #FAFAFA;
+    }
+  }
+}
+
+.chatBodyWrapper {
+  display: flex;
+  flex-direction: column-reverse;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .chatBodyWrapper {
+    &::-webkit-scrollbar {
+      width: 24px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      height: 30%;
+      background: #AAAAAA;
+      border-radius: 0;
+      border: 8px solid #FFFFFF;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .chatBodyHeader {
+    padding: $sol-space-4;
+  }
+
+  .recommendQuestionList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $sol-space-2;
+    padding: $sol-space-4 $sol-space-4 $sol-space-2 $sol-space-4;
+
+    .recommendedQuestionItem {
+      padding: $sol-space-1;
+      font-size: $sol-font-sm;
+    }
+  }
+}
+
+@media (max-width: 460px) {
+  .chatBodyHeader {
+    .headerImg {
+      &.mobile {
+        display: block;
+      }
+
+      &.pc {
+        display: none;
+      }
+    }
+  }
+}

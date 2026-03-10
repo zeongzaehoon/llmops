@@ -1,0 +1,277 @@
+.surveyModalWrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 314px;
+  padding: $sol-space-8 $sol-space-4 $sol-space-7 $sol-space-4;
+  background: #FFFFFF;
+  border-radius: 0;
+  box-shadow: none;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  z-index: 10;
+
+  &:lang(ja) {
+    font-family: Osaka, Meiryo, 'MS PGothic', 'MS UI Gothic', 'Noto Sans JP', sans-serif;
+  }
+}
+
+.surveyModal {
+}
+
+.surveyModalCont {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-6;
+  width: 420px;
+  color: #000000;
+  overflow: hidden;
+}
+
+.surveyModalContImageContainer {
+  display: flex;
+  justify-content: center;
+  padding-top: $sol-space-7;
+
+  img {
+    width: 50px;
+  }
+}
+
+.surveyModalContTitle {
+  padding-bottom: $sol-space-5;
+  font-family: $sol-font-display;
+  font-size: $sol-font-2xl;
+  line-height: 26px;
+  font-weight: $sol-weight-medium;
+  text-align: center;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.surveyModalContDescription {
+  font-size: $sol-font-base;
+  line-height: $sol-leading-normal;
+  text-align: center;
+  color: #333333;
+}
+
+.surveyModalContHeader {
+  width: 100%;
+
+  p {
+    width: 100%;
+    text-align: center;
+    font-size: 21px;
+    font-weight: $sol-weight-medium;
+  }
+}
+
+.surveyModalContBody {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  transition: width 0.5s ease-in-out;
+
+  > :first-child {
+    border-right: 1px solid #000000;
+    box-sizing: border-box;
+  }
+
+  &.expanded {
+    width: 180%;
+
+    .sectionRight {
+      cursor: pointer;
+    }
+  }
+}
+
+.section {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $sol-space-4;
+  padding: $sol-space-2 $sol-space-5;
+}
+
+.sectionLeft {
+  composes: section;
+}
+
+.sectionRight {
+  composes: section;
+}
+
+.sectionMaintext {
+  font-size: $sol-font-xl;
+  font-weight: $sol-weight-semibold;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.sectionSubtext {
+  width: 170px;
+  color: #666666;
+  text-align: center;
+  word-break: break-all;
+
+  &.small {
+    font-size: $sol-font-sm;
+  }
+}
+
+.input {
+  width: 88%;
+}
+
+.inputWrapper {
+  display: flex;
+  gap: 9px;
+  padding: $sol-space-1;
+  border: 1px solid #000000;
+  border-radius: 0;
+  overflow: hidden;
+
+  input[type='text'] {
+    flex: 1;
+    height: 14px;
+    padding: $sol-space-2;
+    border: none;
+    font-size: $sol-font-base;
+    color: #000000;
+  }
+}
+
+.sendButton {
+  padding: $sol-space-1 $sol-space-2;
+  font-size: $sol-font-md;
+  border-radius: 0;
+  border: 1px solid #000000;
+  color: #FFFFFF;
+  background: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+
+  &.disabled {
+    opacity: 60%;
+
+    &:hover {
+      background: #000000;
+    }
+  }
+
+  &:hover {
+    background: #333333;
+  }
+}
+
+.inputError {
+  width: 100%;
+  height: 18px;
+  padding: $sol-space-1 0;
+  margin-bottom: -10px;
+  text-align: center;
+
+  p {
+    line-height: 18px;
+    color: #CC0000;
+    font-size: $sol-font-xs;
+  }
+}
+
+.button {
+  min-width: 90px;
+  padding: 11px 18px 9px 18px;
+  margin: 3px auto;
+  border-radius: 0;
+  color: #FFFFFF;
+  background: #000000;
+  border: 1px solid #000000;
+  font-weight: $sol-weight-medium;
+  line-height: 16px;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &.highlight {
+    color: #FFFFFF;
+    background: #CC0000;
+    border-color: #CC0000;
+  }
+}
+
+@media (max-width: 768px) {
+  .surveyModalWrapper {
+    height: fit-content;
+    min-height: 285px;
+    padding: $sol-space-7 $sol-space-2 $sol-space-5 $sol-space-2;
+  }
+
+  .surveyModalCont {
+    gap: $sol-space-5;
+    width: 340px;
+  }
+
+  .surveyModalContImageContainer {
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 50px;
+    }
+  }
+
+  .surveyModalContTitle {
+    font-size: $sol-font-xl;
+    line-height: 18px;
+  }
+
+  .surveyModalContDescription {
+    font-size: $sol-font-base;
+    line-height: $sol-leading-normal;
+  }
+
+  .surveyModalContHeader {
+    width: 100%;
+
+    p {
+      font-size: $sol-font-xl;
+    }
+  }
+
+  .surveyModalContBody {
+    .section {
+      gap: $sol-space-4;
+      padding: $sol-space-2;
+    }
+
+    .sectionMaintext {
+      font-size: 19px;
+    }
+
+    .sectionSubtext {
+      width: 140px;
+      font-size: $sol-font-md;
+    }
+
+    .input {
+      width: 95%;
+    }
+
+    .inputWrapper {
+      input[type='text'] {
+        font-size: $sol-font-md;
+      }
+    }
+
+    &.expanded {
+      width: 190%;
+    }
+  }
+}

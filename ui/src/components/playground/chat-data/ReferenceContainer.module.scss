@@ -1,0 +1,234 @@
+.reference-container {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  background: #FFFFFF;
+  overflow-y: auto;
+}
+
+.empty-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: $sol-font-xs;
+  img {
+    width: 50px;
+    padding-bottom: $sol-space-md;
+  }
+}
+
+.container-header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $sol-space-lg;
+  background: #FFFFFF;
+  font-weight: $sol-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  .visibility-control-button {
+    width: 15px;
+    cursor: pointer;
+  }
+}
+
+.container-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100dvh - 234px);
+}
+
+.reference-list-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.reference-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0 $sol-space-lg;
+  gap: $sol-space-sm;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 30%;
+    background: #C0C0C0;
+    border-radius: 0;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+}
+
+.reference-list-loading {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: $sol-space-lg;
+  img {
+    width: 30px;
+  }
+}
+
+.reference-body-field {
+  display: flex;
+  gap: $sol-space-xs;
+}
+
+.reference-item {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 15px 15px 0 15px;
+  border: 1px solid #E0E0E0;
+  border-radius: 0;
+  font-size: $sol-font-xs;
+  p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-break: break-all;
+  }
+
+  span {
+    color: #666666;
+  }
+
+  &.selected {
+    background: #F5F5F5;
+    p {
+      overflow: visible;
+      white-space: pre-line;
+    }
+
+    .reference-item-body {
+      .reference-body-field {
+        &:not(:first-child) {
+          display: block;
+        }
+        padding: 10px 0;
+        &:not(:first-child) {
+          border-top: 1px solid #E0E0E0;
+        }
+      }
+      .long-text-title {
+        display: block;
+      }
+      .text-content {
+        padding-left: $sol-space-sm;
+      }
+    }
+
+    .item-fold-button {
+      padding: 15px 0;
+      img {
+        rotate: 90deg;
+      }
+    }
+  }
+}
+
+.reference-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: $sol-space-xs;
+  .delete-button {
+    font-size: $sol-font-sm;
+    color: #666666;
+    padding: 4px;
+    img {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
+
+.reference-item-list {
+  padding: 10px 0;
+  &:not(:last-child) {
+    border-bottom: 1px dashed #333333;
+  }
+}
+
+.reference-subject {
+  font-weight: $sol-weight-medium;
+}
+
+.reference-source {
+  color: #666666;
+  font-size: $sol-font-xxs;
+  padding-left: $sol-space-sm;
+}
+
+.reference-url {
+  padding-left: $sol-space-sm;
+  padding-bottom: $sol-space-sm;
+  color: #666666;
+  font-size: $sol-font-xxs;
+  a {
+    color: #000000;
+    text-decoration: underline;
+  }
+}
+
+.item-fold-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 5px 0;
+  cursor: pointer;
+  img {
+    width: 15px;
+    rotate: 270deg;
+  }
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: $sol-space-xl $sol-space-lg;
+  background: #FFFFFF;
+  box-sizing: border-box;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 0;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  color: #000000;
+  font-family: $sol-font-family;
+}
+
+.slide-fade-enter-active {
+  transition: all $sol-duration-normal $sol-ease-standard;
+}
+
+.slide-fade-enter-from {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+@media (max-width: 1024px) {
+  .reference-container {
+    display: none;
+  }
+}

@@ -1,0 +1,197 @@
+.messageRow {
+  display: flex;
+  padding: $sol-space-2 $sol-space-5;
+  gap: $sol-space-3;
+
+  &.user {
+    justify-content: flex-end;
+  }
+
+  &.assistant {
+    justify-content: flex-start;
+  }
+}
+
+.bubble {
+  max-width: 72%;
+  padding: $sol-space-3 $sol-space-4;
+  border-radius: $sol-radius-lg;
+  font-size: $sol-font-sm;
+  line-height: 1.6;
+  position: relative;
+
+  .user & {
+    background: $sol-primary;
+    color: #FFF;
+    border-bottom-right-radius: $sol-radius-sm;
+  }
+
+  .assistant & {
+    background: $sol-gray-50;
+    color: $sol-gray-900;
+    border: 1px solid $sol-gray-200;
+    border-bottom-left-radius: $sol-radius-sm;
+  }
+}
+
+.content {
+  word-break: break-word;
+
+  // Markdown rendering styles
+  h1, h2, h3, h4, h5, h6 {
+    margin: $sol-space-2 0 $sol-space-1;
+    font-weight: $sol-weight-semibold;
+    line-height: 1.4;
+  }
+
+  h1 { font-size: $sol-font-xl; }
+  h2 { font-size: $sol-font-lg; }
+  h3 { font-size: $sol-font-md; }
+
+  p {
+    margin: $sol-space-1 0;
+  }
+
+  strong {
+    font-weight: $sol-weight-bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  code {
+    background: rgba(0, 0, 0, 0.06);
+    padding: 1px 4px;
+    border-radius: $sol-radius-sm;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9em;
+
+    .user & {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  pre {
+    background: $sol-gray-100;
+    padding: $sol-space-3;
+    border-radius: $sol-radius-md;
+    border: 1px solid $sol-gray-200;
+    overflow-x: auto;
+    margin: $sol-space-2 0;
+    @include scrollbar-thin;
+
+    .user & {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    code {
+      background: none;
+      padding: 0;
+      border: none;
+    }
+  }
+
+  ul, ol {
+    margin: $sol-space-1 0;
+    padding-left: $sol-space-5;
+  }
+
+  li {
+    margin: $sol-space-1 0;
+  }
+
+  blockquote {
+    border-left: 3px solid $sol-primary;
+    padding-left: $sol-space-3;
+    margin: $sol-space-2 0;
+    color: $sol-gray-600;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: $sol-space-2 0;
+
+    th, td {
+      border: 1px solid $sol-gray-200;
+      padding: $sol-space-1 $sol-space-2;
+      text-align: left;
+      font-size: $sol-font-xs;
+    }
+
+    th {
+      background: $sol-gray-50;
+      font-weight: $sol-weight-semibold;
+    }
+  }
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: $sol-primary;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 0.8s step-end infinite;
+
+  .user & {
+    background: #FFF;
+  }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.stopped {
+  font-size: $sol-font-xs;
+  color: $sol-gray-400;
+  font-style: italic;
+  margin-top: $sol-space-2;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-2;
+  margin-top: $sol-space-2;
+  opacity: 0;
+  transition: opacity $sol-duration-fast;
+
+  .messageRow:hover & {
+    opacity: 1;
+  }
+
+  // Always show for assistant after streaming
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.actionBtn {
+  background: none;
+  border: 1px solid $sol-gray-200;
+  color: $sol-gray-400;
+  padding: $sol-space-1 $sol-space-2;
+  border-radius: $sol-radius-md;
+  font-size: $sol-font-xs;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: $sol-space-1;
+  transition: color $sol-duration-fast, border-color $sol-duration-fast;
+
+  &:hover {
+    color: $sol-gray-700;
+    border-color: $sol-gray-300;
+  }
+
+  &.rated {
+    color: $sol-primary;
+    border-color: $sol-primary;
+    font-weight: $sol-weight-medium;
+  }
+}

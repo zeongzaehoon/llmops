@@ -1,0 +1,28 @@
+@import './reset.scss';
+@import './_variable.scss';
+@import './icon.scss';
+@import '../assets/fontIcon/fontIcon.css';
+@import './prism-one-light.scss';
+// @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+KR:wght@100..900&family=Noto+Sans+TC:wght@100..900&family=Noto+Sans+Mono:wght@100..900&display=swap');
+
+@font-face {
+  font-family: 'Galmuri11';
+  src: url(../assets/fonts/Galmuri11.ttf);
+}
+
+@font-face {
+  font-family:"rubrik-new";
+  src:url("https://use.typekit.net/af/de1256/00000000000000003b9af09c/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"),url("https://use.typekit.net/af/de1256/00000000000000003b9af09c/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"),url("https://use.typekit.net/af/de1256/00000000000000003b9af09c/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
+  font-display:auto;font-style:normal;
+}
+
+body {
+  font-family:
+    'Pretendard JP Variable',
+    'Pretendard Variable',
+    -apple-system,
+    Roboto,
+    'Hiragino Sans',
+    Meiryo,
+    sans-serif;
+}

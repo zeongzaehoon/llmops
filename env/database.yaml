@@ -1,0 +1,6 @@
+services:
+  config_node:
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: solomon
+      MONGO_INITDB_ROOT_PASSWORD: solomon1234
+      MONGO_INITDB_DATABASE: solomon

@@ -1,0 +1,17 @@
+.card {
+  background: #FFFFFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-lg;
+  padding: $sol-space-5;
+  transition: border-color $sol-duration-fast $sol-ease-default,
+              box-shadow $sol-duration-fast $sol-ease-default;
+}
+
+.hoverable {
+  cursor: pointer;
+
+  &:hover {
+    border-color: $sol-gray-300;
+    box-shadow: $sol-shadow-md;
+  }
+}

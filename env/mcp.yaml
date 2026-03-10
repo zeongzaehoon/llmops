@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  config_node:
+    environment:
+      # MCP arg
+      - ENVIRONMENT=production
+      - MCP_TRANSPORT=http
+      - MCP_HOST=0.0.0.0
+      - MCP_PORT=8002
+
+      # Database Configuration
+      - MYSQL_HOST=database
+      - MYSQL_USER=knitlog
+      - MYSQL_PASSWORD=knitlog1234
+      - MYSQL_DATABASE=knitlog
+      - MYSQL_PORT=3306
+
+      # Clickhouse Configuration
+      - CLICKHOUSE_HOST=clickhouse
+      - CLICKHOUSE_PORT=9000
+      - CLICKHOUSE_USER=admin
+      - CLICKHOUSE_PASSWORD=admin123
+      
+      # LLM Proxy Service
+      - LLM_PROXY_URL=http://solomon-llm-proxy:9999
+      
+      # Server Configuration
+      - SERVER_STAGE=DOCKER

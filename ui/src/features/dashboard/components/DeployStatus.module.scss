@@ -1,0 +1,116 @@
+.container {
+  background: #FFFFFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-lg;
+  padding: $sol-space-6;
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-4;
+  box-shadow: $sol-shadow-sm;
+}
+
+.heading {
+  font-size: $sol-font-base;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-900;
+  margin: 0;
+}
+
+.empty {
+  font-size: $sol-font-sm;
+  color: $sol-gray-500;
+  margin: 0;
+  padding: $sol-space-4 0;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  @include scrollbar-thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $sol-font-md;
+
+  th, td {
+    padding: $sol-space-3 $sol-space-4;
+    text-align: left;
+    border-bottom: 1px solid $sol-gray-200;
+  }
+
+  th {
+    font-size: $sol-font-sm;
+    font-weight: $sol-weight-medium;
+    color: $sol-gray-600;
+    border-bottom-color: $sol-gray-300;
+    border-bottom-width: 2px;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody tr:hover {
+    background: $sol-gray-50;
+  }
+}
+
+.thCategory {
+  width: 35%;
+}
+
+.thBlue,
+.thGreen {
+  width: 32.5%;
+}
+
+.tdCategory {
+  font-weight: $sol-weight-medium;
+  color: $sol-gray-900;
+}
+
+.tdBlue {
+  background: $sol-gray-50;
+}
+
+.tdGreen {
+  background: $sol-gray-100;
+}
+
+.deployCell {
+  display: inline-flex;
+  align-items: center;
+  gap: $sol-space-2;
+}
+
+.version {
+  font-family: $sol-font-display;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-900;
+  font-variant-numeric: tabular-nums;
+}
+
+.noEntry {
+  color: $sol-gray-400;
+}
+
+// Loading state
+.shimmerTable {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-3;
+}
+
+.shimmerRow {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-4;
+  height: 28px;
+}
+
+.shimmerBlock {
+  height: 14px;
+  border-radius: $sol-radius-sm;
+  background: $sol-gray-100;
+}

@@ -1,0 +1,586 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+/* Summary Bar */
+.summaryBar {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.summaryItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: #F5F5F5;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+}
+
+.summaryLabel {
+  font-size: $sol-font-xs;
+  color: #666666;
+  font-weight: $sol-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.summaryValue {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-bold;
+  color: #000000;
+}
+
+.summaryLive {
+  font-size: $sol-font-xxs;
+  font-weight: $sol-weight-medium;
+  color: #000000;
+}
+
+/* Main Layout */
+.main {
+  display: flex;
+  gap: 24px;
+  min-height: 500px;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sidebarSection {
+  background: #F5F5F5;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+  padding: 16px;
+}
+
+.sidebarTitle {
+  font-size: $sol-font-xxs;
+  font-weight: $sol-weight-semibold;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.categoryList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.categoryItem {
+  padding: 8px 12px;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background $sol-duration-fast;
+  font-size: $sol-font-sm;
+  color: #000000;
+
+  &:hover {
+    background: #E0E0E0;
+  }
+
+  &.active {
+    background: #000000;
+    color: #FFFFFF;
+    font-weight: $sol-weight-semibold;
+  }
+}
+
+.categoryName {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Server list in sidebar */
+.serverList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.serverItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 0;
+  flex-shrink: 0;
+
+  &.live {
+    background: #000000;
+  }
+
+  &.dead {
+    background: #C0C0C0;
+  }
+}
+
+.serverName {
+  font-size: $sol-font-xs;
+  color: #000000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.manageServers {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 8px;
+  border: 1px dashed #E0E0E0;
+  border-radius: 0;
+  background: transparent;
+  color: #666666;
+  font-size: $sol-font-xs;
+  font-family: $sol-font-family;
+  cursor: pointer;
+  transition: border-color $sol-duration-fast, color $sol-duration-fast;
+
+  &:hover {
+    border-color: #000000;
+    color: #000000;
+  }
+}
+
+/* Content Area */
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.contentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.contentTitle {
+  font-family: $sol-font-display;
+  font-size: $sol-font-xl;
+  font-weight: $sol-weight-bold;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.createButton {
+  padding: 8px 16px;
+  border-radius: 0;
+  border: 1px solid #000000;
+  cursor: pointer;
+  background: #000000;
+  color: #FFFFFF;
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-semibold;
+  font-family: $sol-font-family;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: opacity $sol-duration-fast;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+/* Toolset List */
+.toolsetList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toolsetCard {
+  background: #FFFFFF;
+  border-radius: 0;
+  padding: 20px;
+  border: 1px solid #E0E0E0;
+  transition: border-color $sol-duration-fast;
+
+  &:hover {
+    border-color: #000000;
+  }
+
+  &.activeCard {
+    border-color: #000000;
+    border-width: 2px;
+  }
+}
+
+.toolsetHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.toolsetLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toolsetName {
+  font-size: $sol-font-lg;
+  font-weight: $sol-weight-semibold;
+  color: #000000;
+}
+
+.liveBadge {
+  font-size: 11px;
+  font-weight: $sol-weight-bold;
+  padding: 2px 8px;
+  border-radius: 0;
+  background: #000000;
+  color: #FFFFFF;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.draftBadge {
+  font-size: 11px;
+  font-weight: $sol-weight-semibold;
+  padding: 2px 8px;
+  border-radius: 0;
+  background: #E0E0E0;
+  color: #666666;
+  text-transform: uppercase;
+}
+
+.toolsetMeta {
+  display: flex;
+  gap: 12px;
+  font-size: $sol-font-xs;
+  color: #666666;
+}
+
+.toolsetDesc {
+  font-size: $sol-font-sm;
+  color: #666666;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+/* Server-Tool Groups */
+.serverToolGroup {
+  margin-bottom: 8px;
+}
+
+.serverGroupName {
+  display: inline-block;
+  font-size: $sol-font-xxs;
+  font-weight: $sol-weight-semibold;
+  color: #666666;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.toolTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.toolTag {
+  font-size: $sol-font-xxs;
+  padding: 3px 10px;
+  border-radius: 0;
+  background: #F5F5F5;
+  border: 1px solid #E0E0E0;
+  color: #000000;
+}
+
+/* Footer */
+.toolsetFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #E0E0E0;
+}
+
+.toolsetDate {
+  font-size: $sol-font-xxs;
+  color: #666666;
+}
+
+.toolsetActions {
+  display: flex;
+  gap: 8px;
+}
+
+.deployBtn {
+  padding: 6px 14px;
+  border-radius: 0;
+  border: 1px solid #000000;
+  cursor: pointer;
+  background: #000000;
+  color: #FFFFFF;
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-semibold;
+  font-family: $sol-font-family;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: opacity $sol-duration-fast;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.editBtn {
+  padding: 6px 14px;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+  background: transparent;
+  color: #000000;
+  font-size: $sol-font-xs;
+  font-family: $sol-font-family;
+  cursor: pointer;
+  transition: border-color $sol-duration-fast;
+
+  &:hover {
+    border-color: #000000;
+  }
+}
+
+.deleteActionBtn {
+  padding: 6px 14px;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+  background: transparent;
+  color: #000000;
+  font-size: $sol-font-xs;
+  font-family: $sol-font-family;
+  cursor: pointer;
+  transition: border-color $sol-duration-fast;
+
+  &:hover {
+    border-color: #000000;
+  }
+}
+
+/* Empty & Loading States */
+.skeletonList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skeleton {
+  height: 120px;
+  border-radius: 0;
+  background: #F0F0F0;
+}
+
+.empty {
+  text-align: center;
+  padding: 80px 20px;
+  background: #F5F5F5;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+}
+
+.emptyTitle {
+  font-family: $sol-font-display;
+  font-size: $sol-font-lg;
+  font-weight: $sol-weight-semibold;
+  color: #000000;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.emptyDesc {
+  font-size: $sol-font-sm;
+  color: #666666;
+  margin-bottom: 20px;
+}
+
+.emptyButton {
+  padding: 10px 20px;
+  border-radius: 0;
+  border: 1px solid #000000;
+  cursor: pointer;
+  background: #000000;
+  color: #FFFFFF;
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-semibold;
+  font-family: $sol-font-family;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Modals */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.confirmModal {
+  background: #FFFFFF;
+  border-radius: 0;
+  border: 1px solid #000000;
+  padding: 24px;
+  min-width: 320px;
+  max-width: 440px;
+}
+
+.confirmTitle {
+  font-family: $sol-font-display;
+  font-size: $sol-font-lg;
+  font-weight: $sol-weight-semibold;
+  color: #000000;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.confirmDesc {
+  font-size: $sol-font-sm;
+  color: #666666;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.confirmButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.cancelButton {
+  padding: 8px 16px;
+  border-radius: 0;
+  border: 1px solid #E0E0E0;
+  background: transparent;
+  color: #000000;
+  cursor: pointer;
+  font-size: $sol-font-sm;
+  font-family: $sol-font-family;
+}
+
+.confirmButton {
+  padding: 8px 16px;
+  border-radius: 0;
+  border: 1px solid #000000;
+  background: #000000;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-semibold;
+  font-family: $sol-font-family;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: opacity $sol-duration-fast;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.dangerButton {
+  padding: 8px 16px;
+  border-radius: 0;
+  border: 1px solid #000000;
+  background: #000000;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-semibold;
+  font-family: $sol-font-family;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 16px;
+  }
+
+  .summaryBar {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .main {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 12px;
+  }
+
+  .sidebarSection {
+    min-width: 200px;
+    flex-shrink: 0;
+  }
+
+  .categoryList {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 4px;
+  }
+
+  .categoryItem {
+    white-space: nowrap;
+  }
+
+  .contentHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .toolsetHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .toolsetFooter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

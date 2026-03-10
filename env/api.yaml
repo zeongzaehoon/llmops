@@ -1,0 +1,28 @@
+services:
+  config_node:
+    environment:
+      # - SERVER_STAGE=staging  # (원본 - 로컬 Docker에서는 ProductionDB SSL 에러 발생)
+      - SERVER_STAGE=docker
+      - JWT_SECRET_KEY=nsVe2M5eRnK7sBT1
+      - SECRET_KEY=MLj8VPJHa8H04GMU
+      - LLM_PROXY_URL=http://llm-proxy:9999/
+
+      # DB
+      - DB_URI=mongodb://solomon:solomon1234@solomon-database:27017/solomon?authSource=admin
+      - DB_NAME=solomon
+      - REAL_DB_URI=mongodb://solomon:solomon1234@solomon-database:27017/solomon?authSource=admin
+      - REAL_DB_NAME=solomon
+
+      # VECTOR
+      - VECTOR_DB_URI=http://solomon-vector:19530
+      - VECTOR_DB_TOKEN=root:Milvus
+      - VECTOR_DIMENSION=1536
+
+      # REDIS
+      - MEMORY_DB_HOST=solomon-redis
+      - MEMORY_DB_PORT=6379
+      - MEMORY_DB_NUMBER=2
+
+      # MCP
+      - ENABLE_MCP=true
+      - MCP_AGENT_URL=http://solomon-mcp:4444/mcp

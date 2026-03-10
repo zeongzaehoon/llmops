@@ -1,0 +1,170 @@
+.page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-6;
+  max-width: 1200px;
+  width: 100%;
+
+  @include tablet {
+    gap: $sol-space-5;
+  }
+}
+
+// ── Loading state ──
+.loading {
+  @include flex-center;
+  flex-direction: column;
+  gap: $sol-space-4;
+  min-height: 400px;
+  color: $sol-gray-600;
+  font-size: $sol-font-base;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid $sol-gray-200;
+  border-top-color: $sol-primary;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+// ── Top bar ──
+.topBar {
+  @include flex-between;
+  gap: $sol-space-4;
+  flex-wrap: wrap;
+}
+
+.topLeft {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-3;
+  min-width: 0;
+}
+
+.backBtn {
+  padding: $sol-space-1 $sol-space-3;
+  border-radius: $sol-radius-md;
+  border: 1px solid $sol-gray-200;
+  background: transparent;
+  color: $sol-gray-700;
+  font-size: $sol-font-sm;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background $sol-duration-fast $sol-ease-default,
+              color $sol-duration-fast $sol-ease-default;
+  white-space: nowrap;
+
+  &:hover {
+    background: $sol-gray-50;
+    color: $sol-gray-900;
+  }
+}
+
+.pageTitle {
+  font-size: $sol-font-2xl;
+  font-weight: $sol-weight-bold;
+  font-family: $sol-font-display;
+  color: $sol-gray-900;
+  margin: 0;
+  @include truncate;
+
+  @include tablet {
+    font-size: $sol-font-lg;
+  }
+}
+
+.topActions {
+  display: flex;
+  gap: $sol-space-2;
+  flex-shrink: 0;
+}
+
+// ── Form section ──
+.formSection {
+  background: #FFFFFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-lg;
+  padding: $sol-space-6;
+  box-shadow: $sol-shadow-sm;
+}
+
+.formRow {
+  display: flex;
+  gap: $sol-space-5;
+
+  @include tablet {
+    flex-direction: column;
+    gap: $sol-space-4;
+  }
+}
+
+.formField {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-2;
+}
+
+.label {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-700;
+}
+
+.input {
+  width: 100%;
+  padding: $sol-space-2 $sol-space-3;
+  border-radius: $sol-radius-md;
+  border: 1px solid $sol-gray-200;
+  background: #FFFFFF;
+  color: $sol-gray-900;
+  font-size: $sol-font-base;
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color $sol-duration-fast $sol-ease-default;
+
+  &:focus {
+    border-color: $sol-primary;
+  }
+
+  &::placeholder {
+    color: $sol-gray-400;
+  }
+}
+
+// ── Sections ──
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-3;
+}
+
+.sectionTitle {
+  font-size: $sol-font-base;
+  font-weight: $sol-weight-semibold;
+  font-family: $sol-font-display;
+  color: $sol-gray-900;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: $sol-space-2;
+}
+
+.agentCount {
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-medium;
+  color: $sol-gray-600;
+  background: $sol-gray-100;
+  padding: 2px $sol-space-2;
+  border-radius: $sol-radius-full;
+}

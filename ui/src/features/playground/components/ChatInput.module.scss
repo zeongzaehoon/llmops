@@ -1,0 +1,55 @@
+.inputArea {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-3;
+  padding: $sol-space-3 $sol-space-5;
+  border-top: 1px solid $sol-gray-200;
+  background: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.textareaWrap {
+  flex: 1;
+  position: relative;
+}
+
+.textarea {
+  width: 100%;
+  padding: $sol-space-2 $sol-space-3;
+  background: $sol-gray-50;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+  color: $sol-gray-900;
+  font-size: $sol-font-sm;
+  font-family: $sol-font-family;
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+  min-height: 40px;
+  max-height: 200px;
+  overflow-y: auto;
+  transition: border-color $sol-duration-fast, background $sol-duration-fast;
+  @include scrollbar-thin;
+
+  &::placeholder {
+    color: $sol-gray-400;
+    font-size: $sol-font-sm;
+  }
+
+  &:focus {
+    border-color: $sol-primary;
+    background: #FFFFFF;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: $sol-gray-100;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: $sol-space-2;
+  flex-shrink: 0;
+}

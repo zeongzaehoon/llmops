@@ -1,0 +1,52 @@
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1px solid $sol-gray-200;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-2;
+  padding: $sol-space-3 $sol-space-4;
+  font-size: $sol-font-base;
+  font-weight: $sol-weight-medium;
+  color: $sol-gray-500;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color $sol-duration-fast $sol-ease-default,
+              border-color $sol-duration-fast $sol-ease-default;
+  font-family: inherit;
+  margin-bottom: -1px;
+
+  &:hover {
+    color: $sol-gray-900;
+  }
+
+  &.active {
+    color: $sol-primary;
+    font-weight: $sol-weight-semibold;
+    border-bottom-color: $sol-primary;
+  }
+}
+
+.count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 $sol-space-1;
+  background: $sol-gray-100;
+  color: $sol-gray-700;
+  font-size: $sol-font-xs;
+  border-radius: $sol-radius-full;
+
+  .active & {
+    background: $sol-primary-light;
+    color: $sol-primary-dark;
+  }
+}

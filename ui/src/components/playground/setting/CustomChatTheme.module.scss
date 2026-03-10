@@ -1,0 +1,89 @@
+.settingContainer {
+  background: #FFFFFF;
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.settingContainerWrapper {
+  max-width: 766px;
+  margin: auto;
+  padding: $sol-space-xl $sol-space-lg;
+  background: #FFFFFF;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  font-family: $sol-font-display;
+  font-size: $sol-font-xl;
+  font-weight: $sol-weight-medium;
+  padding-bottom: $sol-space-xl;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.closeButton {
+  width: 20px;
+  padding-right: 8px;
+  cursor: pointer;
+}
+
+.subtitle {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-medium;
+  padding-bottom: $sol-space-lg;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.selectItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $sol-space-sm 0;
+  font-size: $sol-font-sm;
+
+  &:not(:first-child) {
+    border-top: 1px solid #E0E0E0;
+  }
+
+  input {
+    width: 55px;
+    height: 38px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+  }
+
+  ::-webkit-color-swatch {
+    border: 2px solid #000000;
+    border-radius: 0;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding-top: $sol-space-xl;
+}
+
+.saveButton {
+  padding: $sol-space-sm $sol-space-lg;
+  border-radius: 0;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  cursor: pointer;
+  font-family: $sol-font-family;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &:hover {
+    background: #F0F0F0;
+  }
+}

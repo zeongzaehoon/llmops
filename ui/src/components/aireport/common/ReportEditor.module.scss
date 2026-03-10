@@ -1,0 +1,63 @@
+.reportEditor {
+  position: relative;
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #FFFFFF;
+  z-index: 4;
+  border-bottom: 1px solid #E0E0E0;
+
+  &.shadow {
+    box-shadow: none;
+    border-bottom: 1px solid #000000;
+  }
+}
+
+.toolbarExternal {
+  display: flex;
+  justify-content: space-between;
+  padding: $sol-space-2 $sol-space-3 $sol-space-2 $sol-space-5;
+  color: #000000;
+}
+
+.toolbarExternalContent {
+  display: flex;
+  align-items: center;
+}
+
+.toolbarExternalContentTitle {
+  font-family: $sol-font-display;
+  font-size: $sol-font-xl;
+  font-weight: $sol-weight-semibold;
+  padding-left: $sol-space-2;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.toolbarExternalContentDivider {
+  width: 1px;
+  height: 12px;
+  margin: auto $sol-space-5;
+  background: #000000;
+}
+
+.toolbarExternalContentSub {
+  font-size: $sol-font-md;
+  color: #666666;
+}
+
+.toolbarExternalButtons {
+  display: flex;
+  gap: $sol-space-1;
+}
+
+.editorContainerToolbar {
+  /* CKEditor toolbar mount point */
+}
+
+.editorContainer {
+  padding: 0 75px 0 75px;
+}

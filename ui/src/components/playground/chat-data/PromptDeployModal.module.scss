@@ -1,0 +1,160 @@
+.modal-viewer-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $sol-space-lg;
+  padding: 10px 20px 0 20px;
+
+  .deploy-confirm {
+    display: flex;
+    gap: $sol-space-xs;
+    width: 100%;
+
+    input[type='checkbox'] {
+      accent-color: #000000;
+      cursor: pointer;
+    }
+
+    #deploy_checkbox + label {
+      cursor: pointer;
+      color: #666666;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    #deploy_checkbox:checked + label {
+      color: #000000;
+    }
+  }
+
+  .deploy-target {
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+    height: 220px;
+    padding: $sol-space-md;
+    border-radius: 0;
+    box-sizing: border-box;
+    border: 1px solid #E0E0E0;
+    background: #F5F5F5;
+    overflow-y: scroll;
+
+    &.short {
+      height: 150px;
+      .error {
+        padding-top: 25px;
+      }
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      height: 30%;
+      background: #C0C0C0;
+      border-radius: 0;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: none;
+    }
+  }
+
+  .deploy-target-title {
+    padding-bottom: 2px;
+    font-weight: $sol-weight-medium;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    span {
+      font-size: $sol-font-xs;
+      font-style: italic;
+      color: #000000;
+    }
+  }
+
+  .deploy-target-description {
+    color: #666666;
+    font-size: $sol-font-xxs;
+    text-align: center;
+    padding-bottom: $sol-space-md;
+  }
+
+  .deploy-target-body-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: $sol-font-sm;
+
+    li {
+      position: relative;
+      list-style: none;
+      &:before {
+        position: absolute;
+        left: -15px;
+        content: '\2022';
+        color: #333333;
+      }
+    }
+  }
+
+  .deploy-target-body {
+    .error {
+      text-align: center;
+      color: #666666;
+      padding-top: 55px;
+    }
+  }
+
+  .pwd-input {
+    position: relative;
+    input {
+      width: 250px;
+      padding: 8px 12px 10px 12px;
+      border-radius: 0;
+      background-color: #FFFFFF;
+      border: 1px solid #000000;
+      color: #000000;
+      box-sizing: border-box;
+      font-family: $sol-font-family;
+    }
+
+    .visible-icon {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-45%);
+      cursor: pointer;
+
+      img {
+        width: 23px;
+      }
+    }
+  }
+}
+
+.fade-enter-from {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  transition: opacity $sol-duration-normal $sol-ease-standard;
+}
+
+.fade-enter-to {
+  opacity: 1;
+}
+
+.fade-leave-from {
+  opacity: 1;
+}
+
+.fade-leave-active {
+  transition: opacity $sol-duration-normal $sol-ease-standard;
+}
+
+.fade-leave-to {
+  opacity: 0;
+}

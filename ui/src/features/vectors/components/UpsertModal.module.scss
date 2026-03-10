@@ -1,0 +1,160 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-5;
+  padding: $sol-space-6;
+  background: #FFFFFF;
+}
+
+.title {
+  font-size: $sol-font-xl;
+  font-weight: $sol-weight-semibold;
+  font-family: $sol-font-display;
+  color: $sol-gray-900;
+  margin: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-2;
+}
+
+.labelRow {
+  @include flex-between;
+}
+
+.label {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-medium;
+  color: $sol-gray-700;
+}
+
+.input {
+  padding: $sol-space-2 $sol-space-3;
+  background: #FFFFFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+  color: $sol-gray-900;
+  font-size: $sol-font-sm;
+  outline: none;
+  transition: border-color $sol-duration-fast;
+
+  &::placeholder {
+    color: $sol-gray-400;
+  }
+
+  &:focus {
+    border-color: $sol-primary;
+  }
+}
+
+.textarea {
+  width: 100%;
+  padding: $sol-space-3;
+  background: $sol-gray-50;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+  color: $sol-gray-900;
+  font-size: $sol-font-sm;
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+  resize: vertical;
+  outline: none;
+  transition: border-color $sol-duration-fast, background $sol-duration-fast;
+
+  &::placeholder {
+    color: $sol-gray-400;
+    font-family: inherit;
+  }
+
+  &:focus {
+    border-color: $sol-primary;
+    background: #FFFFFF;
+  }
+}
+
+.hint {
+  font-size: $sol-font-xs;
+  color: $sol-gray-400;
+  font-style: italic;
+}
+
+.fileBtn {
+  background: none;
+  border: none;
+  color: $sol-primary;
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-medium;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.fileInput {
+  display: none;
+}
+
+.addBtn {
+  background: none;
+  border: none;
+  color: $sol-primary;
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-medium;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.metaList {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-2;
+}
+
+.metaRow {
+  display: flex;
+  gap: $sol-space-2;
+  align-items: center;
+
+  .input {
+    flex: 1;
+  }
+}
+
+.removeBtn {
+  @include flex-center;
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+  color: $sol-gray-400;
+  font-size: $sol-font-sm;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all $sol-duration-fast;
+
+  &:hover:not(:disabled) {
+    border-color: $sol-danger;
+    color: $sol-danger;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: $sol-space-3;
+  padding-top: $sol-space-3;
+  border-top: 1px solid $sol-gray-100;
+}

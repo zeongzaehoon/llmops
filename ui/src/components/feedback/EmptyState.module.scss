@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $sol-space-12 $sol-space-6;
+  text-align: center;
+}
+
+.icon {
+  font-size: 48px;
+  margin-bottom: $sol-space-4;
+  color: $sol-gray-300;
+}
+
+.title {
+  font-family: $sol-font-display;
+  font-size: $sol-font-lg;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-900;
+  margin: 0 0 $sol-space-2;
+}
+
+.description {
+  font-size: $sol-font-base;
+  color: $sol-gray-500;
+  margin: 0 0 $sol-space-6;
+  max-width: 360px;
+  line-height: $sol-leading-normal;
+}
+
+.actionBtn {
+  padding: $sol-space-2 $sol-space-5;
+  background: $sol-primary;
+  color: #FFFFFF;
+  border: none;
+  border-radius: $sol-radius-md;
+  font-size: $sol-font-base;
+  font-weight: $sol-weight-medium;
+  cursor: pointer;
+  transition: background $sol-duration-fast $sol-ease-default;
+
+  &:hover {
+    background: $sol-primary-dark;
+  }
+}

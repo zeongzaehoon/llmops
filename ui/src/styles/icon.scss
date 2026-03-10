@@ -1,0 +1,402 @@
+.icon {
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  &.size {
+    &-14 {
+      width: 14px;
+      height: 14px;
+    }
+    &-16 {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.icon--beusable {
+  width: 180px;
+  height: 32px;
+  background-image: url(@/assets/logo--beusable.svg);
+}
+
+.icon--close {
+  width: 24px;
+  height: 24px;
+  background-image: url(@/assets/icon--close.svg);
+  cursor: pointer;
+}
+
+.icon--close-thin {
+  width: 16px;
+  height: 16px;
+  background-image: url(@/assets/icon--close-thin.svg);
+  cursor: pointer;
+}
+
+.icon--reset-red {
+  width: 16px;
+  height: 16px;
+  background-image: url(@/assets/icon--reset-red.svg);
+}
+
+.icon--arrow-expand {
+  width: 24px;
+  height: 24px;
+  background-image: url(@/assets/icon--arrow-expand.svg);
+}
+
+.icon--arrow-reduce {
+  width: 24px;
+  height: 24px;
+  background-image: url(@/assets/icon--arrow-reduce.svg);
+}
+
+.icon--edit-white {
+  width: 14px;
+  height: 14px;
+  background-image: url(../assets/aireport/icon--edit-white.svg);
+}
+
+.icon--edit {
+  width: 14px;
+  height: 14px;
+  background-image: url(../assets/aireport/icon--edit.svg);
+}
+
+.icon--editor-black {
+  width: 22px;
+  height: 22px;
+  background-image: url(../assets/aireport/icon--editor-black.svg);
+}
+
+.icon--check-white {
+  width: 16px;
+  height: 16px;
+  background-image: url(../assets/aireport/icon--check-white.svg);
+}
+
+.icon--check {
+  width: 16px;
+  height: 16px;
+  background-image: url(../assets/aireport/icon--check.svg);
+}
+
+.icon--dialog-check {
+  width: 50px;
+  height: 50px;
+  background-image: url(../assets/aireport/icon--dialog-check.svg);
+}
+
+.icon--dialog-warning {
+  width: 50px;
+  height: 50px;
+  background-image: url(../assets/aireport/icon--dialog-warning.svg);
+}
+
+.icon--questionMark {
+  width: 16px;
+  height: 16px;
+  background-image: url(../assets/aireport/icon--questionMark.svg);
+}
+
+.icon--pv {
+  width: 24px;
+  height: 24px;
+  background-image: url(@/assets/aireport/icon--pv.svg);
+}
+
+.icon--session {
+  width: 24px;
+  height: 24px;
+  background-image: url(@/assets/aireport/icon--session.svg);
+}
+
+.icon--intervalPerSession {
+  width: 24px;
+  height: 24px;
+  background-image: url(@/assets/aireport/icon--intervalPerSession.svg);
+}
+
+.icon--pvPerSession {
+  width: 24px;
+  height: 24px;
+  background-image: url(@/assets/aireport/icon--pvPerSession.svg);
+}
+
+.icon--stayin,
+.icon--cvr {
+  width: 24px;
+  height: 24px;
+  background-image: url(@/assets/aireport/icon--stayin.png);
+}
+
+.icon--drop {
+  width: 24px;
+  height: 24px;
+  background-image: url(@/assets/aireport/icon--drop.png);
+}
+
+.icon--device {
+  width: 20px;
+  height: 20px;
+
+  &.desktop {
+    background-image: url(../assets/aireport/icon--device-desktop.svg);
+  }
+
+  &.tablet {
+    background-image: url(../assets/aireport/icon--device-tablet.svg);
+  }
+
+  &.phone {
+    background-image: url(../assets/aireport/icon--device-phone.svg);
+  }
+}
+
+.icon--chevron-black {
+  width: 18px;
+  height: 18px;
+  background-image: url(../assets/aireport/icon--chevron-black.svg);
+}
+
+.icon--newTab {
+  width: 18px;
+  height: 18px;
+  background-image: url(@/assets/icon--new-window.svg);
+}
+
+// domain category
+.icon-category-public {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--category-public.svg);
+}
+.icon-category-health {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--category-health.svg);
+}
+.icon-category-education {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--category-education.svg);
+}
+.icon-category-information {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--category-information.svg);
+}
+.icon-category-finance {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--category-finance.svg);
+}
+.icon-category-technology {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--category-technology.svg);
+}
+.icon-category-entertainment {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--category-entertainment.svg);
+}
+.icon-category-leisure {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--category-leisure.svg);
+}
+.icon-category-it {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--category-it.svg);
+}
+.icon-category-retail {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--category-retail.svg);
+}
+// domain legacy category
+.icon-legacy-category-ecommerce {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--legacy-category-ecommerce.svg);
+}
+.icon-legacy-category-finance {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--legacy-category-finance.svg);
+}
+.icon-legacy-category-entertainment {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--legacy-category-entertainment.svg);
+}
+.icon-legacy-category-mobility {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--legacy-category-mobility.svg);
+}
+.icon-legacy-category-health {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--legacy-category-health.svg);
+}
+.icon-legacy-category-education {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--legacy-category-education.svg);
+}
+.icon-legacy-category-agency {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--legacy-category-agency.svg);
+}
+.icon-legacy-category-government {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/aireport/category/icon--legacy-category-government.svg);
+}
+
+.icon--report-robot {
+  width: 56px;
+  height: 55px;
+  background-image: url(@/assets/aireport/icon--report-robot.png);
+}
+
+.icon--becle-profile {
+  width: 42px;
+  height: 42px;
+  background-image: url(@/assets/icon--becle-profile.svg);
+}
+
+.icon--becle-entering {
+  width: 42px;
+  height: 42px;
+  background-image: url(@/assets/icon--becle-entering.svg?url);
+}
+
+.icon--becle-crying {
+  width: 42px;
+  height: 42px;
+  background-image: url(@/assets/icon--becle-crying.svg);
+}
+
+.icon--becle-img {
+  width: 113px;
+  height: 88px;
+  background-image: url(@/assets/icon--becle-img.svg);
+}
+
+.icon--chat-arrow {
+  width: 37px;
+  height: 25px;
+  background-image: url(@/assets/icon--chat-arrow.svg);
+}
+
+.icon--send-white {
+  width: 24px;
+  height: 24px;
+  background-image: url(@/assets/icon--send-white.svg);
+}
+
+.icon--survey-done {
+  width: 50px;
+  height: 50px;
+  background-image: url(@/assets/icon--survey-done.svg);
+}
+
+.icon--crop {
+  width: 735px;
+  height: 65px;
+  background-image: url(@/assets/icon--crop.svg);
+}
+.icon--report-processing {
+  width: 80px;
+  height: 80px;
+  background-image: url(@/assets/aireport/icon--report-processing.svg?url);
+}
+.icon--claim {
+  width: 14px;
+  height: 14px;
+  background-image: url(@/assets/aireport/icon--claim.svg);
+}
+
+.icon--beta {
+  width: 37px;
+  height: 15px;
+  background-image: url(@/assets/icon--beta.svg);
+}
+
+.icon--pause-answering {
+  width: 14px;
+  height: 14px;
+  background-image: url(@/assets/icon--pause-answering.svg);
+}
+
+
+.icon--bread-blue {
+  width: 126px;
+  height: 84px;
+  background-image: url(@/assets/aireport/icon--bread-blue.svg);
+}
+
+.icon--balloon-tail {
+  width: 16px;
+  height: 35px;
+  background-image: url(@/assets/aireport/icon--balloon-tail.svg);
+}
+
+.icon--arrow-right-white {
+  width: 13px;
+  height: 13px;
+  background-image: url(@/assets/icon--arrow-right-white.svg);
+}
+
+
+.icon--dashboard-bot, .icon--dashboardGa-bot {
+  width: 126px;
+  height: 92px;
+  background-image: url(@/assets/aireport/icon--dashboard-bot.svg);
+}
+
+
+
+.icon--dashboardHell-bot {
+  width: 126px;
+  height: 92px;
+  background-image: url(@/assets/aireport/icon--dashboardHell-bot.svg);
+}
+
+.icon--size-minimize {
+  width: 24px;
+  height: 24px;
+  background-image: url(@/assets/icon--size-minimize.svg);
+}
+
+.icon--size-initialize {
+  width: 24px;
+  height: 24px;
+  background-image: url(@/assets/icon--size-initialize.svg);
+}
+
+.icon--size-restore {
+  width: 24px;
+  height: 24px;
+  background-image: url(@/assets/icon--size-restore.svg);
+}
+
+.icon--sizeHandler-bottomLeft {
+  width: 24px;
+  height: 24px;
+  background-image: url(@/assets/icon--sizeHandler-bottomLeft.svg);
+}
+
+.icon--sizeHandler-bottomRight {
+  width: 24px;
+  height: 24px;
+  background-image: url(@/assets/icon--sizeHandler-bottomRight.svg);
+}

@@ -1,0 +1,12 @@
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100dvh;
+  background: var(--background-color);
+}
+
+.chat-section-layout {
+  display: flex;
+  height: calc(100% - 76px);
+}

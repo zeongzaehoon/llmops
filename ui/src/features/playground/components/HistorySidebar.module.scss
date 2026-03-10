@@ -1,0 +1,126 @@
+.sidebar {
+  width: 260px;
+  border-right: 1px solid $sol-gray-200;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: width $sol-duration-fast $sol-ease-out, opacity $sol-duration-fast $sol-ease-out;
+  overflow: hidden;
+
+  &.collapsed {
+    width: 0;
+    border-right: none;
+  }
+}
+
+.sidebarHeader {
+  @include flex-between;
+  height: 49px;
+  padding: 0 $sol-space-4;
+  border-bottom: 1px solid $sol-gray-200;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.sidebarTitle {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-900;
+  white-space: nowrap;
+}
+
+.collapseBtn {
+  background: none;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+  color: $sol-gray-500;
+  cursor: pointer;
+  padding: $sol-space-1;
+  font-size: $sol-font-md;
+  line-height: 1;
+  transition: color $sol-duration-fast, border-color $sol-duration-fast;
+
+  &:hover {
+    color: $sol-gray-900;
+    border-color: $sol-gray-300;
+  }
+}
+
+.historyList {
+  flex: 1;
+  overflow-y: auto;
+  padding: $sol-space-2 0;
+  @include scrollbar-thin;
+}
+
+.dateGroup {
+  padding: $sol-space-1 $sol-space-3;
+}
+
+.dateLabel {
+  font-size: $sol-font-xs;
+  color: $sol-gray-400;
+  font-weight: $sol-weight-medium;
+  padding: $sol-space-2 $sol-space-1 $sol-space-1;
+  border-bottom: 1px solid $sol-gray-100;
+  margin-bottom: $sol-space-1;
+}
+
+.historyItem {
+  display: block;
+  width: 100%;
+  padding: $sol-space-2 $sol-space-3;
+  background: none;
+  border: none;
+  border-left: 2px solid transparent;
+  text-align: left;
+  color: $sol-gray-600;
+  font-size: $sol-font-sm;
+  cursor: pointer;
+  border-radius: 0 $sol-radius-md $sol-radius-md 0;
+  @include truncate;
+  transition: background $sol-duration-fast, color $sol-duration-fast, border-color $sol-duration-fast;
+
+  &:hover {
+    background: $sol-gray-50;
+    color: $sol-gray-900;
+    border-left-color: $sol-gray-300;
+  }
+
+  &.active {
+    background: $sol-primary-light;
+    color: $sol-primary-dark;
+    border-left-color: $sol-primary;
+    font-weight: $sol-weight-medium;
+  }
+}
+
+.emptyHistory {
+  padding: $sol-space-4;
+  text-align: center;
+  color: $sol-gray-400;
+  font-size: $sol-font-sm;
+}
+
+.expandBtn {
+  position: absolute;
+  top: $sol-space-3;
+  left: $sol-space-2;
+  background: #FFFFFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+  box-shadow: $sol-shadow-sm;
+  color: $sol-gray-600;
+  cursor: pointer;
+  padding: $sol-space-1 $sol-space-2;
+  font-size: $sol-font-sm;
+  z-index: 5;
+  line-height: 1;
+  transition: color $sol-duration-fast, border-color $sol-duration-fast;
+
+  &:hover {
+    color: $sol-gray-900;
+    border-color: $sol-gray-300;
+  }
+}

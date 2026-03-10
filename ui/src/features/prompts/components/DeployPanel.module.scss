@@ -1,0 +1,70 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-4;
+}
+
+.title {
+  font-family: $sol-font-display;
+  font-size: $sol-font-lg;
+  font-weight: $sol-weight-bold;
+  color: $sol-gray-900;
+  margin: 0;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $sol-space-4;
+}
+
+.column {
+  padding: $sol-space-4;
+  border-radius: $sol-radius-md;
+  background: $sol-gray-50;
+  border: 1px solid $sol-gray-200;
+  border-left: 3px solid transparent;
+
+  &.blue {
+    border-left-color: $sol-info;
+  }
+
+  &.green {
+    border-left-color: $sol-success;
+  }
+}
+
+.columnHeader {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-2;
+  margin-bottom: $sol-space-3;
+}
+
+.label {
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-bold;
+  color: $sol-gray-900;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-1;
+}
+
+.version {
+  font-size: $sol-font-md;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-900;
+}
+
+.date {
+  font-size: $sol-font-xs;
+  color: $sol-gray-500;
+}
+
+.actions {
+  display: flex;
+  gap: $sol-space-3;
+}

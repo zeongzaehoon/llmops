@@ -1,0 +1,87 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-4;
+  padding: $sol-space-6;
+  background: #FFFFFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-lg;
+  box-shadow: $sol-shadow-sm;
+}
+
+.queryRow {
+  width: 100%;
+}
+
+.queryInput {
+  width: 100%;
+  padding: $sol-space-3;
+  background: $sol-gray-50;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+  color: $sol-gray-900;
+  font-size: $sol-font-base;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+  transition: border-color $sol-duration-fast, background $sol-duration-fast;
+
+  &::placeholder {
+    color: $sol-gray-400;
+  }
+
+  &:focus {
+    border-color: $sol-primary;
+    background: #FFFFFF;
+  }
+}
+
+.controlsRow {
+  display: flex;
+  align-items: flex-end;
+  gap: $sol-space-4;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-1;
+}
+
+.label {
+  font-size: $sol-font-xs;
+  font-weight: $sol-weight-medium;
+  color: $sol-gray-600;
+}
+
+.input,
+.select {
+  padding: $sol-space-2 $sol-space-3;
+  background: #FFFFFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-md;
+  color: $sol-gray-900;
+  font-size: $sol-font-sm;
+  outline: none;
+  min-width: 120px;
+  transition: border-color $sol-duration-fast;
+
+  &:focus {
+    border-color: $sol-primary;
+  }
+}
+
+.select {
+  cursor: pointer;
+  min-width: 80px;
+
+  option {
+    background: #FFFFFF;
+    color: $sol-gray-900;
+  }
+}
+
+.searchAction {
+  margin-left: auto;
+}

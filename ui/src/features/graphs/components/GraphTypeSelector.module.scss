@@ -1,0 +1,66 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $sol-space-3;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $sol-space-2;
+  padding: $sol-space-4;
+  border-radius: $sol-radius-lg;
+  border: 1px solid $sol-gray-200;
+  background: #FFFFFF;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: $sol-gray-900;
+  transition: border-color $sol-duration-fast $sol-ease-default,
+              background $sol-duration-fast $sol-ease-default;
+
+  &:hover {
+    border-color: $sol-primary;
+    background: $sol-gray-50;
+  }
+
+  &.selected {
+    border-color: $sol-primary;
+    box-shadow: $sol-shadow-sm;
+    background: $sol-primary-light;
+  }
+}
+
+.cardTop {
+  @include flex-between;
+  width: 100%;
+}
+
+.label {
+  font-size: $sol-font-base;
+  font-weight: $sol-weight-semibold;
+}
+
+.diagram {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: $sol-font-sm;
+  color: $sol-gray-700;
+  background: $sol-gray-50;
+  padding: $sol-space-2 $sol-space-3;
+  border-radius: $sol-radius-sm;
+  width: 100%;
+  text-align: center;
+  border: 1px solid $sol-gray-200;
+}
+
+.description {
+  font-size: $sol-font-xs;
+  color: $sol-gray-600;
+  line-height: $sol-leading-normal;
+  margin: 0;
+}

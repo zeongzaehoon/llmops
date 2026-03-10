@@ -1,0 +1,117 @@
+.select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+
+  &-input {
+    padding: 5px 8px;
+    border: 1px solid #000;
+    border-radius: 0;
+    background: var(--background-color);
+    cursor: pointer;
+
+    &.grayscale {
+      background: #F0F0F0;
+    }
+  }
+
+  &-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  &-options {
+    position: absolute;
+    left: 0;
+    right: 0;
+    max-height: 300px;
+    margin: 3px 0;
+    border: 1px solid #000;
+    border-radius: 0;
+    background: var(--background-color);
+    overflow-y: auto;
+    z-index: 1;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      height: 30%;
+      background: #E0E0E0;
+      border-radius: 0;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: none;
+    }
+
+    &-wrapper {
+      &:not(:last-child) {
+        .select-options-group {
+          border-bottom: 1px solid #E0E0E0;
+        }
+      }
+    }
+
+    &-group {
+      &-title {
+        font-weight: 500;
+        padding: 5px 8px 0 8px;
+        cursor: default;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+    }
+
+    &-item {
+      position: relative;
+      padding: 8px 10px;
+      cursor: pointer;
+      word-break: break-all;
+
+      &.group {
+        padding: 6px 10px 6px 25px;
+      }
+
+      &.selected {
+        background: #000000;
+        color: #FFFFFF;
+
+        .index,
+        .mark {
+          color: #FFFFFF;
+        }
+      }
+
+      &.disabled {
+        color: var(--sub-text-color);
+        cursor: default;
+      }
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #F0F0F0;
+      }
+
+      &:hover:not(.disabled, .selected) {
+        background: #F5F5F5;
+      }
+    }
+  }
+
+  .index {
+    padding-right: 3px;
+    font-weight: 500;
+  }
+
+  .mark {
+    font-size: 11px;
+    font-weight: 500;
+    font-style: italic;
+    color: #000000;
+  }
+}

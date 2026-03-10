@@ -1,0 +1,14 @@
+.idea
+.venv
+.vscode
+.previous
+__pycache__
+.env
+*.log
+*.ipynb
+.python-version
+.claude
+CLAUDE.md
+mcp-agent
+spec
+volumes

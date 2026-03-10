@@ -1,0 +1,100 @@
+.infoHeader {
+  position: relative;
+  padding: 84px 75px 0 75px;
+  font-size: $sol-font-5xl;
+}
+
+.infoHeaderToolbar {
+  position: absolute;
+  top: 84px;
+  right: 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: $sol-space-2;
+}
+
+.editButton {
+  position: relative;
+  display: flex;
+  gap: $sol-space-1;
+  padding: $sol-space-2;
+  border: 1px solid #000000;
+  border-radius: 0;
+  background: #000000;
+  color: #FFFFFF;
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+
+  &:hover {
+    background: #333333;
+  }
+
+  &:disabled {
+    background: #AAAAAA;
+    border-color: #AAAAAA;
+    cursor: initial;
+  }
+}
+
+.infoHeaderTop {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: $sol-space-5;
+}
+
+.infoHeaderTopLogo {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-3;
+}
+
+.infoHeaderTopDate {
+  font-size: $sol-font-md;
+  line-height: 160%;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.aiLogo {
+  width: 56px;
+  height: 55px;
+}
+
+.infoHeaderType {
+  min-height: 40px;
+  margin: 0;
+  font-family: $sol-font-display;
+  font-weight: $sol-weight-semibold;
+  line-height: 1.3;
+  color: #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.infoHeaderTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: $sol-space-5;
+  padding-bottom: $sol-space-7;
+  border-bottom: 1px solid #000000;
+
+  p {
+    margin: 0;
+    font-weight: $sol-weight-semibold;
+    line-height: 1.3;
+    color: #000000;
+  }
+
+  .version {
+    color: #AAAAAA;
+    font-size: 25px;
+    line-height: 1.3;
+  }
+}

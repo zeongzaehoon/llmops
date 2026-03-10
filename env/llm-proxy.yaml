@@ -1,0 +1,6 @@
+version: '3.8'
+services:
+  config_node:
+    environment:
+      - SERVER_STAGE=staging # production, staging, docker, docker-local
+      - LOCAL_URL=http://host.docker.internal:1234/v1 # 로컬 LMStudio 서버 주소

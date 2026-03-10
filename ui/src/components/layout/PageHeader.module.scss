@@ -1,0 +1,39 @@
+.header {
+  margin-bottom: $sol-space-6;
+}
+
+.top {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: $sol-space-4;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-family: $sol-font-display;
+  font-size: $sol-font-3xl;
+  font-weight: $sol-weight-bold;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: $sol-gray-900;
+  margin: 0 0 $sol-space-1;
+}
+
+.description {
+  font-size: $sol-font-base;
+  color: $sol-gray-600;
+  margin: 0;
+  line-height: $sol-leading-normal;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-3;
+  flex-shrink: 0;
+}

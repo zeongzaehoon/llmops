@@ -1,0 +1,85 @@
+.statCard {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-4;
+  min-width: 0;
+  padding: $sol-space-6;
+  background: #FFFFFF;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-lg;
+  box-shadow: $sol-shadow-sm;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: $sol-space-3;
+}
+
+.iconWrap {
+  position: relative;
+  @include flex-center;
+  width: 36px;
+  height: 36px;
+  border-radius: $sol-radius-md;
+  background: $sol-primary-light;
+  flex-shrink: 0;
+}
+
+.icon {
+  font-size: $sol-font-xl;
+  line-height: 1;
+  color: $sol-primary;
+}
+
+.pulse {
+  display: none;
+}
+
+.title {
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-medium;
+  color: $sol-gray-600;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-1;
+}
+
+.value {
+  font-family: $sol-font-display;
+  font-size: $sol-font-3xl;
+  font-weight: $sol-weight-bold;
+  color: $sol-gray-900;
+  line-height: $sol-leading-tight;
+}
+
+.subtitle {
+  font-size: $sol-font-sm;
+  color: $sol-gray-500;
+}
+
+// Loading state
+.shimmer {
+  display: flex;
+  flex-direction: column;
+  gap: $sol-space-2;
+}
+
+.shimmerLine,
+.shimmerLineSm {
+  height: 24px;
+  border-radius: $sol-radius-sm;
+  background: $sol-gray-100;
+}
+
+.shimmerLine {
+  width: 60%;
+}
+
+.shimmerLineSm {
+  width: 80%;
+  height: 14px;
+}

@@ -1,0 +1,519 @@
+{
+  "common": {
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "close": "Close",
+    "submit": "Submit"
+  },
+  "route": {
+    "schemaTag": "GEO Schema Diagnosis Report {'|'} Beusable GEO"
+  },
+  "time": {
+    "h": "h",
+    "m": "m",
+    "s": "s"
+  },
+  "contactUs": {
+    "welcomeMessage": "Hello, this is Solomon! How can I assist you?",
+    "headerDesc": "Ask BEUSABLE SOLOMON!",
+    "reset": "Reset",
+    "questionGuide": "Question Guide",
+    "loading": "Thinking",
+    "recommendTitle": "Check out our FAQs!",
+    "recommend": [
+      "How can I make a bank transfer?",
+      "How can I pay by credit card?",
+      "How can I update my credit card information?",
+      "What pricing plans can I choose on Beusable?",
+      "How can I change my pricing plan?",
+      "What free plans are offered for each service?",
+      "Can you tell me about the match types?",
+      "How can I use Beusable?",
+      "Can you tell me the monthly PV limits per service?",
+      "What kinds of webpages can Beusable analyze?",
+      "I'm having trouble registering a domain for Journey Map.",
+      "What is JAM?",
+      "The code is installed, but analysis isn't running. Why?",
+      "When can I start seeing UX Heatmap analysis?",
+      "I can't view the UX Heatmap analysis.",
+      "I can't register a page.",
+      "Can I disable the popup window?",
+      "How can I contact the Beusable CX team?"
+    ],
+    "askPlaceHolder": "Ask your question here.",
+    "survey": {
+      "title": {
+        "init": "Do you need additional assistance?",
+        "sended": "Submission completed."
+      },
+      "answer": {
+        "yes": "Yes.",
+        "no": "No!",
+        "needMoreInfo": "I need more information!",
+        "enoughInfo": "This is enough!"
+      },
+      "button": {
+        "getMoreSupport": "Get more support",
+        "end": "End",
+        "close": "Close"
+      },
+      "confirmEmail": "We will review the conversation and contact you via<br>the email you provided.",
+      "endConversation": "Ending the conversation<br>with UX GPT-based<br>assistant 'Solomon.'",
+
+      "inputPlaceHolder": "Please leave your email address",
+      "inputError": "Please enter a valid email address.",
+      "closeTimeOut": "The window will close automatically in {closeCount} seconds.",
+      "send": "Send"
+    }
+  },
+  "aireport": {
+    "common": {
+      "dashboard": "CX Expert Mode",
+      "dashboardHell": "Hell Mode",
+      "reportSize": "Document Capacity",
+      "tokens": "tokens",
+      "insight": "CX Analysis Insight",
+      "insightSub": "Powered by UX GPT",
+      "processingTitle": "Thinking hard...",
+      "processingDesc": "Even if you close the window,<br>the report will continue to be analyzed normally.",
+      "sessionError": "Your Beusable login session has expired.",
+      "sessionErrorText": "Please log in again with the account <br /> that issued the report, then refresh the report.",
+      "login": "Beusable sign in",
+      "reportError": "Unable to load the report.",
+      "reportErrorText": "Please check the report URL again.",
+      "dashboardTitle": "AI Customed Dashboard",
+      "mashupTitle": "Comprehensive Analytics Report",
+      "mashupSingle": "Analysis",
+      "mashupCompare": "Comparison Analysis",
+      "mashupConjunction": "and",
+      "gptReportTitle": "Data Analysis Report",
+      "more": "View Details",
+      "invalid": "Invalid<br />Value",
+      "category": {
+        "title": "Page Type Classification",
+        "category2Title": "Page Structure",
+        "category3Title": "Primary Analysis Purpose",
+        "industryAverage": "Industry Average Data",
+        "longGuide": "'*.{domain}' contains the most pages of '{category2}' type. On the '{category2}' page, {category2Description} In the third classification for identifying analysis purposes, most pages fell under '{category3}'. Here’s a guide for service improvement."
+      },
+      "listIdx": {
+        "0": "First",
+        "1": "Second",
+        "2": "Third",
+        "3": "Fourth"
+      },
+      "infoTable": {
+        "title": "Report segment and scale",
+        "description": "There are {diffCount} different segments between the datasets, and the segments that differ are '{diffSegments}'. The range in data size with these applied segments, based on PV, varies by {pvGap}% between the minimum and maximum values. Please consider this in your analysis.",
+        "thead": {
+          "type": "Report Type",
+          "domain": "Domain",
+          "firstPath": "Initial Path",
+          "date": "Analysis Period",
+          "device": "Device",
+          "marketing": "Marketing",
+          "refer": "Referrer",
+          "exist": "User Type",
+          "session": "Session",
+          "pv": "PV"
+        },
+        "survey": {
+          "target": "Survey target group",
+          "noTarget": "Survey non-target group",
+          "answer": "Responded",
+          "noAnswer": "Did not respond",
+          "etc": "Others"
+        }
+      },
+      "rawWordRefUrl": "https://forum.beusable.net/en/solomon/post/2296",
+      "rawWordRefAlt": "[Beusable Forum] CX Report - Segments"
+    },
+    "banner": {
+      "title": "In-depth CX big data analysis<br><span class='highlight'>Get a sneak peek of our report</span>",
+      "description": "Real-world data you can actually use<br>to benchmark your industry and uncover insights.",
+      "guide": "Explore the report now!",
+      "buttonLabel": "GO"
+    },
+    "claim": {
+      "title": "Report Error",
+      "description": "Due to the nature of LLMs, the issues below may occur.<br>Regenerating the AI report will resolve them.<br><br>① Encoding issue: Broken text<br>② Page height issue: Page keeps expanding<br>③ Chart not generated: Chart processing error<br><br>If reported, any JAM used due to the error will be refunded.",
+      "placeholder": "Please describe your issue in details.",
+      "success": {
+        "title": "Successfully Submitted",
+        "desc": "We will look into it and get back to you shortly."
+      },
+      "fail": {
+        "title": "Submission Failed",
+        "desc": "Please try again later."
+      }
+    },
+    "editor": {
+      "editAuth": "The AI Report editing feature<br />is available with the paid plan.",
+      "toolbar": {
+        "title": "Report Editing",
+        "description": "After editing, the updated AI report will be added as a new version."
+      },
+      "complete": {
+        "title": "AI Report Edit Completed",
+        "description": "The AI report has been successfully edited.<br />Check the latest version in the history."
+      },
+      "excess": {
+        "title": "When editing, the previous version will be deleted.",
+        "description": "You can save up to 10 records.<br />After editing, the oldest version is deleted,<br />and the new version is saved."
+      },
+      "exit": {
+        "title": "Do you want to exit edit mode?",
+        "description": "Your changes will not be saved."
+      },
+      "error": {
+        "title": "The edit was not completed.",
+        "description": "The edit could not be saved due to a temporary error.<br />Please try again."
+      },
+      "button": {
+        "edit": "Edit",
+        "done": "Done Editing"
+      }
+    },
+    "journey": {
+      "title": "Full Journey Analysis",
+      "journeyTable": {
+        "title": "Full journey information",
+        "step": "Step",
+        "journey": "Journey",
+        "remainder": "Remaining\nSessions"
+      },
+      "captureTable": {
+        "seq": "Step",
+        "title": "Page Title",
+        "url": "URL"
+      },
+      "activated": {
+        "title": "Selected journey analysis",
+        "subTitle": "Selected journey",
+        "singleSeqDesc": "At the time of the report inquiry, the user of 'selected journey' started the journey from the {startPageTitle}({startPageDomain}, {startPagePathName}) to the {startSessionValue}session and left immediately. This page serves as the user's first touchpoint and a key area for exploration.<br>The average duration time on the page is {interval}, and the user left the page without further exploration. Considering that it is a landing page, if the duration time is over 30 seconds, the user likely viewed the information on the page and left without further exploration. If it is under 30 seconds, the user may have left quickly since they couldn't find the information they were looking for.",
+        "multiSeqDesc": "At the time of the report inquiry, the user of 'selected journey' started the journey from the {startPageTitle}({startPageDomain}, {startPagePathName}) to the {startSessionValue}session, and {endSessionRatio}% maintained the journey to the {endPageTitle}({endPageDomain}, {endPagePathName}) page.<br>The most notable page is the {majorPageTitle}({majorPageDomain}, {majorPagePathName}) page. {indicator} is relatively high compared to other pages in the journey, so it is necessary to check for elements that interfere with the flow.",
+        "compare": {
+          "title": "Selected journey comparison analysis",
+          "equalDesc": "By comparing the 'selected journey' activated at the time of the report inquiry, you can analyze the differences in user entry path and drop off patterns.<br>First, the landing page for Data 1 is {startPageTitle1}({startPageDomain1}, {startPagePathName1}) ({startSessionValue1} session), and the landing page for Data 2 is {startPageTitle2}({startPageDomain2}, {startPagePathName2}) ({startSessionValue2} session). Both landing pages for Data 1 and 2 have the same conversion rate of {cvrRate}%, meaning there is no difference in the conversion efficiency and exploration guidance effect from the landing page.",
+          "diffDesc": "By comparing the 'selected journey' activated at the time of the report inquiry, you can analyze the differences in user entry path and drop off patterns.<br>First, the landing page for Data 1 {startPageTitle1}({startPageDomain1}, {startPagePathName1}) ({startSessionValue1} session), and the landing page for Data 2 is {startPageTitle2}({startPageDomain2}, {startPagePathName2}) ({startSessionValue2} session). The page that is more effective in converting incoming traffic is the {cvrHighPageTitle}({cvrHighPageDomain}, {cvrHighPagePathName}) page from Data {cvrHighData}, which has a {cvrDiff}%p higher landing page conversion rate than Data {cvrRowData}.",
+          "dropDesc": "The page with the highest drop off rate is {dropPageTitle1} ({dropPageDomain1}, {dropPagePathName1}), ({dropRate1}%) in Data 1, and {dropPageTitle2} ({dropPageDomain2}, {dropPagePathName2}), ({dropRate2}%) in Data 2. If the drop off point is the same, the page is likely to be a bottleneck and needs improvement. On the other hand, if the drop off point is different, establish an optimization strategy for each page by considering the user's intention and the difference in inflow path of each journey."
+        },
+        "dropRate": "Drop-off",
+        "rollbackCnt": "Rollback",
+        "reloadCnt": "Refresh",
+        "interval": "Duration"
+      },
+      "major": {
+        "title": "Overall journey analysis",
+        "subTitle": "Core journey Top{majorCount}",
+        "compareSubTitle": "Core journey comparison",
+        "description": "The core journey is the journey that occurs most frequently in the service. The starting sessions for the core journey are {sessionValue}, accounting for {sessionRatio}% of all users. By improving the {pageTitle}({pageDomain}, {pagePathName}) page with the highest drop off rate {dropRate}%, it will impact a larger number of users, and even minimal improvements can effectively achieve the goal outcomes.",
+        "compare": {
+          "title": "Overall journey comparison analysis",
+          "subTitle": "Core journey comparison",
+          "equalDesc": "As the two core journeys are the same, the route is the most effective for improvement within the service, and it is a critical point for designing the optimization funnel.",
+          "equalDropDesc": "The page with the highest drop off rate is {dropPageTitle1} ({dropPageDomain1}, {dropPagePathName1}), ({dropRate1}%) in Data 1, and {dropPageTitle2} ({dropPageDomain2}, {dropPagePathName2}), ({dropRate2}%) in Data 2. If the drop off points are the same, prioritize improvement for the best result. If the drop off points are different, the user's expectations and exploration flows may differ across journeys, so analyze the cause of the drop off and develop a customized improvement strategy.",
+          "diffDesc": "As the two core journeys are different, you can see that the way users reach their goals appears differently. When comparing the starting point of the journeys, Data 1 starts at the {startPageTitle1}({startPageDomain1}, {startPagePathName1}) page, while Data 2 starts at the {startPageTitle2}({startPageDomain2}, {startPagePathName2}) page. Compared to the entire session, the start scale was {higherSessionRatio}% with the start scale of the Data {higherSessionData} showing that {sessionDesc}.",
+          "diffDropDesc": "The page with the highest drop off rate is {dropPageTitle1} ({dropPageDomain1}, {dropPagePathName1}), ({dropRate1}%) in Data 1, and {dropPageTitle2} ({dropPageDomain2}, {dropPagePathName2}), ({dropRate2}%) in Data 2. By analyzing the journey with the higher conversion rate, benchmark the effecient exploration path and examine the user experience in the segments where the drop off is concentrated.",
+          "both": "both",
+          "equal": "it was the same",
+          "more": "it was higher"
+        }
+      },
+      "flow": "Journey",
+      "remainder": "Final session volume",
+      "captureSection": {
+        "drop": {
+          "title": "Drop-off Rate Review in Full Journey",
+          "description": "The page that needs the most improvement in terms of drop-off within the first {seq} sequences is {pageTitle}({pageDomain}, {pagePathName}). If this page is part of a major journey, make sure to improve the screen transition experience.",
+          "compare": {
+            "both": "The pages with the highest drop-off within the first three sequences are {pageDomain1}, {pagePathName1} for [Data1], and {pageDomain2}, {pagePathName2} for [Data2]. Review the journeys below and, if related to a key service path, ensure the screen transition experience is improved.",
+            "bothV2": "The pages with the highest drop-off are {pageDomain1}, {pagePathName1} for [Data1], and {pageDomain2}, {pagePathName2} for [Data2]. Review the journeys below and, if related to a key service path, ensure the screen transition experience is improved.",
+            "single": ""
+          }
+        },
+        "rollback": {
+          "title": "Rollback Rate Review in Full Journey",
+          "description": "The page with the highest rollback rate in the first {seq} sequences is {pageTitle}({pageDomain}, {pagePathName}). Review the next pages in the flow and identify why users returned to this page.",
+          "compare": {
+            "both": "The pages with the highest rollback rate in the first three sequences are {pageDomain1}, {pagePathName1} for [Data1], and {pageDomain2}, {pagePathName2} for [Data2]. If this page is part of a major journey, make sure to improve the screen transition experience.",
+            "bothV2": "The pages with the highest rollback rate are {pageDomain1}, {pagePathName1} for [Data1], and {pageDomain2}, {pagePathName2} for [Data2]. If this page is part of a major journey, make sure to improve the screen transition experience.",
+            "single": "The page with the highest rollback rate for [Data{existIdx}] is {pageDomain}, {pagePathName}, while [Data{emptyIdx}] shows no pages with a rollback rate. Review the flow to improve the experience if necessary.",
+            "singleV2": "The page with the highest rollback rate for [Data{existIdx}] is {pageDomain}, {pagePathName}, while [Data{emptyIdx}] shows no pages with a rollback rate. Review the flow to improve the experience if necessary."
+          }
+        },
+        "reload": {
+          "title": "Refresh Rate Review in Full Journey",
+          "description": "The page with the highest refresh rate within the first {seq} sequences is {pageTitle}({pageDomain}, {pagePathName}). Investigate whether this is due to a page issue or if the transition to the next page is not working properly.",
+          "compare": {
+            "both": "The pages with the highest refresh rate in the first three sequences are {pageDomain1}, {pagePathName1} for [Data1], and {pageDomain2}, {pagePathName2} for [Data2]. Ensure that the refresh issue is addressed properly.",
+            "bothV2": "The pages with the highest refresh rate are {pageDomain1}, {pagePathName1} for [Data1], and {pageDomain2}, {pagePathName2} for [Data2]. Ensure that the refresh issue is addressed properly.",
+            "single": "For [Data{existIdx}], the page with the highest refresh rate is {pageDomain}, {pagePathName}, while for [Data{emptyIdx}], there are no pages with a refresh rate.",
+            "singleV2": "For [Data{existIdx}], the page with the highest refresh rate is {pageDomain}, {pagePathName}, while for [Data{emptyIdx}], there are no pages with a refresh rate."
+          }
+        }
+      }
+    },
+    "ranking": {
+      "title": "Key Metrics Ranking Analysis",
+      "description": "During this period, users spent {interval} on the site and viewed {pageCnt} pages.",
+      "compare": {
+        "description": "[Data1] users spent {interval1} on the site and viewed {pageCnt1} pages, while [Data2] users spent {interval2} and viewed {pageCnt2} pages. Compared to [Data1], there is a {intervalDir} of {intervalDiff} and a {pageCntDir} of {pageCntDiff} pages viewed."
+      },
+      "pvTop20": {
+        "title": "Top 20 Pages by PV",
+        "description": "The top {topPageCnt} pages account for {topPageRate}% of the total PV. These pages have a significant impact on overall traffic, and their performance directly affects the service. Analyzing these key pages helps you understand user interests, behaviors, and areas for improvement.",
+        "compareDescription": "The top {top20Cnt1} pages in [Data1] and {top20Cnt2} pages in [Data2] account for {top20Ratio1}% and {top20Ratio2}% of the total PV, respectively. These pages are critical for overall traffic, so improving their performance can greatly impact your service.",
+        "subTitle": "Key Metrics to Watch",
+        "cvrDrop": "Conversion/Drop-off",
+        "stayin": "Conversion",
+        "drop": "Drop-off",
+        "interval": "Duration",
+        "rollback": "rollback",
+        "reload": "Refresh",
+        "empty": "No pages with {type} detected."
+      }
+    },
+    "trend": {
+      "title": "Overall Trend Analysis",
+      "chart": {
+        "title": "Drop-off Rate by Stage",
+        "description": "{finalConversionRate}% of visitors completed the conversion up to the sixth sequence. The highest drop-off rate occurred between sequence {seq1} and {seq2}, so improving the transition at this stage could significantly increase visitor retention.",
+        "compareDescription": "The final conversion rate up to the sixth sequence is {finalConversionRate1}% for [Data1] and {finalConversionRate2}% for [Data2], with [Data{maxData}] being {finalConversionDiff}%P higher. The highest drop-off occurred between sequence {seq1_1} and {seq1_2} for [Data1], and between sequence {seq2_1} and {seq2_2} for [Data2]."
+      },
+      "capture": {
+        "title": "Drop-off and Conversion Scale",
+        "description": "The page with the largest drop-off is {topDropCntPage} in sequence {topDropCntSeq}, while the page with the highest drop-off rate is {topDropRatePage} in sequence {topDropRateSeq}. The page with the highest conversion volume is {topCvrCntPage} in sequence {topCvrCntSeq}, and the highest conversion rate page is {topCvrRatePage} in sequence {topCvrRateSeq}. Addressing the issues with {topDropCntPage} in sequence {topDropCntSeq} could help reduce drop-offs effectively.",
+        "compareDescription": "The page with the highest drop-off volume is the {topDropCntPage1} page in the {topDropCntSeq1} sequence for [Data1], and the {topDropCntPage2} page in the {topDropCntSeq2} sequence for [Data2]. The page with the highest drop-off rate is the {topDropRatePage1} page in the {topDropRateSeq1} sequence for [Data1], and the {topDropRatePage2} page in the {topDropRateSeq2} sequence for [Data2]. The page with the highest conversion volume is the {topCvrCntPage1} page in the {topCvrCntSeq1} sequence for [Data1], and the {topCvrCntPage2} page in the {topCvrCntSeq2} sequence for [Data2]. The page with the highest conversion rate is the {topCvrRatePage1} page in the {topCvrRateSeq1} sequence for [Data1], and the {topCvrRatePage2} page in the {topCvrRateSeq2} sequence for [Data2]. By addressing the drop-off issues on the {topDropCntPage1} page in the {topDropCntSeq1} sequence for [Data1] and the {topDropCntPage2} page in the {topDropCntSeq2} sequence for [Data2], you can efficiently reduce visitor drop-offs."
+      }
+    },
+    "target": {
+      "title": "Target Analysis",
+      "subTitle": "Target Page",
+      "subTitle2": "Targeting Journey",
+      "thList": {
+        "title": "Page Title",
+        "url": "URL",
+        "type": "Target Type"
+      },
+      "direction": {
+        "forward": "타겟 랜딩으로 시작한 여정",
+        "backward": "Journey to Target"
+      }
+    },
+    "crawlerModal": {
+      "title": "AI Platform Reflection Mechanisms",
+      "perplexity": {
+        "name": "Perplexity",
+        "time": "Several minutes to ~48 hours",
+        "desc": "Operates through real-time web exploration (Query Fan-out). Content with the most recent dateModified tends to be prioritized for citation. When schema (Article, FAQ) is implemented, AI can extract key information more efficiently, which may increase the likelihood of being cited as a source."
+      },
+      "chatgpt": {
+        "name": "ChatGPT (SearchGPT)",
+        "time": "~24 hours",
+        "desc": "Utilizes not only direct crawling by OAI-SearchBot but also extensively leverages the Microsoft Bing search index. Therefore, indexing status in Bing Webmaster Tools can directly influence reflection speed in ChatGPT.",
+        "tip": "Applying the IndexNow protocol can help accelerate indexing and reflection across Bing, Copilot, and ChatGPT."
+      },
+      "google": {
+        "name": "Google AI Overview",
+        "time": "Several days to ~2 weeks",
+        "desc": "Follows established Google SEO mechanisms. Authoritative sites may be updated within hours, while general sites typically require several days.",
+        "tip": "Entry into the Top 10 search results is generally required. Content outside top rankings is unlikely to appear in AI Overviews even when schema is implemented."
+      },
+      "claude": {
+        "name": "Claude",
+        "time": "Learning-based (Long-term)",
+        "desc": "Claude utilizes external search engines (Google, Bing, etc.) during real-time search. Since ClaudeBot primarily operates for model training data collection, schema changes are reflected in Claude responses only after model update cycles.",
+        "tip": "However, Claude's web search operates through external search engines, meaning optimization for Google and Bing directly contributes to Claude search optimization."
+      },
+      "knowledgeGraph": {
+        "name": "Google Knowledge Graph",
+        "time": "1 to 6 months",
+        "desc": "Reflection typically occurs after cross-verification with trusted sources such as Wikipedia and news outlets. Using the sameAs attribute to connect SNS, Wikipedia, and official sites may help shorten verification time."
+      },
+      "insight": {
+        "title": "Key Insights",
+        "desc1": "Implementing schema has been observed to increase AI citation likelihood by approximately 30–40% on average, depending on site authority and content quality. (Source: Conductor, Semrush data)",
+        "desc2": "Higher site authority tends to increase crawling frequency. Bot visit cycles vary by site, ranging from several hours to approximately once per month.",
+        "desc3": "Optimization for Bing generally contributes to optimization for ChatGPT and Copilot. Applying the IndexNow protocol can help improve reflection speed across all three platforms.",
+        "desc4": "Server-Side Rendering (SSR) is generally more favorable than Client-Side Rendering in terms of crawling recognition speed."
+      },
+      "source": "Source: "
+    },
+    "scroll": {
+      "title": "Scroll Data Analysis Report",
+      "gptReportTitle": "User Behavior Analysis Report",
+      "overview": {
+        "title": "Overview",
+        "atfNote": "*ATF = Average The Fold",
+        "table": {
+          "documentHeight": "Document Height",
+          "atf": "ATF",
+          "twoXAtfReachRate": "2xATF Reach Rate",
+          "peakAttentionPosition": "Peak Attention Position below ATF"
+        }
+      },
+      "chart": {
+        "title": "Scroll Reach Heatmap and Attention Graph",
+        "legend": {
+          "reachRate": "Reach Rate",
+          "attention": "Attention"
+        }
+      },
+      "info": {
+        "title": "Report Overview",
+        "segment": "Segment",
+        "table": {
+          "reportType": "Report Type",
+          "reportName": "Report Name",
+          "url": "URL",
+          "analysisPeriod": "Analysis Period",
+          "marketing": "Marketing",
+          "device": "Device",
+          "referralPath": "Referral Path",
+          "visit": "Visit",
+          "timeSlot": "Time Slot",
+          "visitFrequency": "Visit Frequency",
+          "cta": "CTA"
+        }
+      }
+    },
+    "weekly": {
+      "common": {
+        "title": "Weekly Report",
+        "date": "{year} {month}. Week{week}",
+        "summaryTitle": "Comprehensive summary of last week's analysis",
+        "collected": {
+          "title": "Data collected<br>last week",
+          "pv": "PV (Page Views)",
+          "session": "Session",
+          "intervalPerSession": "Avg. Duration Per Session",
+          "pvPerSession": "Pages Per Session",
+          "stayin": "Avg. Conversion",
+          "drop": "Avg. Drop off",
+          "note": "*The average transition rate and drop off rate are the average metrics<br>of the PV Top 20 pages."
+        },
+        "typeTitle": "Key analysis insights for you.",
+        "openButton": "View the full analysis by Beusable AI!",
+        "foldButton": "View Summary Only"
+      },
+      "journey": {
+        "title": "Which page in the 3x3 journey needs improvement for drop off rate?",
+        "exceptionTitle": "There are no pages within the 3x3 journey that need exit rate improvement.",
+        "description": "Looking at the {device} {deviceRatio} data for {domain}, the page in the 3-sequence journey that most needs exit rate improvement is {pageTitle}({pageDomain}, {pagePathName}) in stage {nodeIndex}.<br>Refer to the journey below, and if the problematic page and journey are related to the service’s main flow, ensure you improve the transition experience of the screen.",
+        "exceptionDesc": "Looking at the {device} data for {domain}, accounting for {deviceRatio} of visited customers, all pages within the 3-sequence journey have an exit rate of 0%, meaning all customers are transitioning to the next page. Use the journey below to move to the Journey Report and check which pages customers transition to after the 3rd sequence and where the first exits occur.",
+        "listStep": "Journey with<br>highest<br>drop-off rate"
+      },
+      "ranking": {
+        "title": "Which page has the highest conversion and drop off rates?",
+        "cvrTitle": "Which page has the highest conversion rates?",
+        "dropTitle": "Which page has the highest drop off rates?",
+        "note": "*This data corresponds to the PV Top 20 pages.",
+        "description": "Looking at the data for {domain}, the page with the most transitions to other pages among the PV Top 20 is {cvrTitle}({cvrDomain}, {cvrPathname}), and the page with the highest customer drop off is {dropTitle}({dropDomain}, {dropPathname}). Identify the pages with the highest conversion and drop off rates, determine the cause, and set goals for improving the drop off  rate.",
+        "cvrDesc": "Looking at the data for {domain}, the page with the most transitions to other pages among the PV Top 20 is {cvrTitle}({cvrDomain}, {cvrPathname}). Identify the pages with the highest conversion rates, determine the cause, and set goals for improving the drop off  rate.",
+        "dropDesc": "Looking at the data for {domain}, the page with the highest customer drop off is {dropTitle}({dropDomain}, {dropPathname}). Identify the pages with the highest drop off rates, determine the cause, and set goals for improving the drop off  rate.",
+        "cvr": "Conversion",
+        "drop": "Drop-off"
+      },
+      "trend": {
+        "title": "Which stage has the highest drop off rate?",
+        "description": "Looking at the {device} {deviceRatio} data for {domain}, {finalConversionRate}% of visitors progressed through the journey up to the {seqLength} sequence. Among them, the highest exit rate occurs between the {seq1} and {seq2} sequences. Improving the transition at this stage from a journey perspective can efficiently increase retained visitors."
+      }
+    }
+  },
+  "reportChat": {
+    "welcomeMessage": "Hello! This is AI Docent.<br>Do you have any questions about what you're looking at right now?",
+    "questionLimit": "Question Limit(D)",
+    "questionLimitAlert": "You've used up all your questions for today.",
+    "askPlaceholder": "Ask your questions.",
+    "loading": "Thinking",
+    "rating": "Evaluate the response",
+    "reset": "Reset",
+    "pause": "Stop generating",
+    "copy": "The message has been copied.",
+    "error": {
+      "default": "Unable to generate a response due to a temporary error.<br>Please try again later. If the issue persists, contact the CX team at beusable{'@'}4grit.com.",
+      "limit": "This conversation has grown too long to continue.<br>To start fresh, please click 'Reset'. We recommend copying any important content beforehand!",
+      "aborted": "The response generation was stopped as requested.<br>Since the answer had already started, one remaining question has been deducted."
+    },
+    "limitPlaceHolder": "To start fresh, please click 'Reset'."
+  },
+  "agent": {
+    "common": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "back": "Back"
+    },
+    "hub": {
+      "categories": "Categories",
+      "servers": "Servers",
+      "agentCategories": "Agent Categories",
+      "manageServers": "Manage Servers",
+      "createAgent": "Create Agent",
+      "deploy": "Deploy",
+      "emptyTitle": "No agents yet",
+      "emptyDesc": "Create your first agent to start automating tasks with AI.",
+      "deployConfirmTitle": "Deploy Agent",
+      "deployConfirmDesc": "Deploy {{name}} as the live agent for {{category}}. The current active agent will be deactivated.",
+      "deleteConfirmTitle": "Delete Agent",
+      "deleteConfirmDesc": "Are you sure you want to delete {{name}}? This action cannot be undone."
+    },
+    "builder": {
+      "createTitle": "Create Agent",
+      "editTitle": "Edit Agent",
+      "sourcePanel": "Tool Servers",
+      "workspace": "Configuration",
+      "preview": "Preview",
+      "name": "Agent Name",
+      "namePlaceholder": "Enter agent name",
+      "agent": "Agent",
+      "description": "Description",
+      "descPlaceholder": "Describe what this agent does",
+      "selectedTools": "Selected Tools",
+      "noToolsSelected": "Select tools from the servers on the left. Each tool gives the agent a new capability.",
+      "summary": "Summary",
+      "toolCount": "Tools",
+      "serverCount": "Servers",
+      "status": "Status",
+      "draft": "Draft",
+      "create": "Create Agent",
+      "update": "Update Agent",
+      "addAll": "Add All",
+      "offline": "Offline"
+    },
+    "server": {
+      "title": "Tool Servers",
+      "register": "Register Server",
+      "registerTitle": "Register Server",
+      "editTitle": "Edit Server",
+      "name": "Server Name",
+      "namePlaceholder": "Enter server name",
+      "uri": "Server URI",
+      "token": "Auth Token",
+      "tokenPlaceholder": "Enter bearer token",
+      "description": "Description",
+      "descPlaceholder": "Describe this server",
+      "testConnection": "Test",
+      "connected": "Connected",
+      "connectFail": "Failed",
+      "availableTools": "Available Tools",
+      "update": "Update",
+      "tools": "tools",
+      "live": "Live",
+      "offline": "Offline",
+      "emptyTitle": "No servers registered",
+      "emptyDesc": "Connect an MCP server to provide tools for your agents.",
+      "deleteConfirmTitle": "Delete Server",
+      "deleteConfirmDesc": "Delete server {{name}}?",
+      "deleteError": "Cannot delete: this server is used by existing agents."
+    }
+  },
+  "schemaChat" : {
+    "geoWelcomeMessage": "Enter only the URL to be analyzed by Beusable AI. \n\n※ Pages requiring login are not eligible for schema-tag analysis.",
+    "geoHeaderDesc": "Enter the URL to diagnose schema tags.",
+    "messageFooter": "Need schema tags that can be applied directly to your site? <br/>>With Beusable GEO, you can get in-depth reports and tailored schema tags.",
+    "diagnosisLink": "[Start Beusable GEO for free →]",
+    "placeholder": "Enter only the URL to be analyzed by Beusable AI.",
+    "limit": "The free Schema Tagging diagnostic is available once."
+  }
+}

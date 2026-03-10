@@ -1,0 +1,54 @@
+.button {
+  height: fit-content;
+  padding: 5px 8px;
+  border-radius: 0;
+  border-width: 1px;
+  border-style: solid;
+  background: #000000;
+  border-color: #000000;
+  color: #FFFFFF;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+
+  &:hover {
+    background: #333333;
+    border-color: #333333;
+  }
+
+  &:disabled {
+    opacity: 60%;
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  &-small {
+    padding: 5px 8px;
+    font-size: 13px;
+  }
+
+  &-medium {
+    padding: 7px 14px;
+    font-size: 14px;
+  }
+
+  &-primary {
+    background: #000000;
+    border-color: #000000;
+    color: #FFFFFF;
+    &:hover {
+      background: #333333;
+      border-color: #333333;
+    }
+  }
+
+  &-light {
+    background: #FFFFFF;
+    border-color: #000000;
+    color: #000000;
+    &:hover {
+      background: #F5F5F5;
+    }
+  }
+}
