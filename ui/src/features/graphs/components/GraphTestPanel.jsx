@@ -31,7 +31,7 @@ export default function GraphTestPanel({ graphId, graphName, agents }) {
     }
   }
 
-  const agentNames = agents.filter((a) => a.name).map((a) => a.name)
+  const agentNames = agents.filter((a) => a.agent).map((a) => a.agent)
 
   return (
     <div className={styles.panel}>

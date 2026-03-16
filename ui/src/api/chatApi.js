@@ -42,12 +42,11 @@ export async function askQuestion(agent, data, onStart, onDataCallback, onEnd) {
     .then(async (response) => {
       onStart(response)
 
-      const loopRunner = true
       const reader = response.body.getReader()
       const decoder = new TextDecoder()
       const askCode = response.headers.get('AskCode')
 
-      while (loopRunner) {
+      while (true) {
         const { done, value } = await reader.read()
 
         if (done) {
@@ -60,21 +59,13 @@ export async function askQuestion(agent, data, onStart, onDataCallback, onEnd) {
       }
     })
     .catch((e) => {
-      if (aborter.signal.aborted) {
-        console.log('Aborted')
-      }
-
+      if (aborter.signal.aborted) return
       onEnd(null, e)
-      console.log(e)
     })
 }
 
 export function abortRendering() {
-  try {
-    aborter.abort()
-  } catch (e) {
-    console.log(e)
-  }
+  aborter.abort()
 }
 
 export function getHistory(agent) {
@@ -100,24 +91,4 @@ export const updateSurveyResponse = (agent, data) => {
     withCredentials: true
   }
   return axios.post(`${API_BASE_URL}/operation/update_not_satisfy`, data, config)
-}
-
-export const rateAnswer = (data, agent) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${sessionStorage.getItem(`${agent}_accessToken`)}`
-    }
-  }
-  return axios.post(`${API_BASE_URL}/question/update_rating`, data, config)
-}
-
-export const checkSchemaChat = (agent) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${sessionStorage.getItem(`${agent}_accessToken`)}`
-    },
-    withCredentials: true
-  }
-
-  return axios.get(`${API_BASE_URL}/question/checking_schema_simple`, config)
 }

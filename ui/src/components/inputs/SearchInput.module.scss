@@ -10,6 +10,7 @@
   color: $sol-gray-400;
   font-size: $sol-font-base;
   pointer-events: none;
+  transition: color $sol-duration-fast $sol-ease-default;
 }
 
 .input {
@@ -17,14 +18,13 @@
   height: 36px;
   padding: 0 $sol-space-3 0 $sol-space-8;
   background: #FFFFFF;
-  border: 1px solid $sol-gray-300;
+  border: 1px solid $sol-gray-200;
   border-radius: $sol-radius-md;
   color: $sol-gray-900;
   font-size: $sol-font-base;
   font-family: inherit;
   outline: none;
-  transition: border-color $sol-duration-fast $sol-ease-default,
-              box-shadow $sol-duration-fast $sol-ease-default;
+  transition: all $sol-duration-fast $sol-ease-default;
 
   &::placeholder {
     color: $sol-gray-400;
@@ -32,6 +32,11 @@
 
   &:focus {
     border-color: $sol-primary;
-    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+
+    & + .icon,
+    ~ .icon {
+      color: $sol-primary;
+    }
   }
 }

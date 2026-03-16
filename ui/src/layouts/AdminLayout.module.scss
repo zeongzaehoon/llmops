@@ -1,19 +1,19 @@
 .layout {
   display: flex;
   height: 100vh;
-  background: #F8FAFC;
+  background: var(--sol-surface-app);
   color: $sol-gray-900;
   font-family: $sol-font-family;
   overflow: hidden;
 }
 
-// --- Sidebar ---
+// --- Sidebar (Light, refined) ---
 .sidebar {
   width: var(--sol-sidebar-width);
   min-width: var(--sol-sidebar-width);
   height: 100vh;
-  background: #FFFFFF;
-  border-right: 1px solid $sol-gray-200;
+  background: var(--sol-surface-primary);
+  border-right: 1px solid var(--sol-border-secondary);
   display: flex;
   flex-direction: column;
   z-index: $sol-z-sticky;
@@ -23,31 +23,40 @@
   height: var(--sol-topbar-height);
   display: flex;
   align-items: center;
-  gap: $sol-space-2;
+  gap: $sol-space-3;
   padding: 0 $sol-space-5;
   font-family: $sol-font-display;
-  font-size: $sol-font-xl;
-  font-weight: $sol-weight-bold;
-  color: $sol-gray-900;
   white-space: nowrap;
-  border-bottom: 1px solid $sol-gray-100;
+  border-bottom: 1px solid var(--sol-border-secondary);
 }
 
-.logoIcon {
-  font-size: $sol-font-xl;
-  color: $sol-primary;
+.logoMark {
+  width: 28px;
+  height: 28px;
+  border-radius: $sol-radius-md;
+  background: linear-gradient(135deg, #4F46E5 0%, #818CF8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $sol-font-sm;
+  font-weight: $sol-weight-bold;
+  color: #FFFFFF;
+  flex-shrink: 0;
 }
 
 .logoText {
+  font-size: $sol-font-lg;
   font-weight: $sol-weight-bold;
+  color: $sol-gray-900;
+  letter-spacing: -0.02em;
 }
 
 .sidebarNav {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: $sol-space-3 $sol-space-3;
-  gap: $sol-space-1;
+  padding: $sol-space-3;
+  gap: 2px;
   overflow-y: auto;
   @include scrollbar-thin;
 }
@@ -55,35 +64,42 @@
 .sidebarBottom {
   display: flex;
   flex-direction: column;
-  padding: $sol-space-3 $sol-space-3;
-  gap: $sol-space-1;
-  border-top: 1px solid $sol-gray-100;
+  padding: $sol-space-3;
+  gap: 2px;
+  border-top: 1px solid var(--sol-border-secondary);
 }
 
 .navItem {
   display: flex;
   align-items: center;
   gap: $sol-space-3;
-  padding: $sol-space-2 $sol-space-3;
-  color: $sol-gray-700;
+  padding: 8px $sol-space-3;
+  color: $sol-gray-600;
   text-decoration: none;
   font-size: $sol-font-base;
   font-weight: $sol-weight-medium;
   white-space: nowrap;
   cursor: pointer;
   border-radius: $sol-radius-md;
-  transition: background $sol-duration-fast $sol-ease-default,
-              color $sol-duration-fast $sol-ease-default;
+  transition: all $sol-duration-fast $sol-ease-default;
 
   &:hover {
-    background: $sol-gray-50;
+    background: var(--sol-surface-hover);
     color: $sol-gray-900;
+
+    .navIcon {
+      color: $sol-gray-800;
+    }
   }
 
   &.active {
-    background: $sol-primary-light;
+    background: var(--sol-surface-selected);
     color: $sol-primary-dark;
     font-weight: $sol-weight-semibold;
+
+    .navIcon {
+      color: $sol-primary;
+    }
   }
 }
 
@@ -94,7 +110,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: $sol-font-lg;
+  color: $sol-gray-400;
+  transition: color $sol-duration-fast $sol-ease-default;
 }
 
 .navLabel {
@@ -117,8 +134,8 @@
   display: flex;
   align-items: center;
   padding: 0 $sol-space-7;
-  background: #FFFFFF;
-  border-bottom: 1px solid $sol-gray-200;
+  background: var(--sol-surface-primary);
+  border-bottom: 1px solid var(--sol-border-primary);
 }
 
 .pageTitle {
@@ -132,7 +149,7 @@
 .content {
   flex: 1;
   overflow-y: auto;
-  padding: $sol-space-7;
-  background: #F8FAFC;
+  padding: 28px $sol-space-7;
+  background: var(--sol-surface-app);
   @include scrollbar-thin;
 }

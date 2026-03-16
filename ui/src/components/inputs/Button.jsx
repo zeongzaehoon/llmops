@@ -2,7 +2,7 @@ import styles from './Button.module.scss'
 
 /**
  * Button component.
- * @param {'primary'|'secondary'|'ghost'|'danger'} variant
+ * @param {'primary'|'secondary'|'ghost'|'outline'|'soft'|'danger'} variant
  * @param {'sm'|'md'|'lg'} size
  * @param {boolean} loading
  * @param {boolean} disabled

@@ -4,10 +4,35 @@
   gap: $sol-space-4;
   min-width: 0;
   padding: $sol-space-6;
-  background: #FFFFFF;
-  border: 1px solid $sol-gray-200;
+  background: var(--sol-surface-primary);
+  border: 1px solid var(--sol-border-primary);
   border-radius: $sol-radius-lg;
-  box-shadow: $sol-shadow-sm;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all $sol-duration-normal $sol-ease-default;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #4F46E5, #818CF8);
+    opacity: 0;
+    transition: opacity $sol-duration-normal $sol-ease-default;
+  }
+
+  &:hover {
+    border-color: var(--sol-border-strong);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+    transform: translateY(-1px);
+
+    &::before {
+      opacity: 1;
+    }
+  }
 }
 
 .top {
@@ -19,10 +44,10 @@
 .iconWrap {
   position: relative;
   @include flex-center;
-  width: 36px;
-  height: 36px;
-  border-radius: $sol-radius-md;
-  background: $sol-primary-light;
+  width: 40px;
+  height: 40px;
+  border-radius: $sol-radius-lg;
+  background: linear-gradient(135deg, $sol-primary-light, rgba(79, 70, 229, 0.08));
   flex-shrink: 0;
 }
 
@@ -33,13 +58,19 @@
 }
 
 .pulse {
-  display: none;
+  position: absolute;
+  inset: 0;
+  border-radius: $sol-radius-lg;
+  background: $sol-primary;
+  opacity: 0;
+  animation: pulseRing 2s ease-out infinite;
 }
 
 .title {
   font-size: $sol-font-sm;
   font-weight: $sol-weight-medium;
   color: $sol-gray-600;
+  letter-spacing: 0.01em;
 }
 
 .body {
@@ -53,7 +84,8 @@
   font-size: $sol-font-3xl;
   font-weight: $sol-weight-bold;
   color: $sol-gray-900;
-  line-height: $sol-leading-tight;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .subtitle {
@@ -61,7 +93,7 @@
   color: $sol-gray-500;
 }
 
-// Loading state
+// Shimmer loading
 .shimmer {
   display: flex;
   flex-direction: column;
@@ -70,16 +102,23 @@
 
 .shimmerLine,
 .shimmerLineSm {
-  height: 24px;
   border-radius: $sol-radius-sm;
-  background: $sol-gray-100;
+  background: linear-gradient(
+    90deg,
+    $sol-gray-100 25%,
+    $sol-gray-50 50%,
+    $sol-gray-100 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
 }
 
 .shimmerLine {
+  height: 24px;
   width: 60%;
 }
 
 .shimmerLineSm {
-  width: 80%;
   height: 14px;
+  width: 80%;
 }

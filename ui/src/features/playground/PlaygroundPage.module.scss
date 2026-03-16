@@ -13,7 +13,7 @@
     left: $sol-space-3;
     top: 50%;
     transform: translateY(-50%);
-    color: $sol-gray-500;
+    color: $sol-gray-400;
     font-size: $sol-font-sm;
     pointer-events: none;
   }
@@ -28,7 +28,7 @@
     font-size: $sol-font-sm;
     font-family: $sol-font-family;
     outline: none;
-    transition: border-color $sol-duration-fast;
+    transition: all $sol-duration-fast $sol-ease-default;
 
     &::placeholder {
       color: $sol-gray-400;
@@ -37,6 +37,7 @@
 
     &:focus {
       border-color: $sol-primary;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
     }
   }
 }
@@ -44,7 +45,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: $sol-space-4;
+  gap: $sol-space-5;
 }
 
 .agentCard {
@@ -56,12 +57,12 @@
   background: #FFFFFF;
   border: 1px solid $sol-gray-200;
   border-radius: $sol-radius-lg;
-  box-shadow: $sol-shadow-sm;
-  transition: border-color $sol-duration-fast, box-shadow $sol-duration-fast;
+  transition: all $sol-duration-normal $sol-ease-default;
 
   &:hover {
     border-color: $sol-primary;
-    box-shadow: $sol-shadow-md;
+    box-shadow: 0 4px 16px rgba(79, 70, 229, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+    transform: translateY(-1px);
   }
 }
 
@@ -72,15 +73,16 @@
 }
 
 .cardTitle {
-  font-size: $sol-font-md;
-  font-weight: $sol-weight-semibold;
+  font-size: $sol-font-lg;
+  font-weight: $sol-weight-bold;
   color: $sol-gray-900;
+  letter-spacing: -0.01em;
 }
 
 .cardDescription {
   font-size: $sol-font-sm;
   color: $sol-gray-600;
-  line-height: 1.6;
+  line-height: $sol-leading-normal;
   @include line-clamp(2);
 }
 

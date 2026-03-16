@@ -138,11 +138,36 @@
   gap: $sol-space-4;
 }
 
-// --- Servers tab ---
-.serversTab {
+// --- Live toolset summary ---
+.liveToolsetCard {
+  padding: $sol-space-4;
+  border: 1px solid $sol-gray-200;
+  border-radius: $sol-radius-lg;
+  background: #FFFFFF;
+}
+
+.liveToolsetHeader {
   display: flex;
-  flex-direction: column;
-  gap: $sol-space-5;
+  align-items: center;
+  gap: $sol-space-3;
+}
+
+.liveToolsetName {
+  font-size: $sol-font-base;
+  font-weight: $sol-weight-semibold;
+  color: $sol-gray-900;
+}
+
+.liveToolsetMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $sol-space-2;
+  margin-top: $sol-space-2;
+}
+
+.liveToolsetServer {
+  font-size: $sol-font-xs;
+  color: $sol-gray-500;
 }
 
 // --- Confirm dialog ---

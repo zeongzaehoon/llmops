@@ -33,6 +33,7 @@ class updateMemoPayload(BaseModel):
 
 class getTokenSize(BaseModel):
     prompt: str = Field(..., description="문장")
+    model: Optional[str] = Field(None, description="모델 이름")
 
 
 class updateNotSatisfyPayload(BaseModel):

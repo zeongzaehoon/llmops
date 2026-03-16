@@ -208,6 +208,21 @@ docker run -p 8888:8888 solomon-api
 
 ---
 
+### `solomonAgents`
+
+에이전트 관리.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `_id` | ObjectId | PK |
+| `agent` | string | 에이전트명 |
+| `regDate` | datetime | 등록일시 |
+| `desc` | string | 설명 |
+
+**Indexes:** `name`, `{agent}`
+
+---
+
 ### `solomonPromptHistory`
 
 프롬프트 버전 관리.
@@ -260,7 +275,7 @@ MCP 서버 등록 정보.
 
 ---
 
-### `solomonMCPAgents`
+### `solomonMCPToolsets`
 
 에이전트별 MCP 툴셋 관리.
 

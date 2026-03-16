@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import Badge from '@/components/data-display/Badge'
 import Button from '@/components/inputs/Button'
-import { getTokenSize } from '@/api/operations'
+import { getTokenSize } from '@/api/agents'
 import styles from './PromptEditor.module.scss'
 
 export default function PromptEditor({
@@ -29,7 +28,7 @@ export default function PromptEditor({
     }
     getTokenSize({ prompt: text })
       .then((r) => {
-        const size = r.data?.res?.data
+        const size = typeof r.data === 'number' ? r.data : r.data?.data
         if (size != null) setTokenCount(size)
       })
       .catch(() => {})
@@ -55,25 +54,14 @@ export default function PromptEditor({
   }
 
   const readOnly = !isLatest
-  const deployLabel = promptData?.deployStatus === 'blue'
-    ? 'Production'
-    : promptData?.deployStatus === 'green'
-      ? 'Staging'
-      : null
-  const deployVariant = promptData?.deployStatus === 'blue'
-    ? 'production'
-    : promptData?.deployStatus === 'green'
-      ? 'staging'
-      : 'info'
 
   return (
     <div className={styles.editor}>
       <div className={styles.header}>
         <div className={styles.headerLeft}>
           <h3 className={styles.title}>
-            {promptData ? `Version v${promptData.version}` : 'Editor'}
+            {promptData ? 'Prompt Editor' : 'Editor'}
           </h3>
-          {deployLabel && <Badge variant={deployVariant}>{deployLabel}</Badge>}
         </div>
         {readOnly && (
           <span className={styles.readOnly}>Read-only (not latest version)</span>

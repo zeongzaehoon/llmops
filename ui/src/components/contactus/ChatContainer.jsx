@@ -65,11 +65,11 @@ export default function ChatContainer() {
       setMessages([...newMessages])
       setIsLoading(true)
 
-      const questionData = JSON.stringify({
+      const questionData = {
         ...question,
         agent: agent,
         info: userInfoRef.current
-      })
+      }
 
       askQuestion(agent, questionData, startAnswering, onAnswering, endAnswering)
     },

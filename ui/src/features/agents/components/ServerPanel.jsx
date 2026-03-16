@@ -28,7 +28,7 @@ export default function ServerPanel({ onRegister }) {
   const handleDelete = () => {
     if (!deleteTarget) return
     deleteServer.mutate(
-      { name: deleteTarget.name },
+      { id: deleteTarget.id },
       {
         onSuccess: () => {
           toast.success(`Server "${deleteTarget.name}" deleted`)
@@ -61,11 +61,11 @@ export default function ServerPanel({ onRegister }) {
 
       <div className={styles.grid}>
         {filtered.map((server) => {
-          const isLive = server.status === 'live' || server.status === 'connected'
+          const isLive = !!server.live
           const toolCount = server.tools?.length ?? 0
 
           return (
-            <Card key={server.name} hoverable className={styles.card}>
+            <Card key={server.id} hoverable className={styles.card}>
               <div className={styles.cardHeader}>
                 <span className={styles.serverName}>{server.name}</span>
                 <StatusDot

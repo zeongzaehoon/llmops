@@ -37,7 +37,7 @@ export const defaultOption = {
   },
   layout: {
     padding: {
-      top: 30 // 상단에 50px의 패딩 추가
+      top: 30
     }
   },
   scales: {
@@ -81,18 +81,15 @@ export const percentageOption = {
     y: {
       beginAtZero: true,
       min: 0,
-      // max: 1,
       max: 100,
       border: {
         display: false
       },
       ticks: {
-        // stepSize: 0.5,
         stepSize: 50,
         padding: 10,
         callback: function (value) {
-          // return (value * 100).toFixed(0) + '%' // y축 레이블을 백분율로 표시
-          return value + '%' // y축 레이블을 백분율로 표시
+          return value + '%'
         }
       }
     }
@@ -150,79 +147,6 @@ export const getTrendChartDataSets = (idx = null) => {
     },
     background: {
       backgroundColor: idx ? CHART_DATA_COLOR[idx].chartBg : 'rgba(219, 222, 152, 0.40)',
-      borderWidth: 0,
-      type: 'line',
-      order: 2,
-      fill: true
-    }
-  }
-}
-
-export const trendChartDataSets = {
-  single: {
-    line: {
-      borderColor: '#61D5E7',
-      borderWidth: 2,
-      pointRadius: 4,
-      pointBorderColor: '#61D5E7',
-      pointBackgroundColor: '#fff',
-      type: 'line',
-      order: 0
-    },
-    bar: {
-      backgroundColor: '#0E90A5',
-      borderColor: '#0E90A5',
-      borderWidth: 0,
-      order: 1
-    },
-    background: {
-      backgroundColor: 'rgba(219, 222, 152, 0.40)',
-      borderWidth: 0,
-      type: 'line',
-      order: 2,
-      fill: true
-    }
-  },
-  compare: {
-    line1: {
-      borderColor: '#FFD177',
-      borderWidth: 2,
-      pointRadius: 4,
-      pointBorderColor: '#FFD177',
-      pointBackgroundColor: '#fff',
-      type: 'line',
-      order: 0
-    },
-    bar1: {
-      backgroundColor: '#FFAA2B',
-      borderColor: '#FFAA2B',
-      borderWidth: 0,
-      order: 1
-    },
-    background1: {
-      backgroundColor: '#FFD17766',
-      borderWidth: 0,
-      type: 'line',
-      order: 2,
-      fill: true
-    },
-    line2: {
-      borderColor: '#FFAEC6',
-      borderWidth: 2,
-      pointRadius: 4,
-      pointBorderColor: '#FFAEC6',
-      pointBackgroundColor: '#fff',
-      type: 'line',
-      order: 0
-    },
-    bar2: {
-      backgroundColor: '#EF487A',
-      borderColor: '#EF487A',
-      borderWidth: 0,
-      order: 1
-    },
-    background2: {
-      backgroundColor: '#FFCEDD66',
       borderWidth: 0,
       type: 'line',
       order: 2,
@@ -310,16 +234,6 @@ export const getRankingScatterChartOption = (type) => {
     plugins: {
       legend: {
         display: false
-        // display: true,
-        // align: 'start',
-        // labels: {
-        //   boxWidth: 0,
-        //   font: {
-        //     title: {
-        //       color: '#767676'
-        //     }
-        //   }
-        // }
       }
     },
     elements: {
@@ -382,8 +296,6 @@ export const getRankingScatterChartOption = (type) => {
           font: {
             size: 7
           }
-          // stepSize: type === 'interval' ? 5 : 3,
-          // maxTicksLimit: 4,
         },
         afterBuildTicks: function (axis) {
           // y축 tick이 0포함 3개가 생기도록

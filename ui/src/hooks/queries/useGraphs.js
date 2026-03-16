@@ -4,7 +4,7 @@ import { getGraphs, getGraph, createGraph, updateGraph, deleteGraph } from '@/ap
 export function useGraphs() {
   return useQuery({
     queryKey: ['graphs'],
-    queryFn: () => getGraphs().then((r) => r.data?.res?.data || []),
+    queryFn: () => getGraphs().then((r) => r.data?.data || []),
     staleTime: 30_000,
   })
 }
@@ -13,7 +13,7 @@ export function useGraph(data) {
   const id = data?.graph_id || data?.name
   return useQuery({
     queryKey: ['graph', id],
-    queryFn: () => getGraph(data).then((r) => r.data?.res?.data || null),
+    queryFn: () => getGraph(data).then((r) => r.data?.data || null),
     enabled: !!id,
     staleTime: 30_000,
   })

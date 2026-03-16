@@ -69,3 +69,66 @@ export function deleteToolset(data) {
 export function deployToolset(data) {
   return apiClient.post('/agent/adapt_toolset_on_service', data, { _agent: AGENT })
 }
+
+/**
+ * Prompt versioning & deployment
+ */
+export function insertPrompt(data) {
+  return apiClient.post('/agent/insert_prompt', data, { _agent: AGENT })
+}
+
+export function getPromptVersions(data) {
+  return apiClient.post('/agent/get_prompt_versions', data, { _agent: AGENT })
+}
+
+export function getPromptData(data) {
+  return apiClient.post('/agent/get_prompt_data', data, { _agent: AGENT })
+}
+
+export function deployPrompt(data) {
+  return apiClient.post('/operation/deploy', data, { _agent: AGENT })
+}
+
+export function rollbackPrompt(data) {
+  return apiClient.post('/operation/rollback', data, { _agent: AGENT })
+}
+
+export function getDeployList() {
+  return apiClient.get('/operation/get_deploy_list', { _agent: AGENT })
+}
+
+export function updateMemo(data) {
+  return apiClient.post('/operation/update_memo', data, { _agent: AGENT })
+}
+
+export function downloadQuestion(data) {
+  return apiClient.post('/operation/download_question', data, {
+    _agent: AGENT,
+    responseType: 'blob',
+  })
+}
+
+/**
+ * Model management
+ */
+export function getModels() {
+  return apiClient.get('/agent/get_models', { _agent: AGENT })
+}
+
+export function getCurrentModel(agent) {
+  return apiClient.get('/agent/get_current_model', {
+    _agent: AGENT,
+    params: { agent },
+  })
+}
+
+export function setVendorAndModel(data) {
+  return apiClient.post('/agent/set_vendor_and_model', data, { _agent: AGENT })
+}
+
+/**
+ * Token operations
+ */
+export function getTokenSize(data) {
+  return apiClient.post('/operation/get_token_size', data, { _agent: AGENT })
+}

@@ -19,7 +19,7 @@ export default function ServerRegistry() {
     setIsLoading(true)
     try {
       const res = await getMCPServerList()
-      const list = res.data?.res?.data || []
+      const list = res.data?.data || []
       setServers(list)
       updateMcpServerList(list)
     } catch (e) {

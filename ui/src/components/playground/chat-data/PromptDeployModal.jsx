@@ -47,10 +47,8 @@ const PromptDeployModal = ({ type, onClose, onReload }) => {
       deployPrompt(data)
         .then((res) => {
           const result = res.data
-          if (result.code === HTTP_STATUS.unauthrized) {
+          if (result.code === HTTP_STATUS.forbidden) {
             alert('비밀번호가 올바르지 않습니다.')
-          } else if (result.code === HTTP_STATUS.forbidden) {
-            alert('스테이징 서버에서 실행해주세요.')
           } else {
             setShowCompleteMsg(true)
             onReload()
@@ -59,7 +57,6 @@ const PromptDeployModal = ({ type, onClose, onReload }) => {
         })
         .catch((e) => {
           alert('알 수 없는 오류가 발생했습니다.')
-          console.log(e)
           setPwd('')
         })
         .finally(() => {
@@ -69,10 +66,8 @@ const PromptDeployModal = ({ type, onClose, onReload }) => {
       rollbackPrompt(data)
         .then((res) => {
           const result = res.data
-          if (result.code === HTTP_STATUS.unauthrized) {
+          if (result.code === HTTP_STATUS.forbidden) {
             alert('비밀번호가 올바르지 않습니다.')
-          } else if (result.code === HTTP_STATUS.forbidden) {
-            alert('스테이징 서버에서 실행해주세요.')
           } else {
             setShowCompleteMsg(true)
             onReload()
@@ -81,7 +76,6 @@ const PromptDeployModal = ({ type, onClose, onReload }) => {
         })
         .catch((e) => {
           alert('알 수 없는 오류가 발생했습니다.')
-          console.log(e)
           setPwd('')
         })
         .finally(() => {

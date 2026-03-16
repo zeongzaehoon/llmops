@@ -9,12 +9,8 @@ export const getPrompt = (data) => {
   return axios.post(`${API_BASE_URL}/operation/get_data`, data)
 }
 
-export const getPromptHistory = (data) => {
-  return axios.post(`${API_BASE_URL}/operation/get_prompt_history`, data)
-}
-
 export const insertPrompt = (data) => {
-  return axios.post(`${API_BASE_URL}/operation/insert_prompt`, data)
+  return axios.post(`${API_BASE_URL}/agent/insert_prompt`, data)
 }
 
 export const getReference = (agent, data) => {
@@ -50,18 +46,6 @@ export const rollbackPrompt = (data) => {
   return axios.post(`${API_BASE_URL}/operation/rollback`, data)
 }
 
-export const getTestModelList = (agent) => {
-  return axios.get(`${API_BASE_URL}/question/model?agent=${agent}`)
-}
-
-export const getModel = (agent) => {
-    return axios.get(`${API_BASE_URL}/operation/get_current_model?agent=${agent}`)
-}
-
 export const getModelList = () => {
-  return axios.get(`${API_BASE_URL}/operation/get_models`)
-}
-
-export const setModel = (data) => {
-  return axios.post(`${API_BASE_URL}/operation/set_vendor_and_model`, data)
+  return axios.get(`${API_BASE_URL}/agent/get_models`)
 }

@@ -4,7 +4,7 @@ import Button from '@/components/inputs/Button'
 import styles from './ToolsetCard.module.scss'
 
 export default function ToolsetCard({ toolset, onDeploy, onEdit, onDelete }) {
-  const isLive = toolset.status === 'live' || toolset.deploy_status === 'live'
+  const isLive = !!toolset.isService
 
   return (
     <Card hoverable className={styles.card}>
@@ -17,18 +17,18 @@ export default function ToolsetCard({ toolset, onDeploy, onEdit, onDelete }) {
         )}
       </div>
 
-      <div className={styles.meta}>
-        <Badge variant="info">{toolset.agent}</Badge>
-      </div>
+      {toolset.description && (
+        <p className={styles.description}>{toolset.description}</p>
+      )}
 
-      {toolset.mcp_servers?.length > 0 && (
+      {toolset.mcpInfo?.length > 0 && (
         <div className={styles.servers}>
           <span className={styles.serversLabel}>Servers & Tools:</span>
-          {toolset.mcp_servers.map((srv) => (
-            <div key={srv.name} className={styles.serverItem}>
-              <span className={styles.serverName}>{srv.name}:</span>
+          {toolset.mcpInfo.map((info, idx) => (
+            <div key={info.serverId || idx} className={styles.serverItem}>
+              <span className={styles.serverName}>{info.serverName || info.serverId}:</span>
               <div className={styles.tools}>
-                {srv.tools?.map((tool) => (
+                {info.tools?.map((tool) => (
                   <span key={tool} className={styles.toolTag}>
                     {tool}
                   </span>

@@ -35,15 +35,15 @@ export default function PromptLabPage() {
 
   const { data: versions = [], isLoading: versionsLoading } = useVersions(activeCategory)
   const sortedVersions = useMemo(
-    () => [...versions].sort((a, b) => (b.version ?? 0) - (a.version ?? 0)),
+    () => [...versions].sort((a, b) => new Date(b.date) - new Date(a.date)),
     [versions]
   )
-  const latestVersion = sortedVersions[0]?.version ?? null
+  const latestId = sortedVersions[0]?.id ?? null
 
-  const [selectedVersion, setSelectedVersion] = useState(null)
-  const currentVersion = selectedVersion ?? latestVersion
+  const [selectedId, setSelectedId] = useState(null)
+  const currentId = selectedId ?? latestId
 
-  const { data: promptData } = usePromptData(activeCategory, currentVersion)
+  const { data: promptData } = usePromptData(activeCategory, currentId)
 
   const saveMutation = useSavePrompt()
   const deployMutation = useDeploy()
@@ -54,12 +54,12 @@ export default function PromptLabPage() {
   const [diffTexts, setDiffTexts] = useState({ old: '', new: '' })
 
   const handleCategorySelect = (cat) => {
-    setSelectedVersion(null)
+    setSelectedId(null)
     navigate(`/admin/prompts/${encodeURIComponent(cat)}`)
   }
 
-  const handleVersionSelect = (ver) => {
-    setSelectedVersion(ver)
+  const handleVersionSelect = (id) => {
+    setSelectedId(id)
   }
 
   const handleSave = useCallback(
@@ -67,7 +67,7 @@ export default function PromptLabPage() {
       saveMutation.mutate(data, {
         onSuccess: () => {
           toast.success('Prompt saved as new version')
-          setSelectedVersion(null)
+          setSelectedId(null)
         },
         onError: () => toast.error('Failed to save prompt'),
       })
@@ -79,16 +79,16 @@ export default function PromptLabPage() {
     async (oldVer, newVer) => {
       try {
         const [oldRes, newRes] = await Promise.all([
-          import('@/api/prompts').then((m) =>
-            m.getData({ agent: activeCategory, kind: 'prompt', id: oldVer })
+          import('@/api/agents').then((m) =>
+            m.getPromptData({ agent: activeCategory, kind: 'prompt', id: oldVer })
           ),
-          import('@/api/prompts').then((m) =>
-            m.getData({ agent: activeCategory, kind: 'prompt', id: newVer })
+          import('@/api/agents').then((m) =>
+            m.getPromptData({ agent: activeCategory, kind: 'prompt', id: newVer })
           ),
         ])
         setDiffTexts({
-          old: oldRes.data?.res?.data?.prompt || '',
-          new: newRes.data?.res?.data?.prompt || '',
+          old: oldRes.data?.data?.prompt || '',
+          new: newRes.data?.data?.prompt || '',
         })
         setDiffState({ old: oldVer, new: newVer })
       } catch {
@@ -160,7 +160,7 @@ export default function PromptLabPage() {
               ) : (
                 <VersionTimeline
                   versions={sortedVersions}
-                  activeVersion={currentVersion}
+                  activeVersion={currentId}
                   onSelectVersion={handleVersionSelect}
                   onShowDiff={handleShowDiff}
                 />
@@ -171,7 +171,7 @@ export default function PromptLabPage() {
               <PromptEditor
                 promptData={promptData}
                 agent={activeCategory}
-                isLatest={currentVersion === latestVersion}
+                isLatest={currentId === latestId}
                 onSave={handleSave}
                 isSaving={saveMutation.isPending}
               />

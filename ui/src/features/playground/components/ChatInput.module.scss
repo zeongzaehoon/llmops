@@ -1,34 +1,40 @@
 .inputArea {
-  display: flex;
-  align-items: center;
-  gap: $sol-space-3;
-  padding: $sol-space-3 $sol-space-5;
-  border-top: 1px solid $sol-gray-200;
-  background: #FFFFFF;
+  padding: $sol-space-3 $sol-space-5 $sol-space-4;
   flex-shrink: 0;
 }
 
-.textareaWrap {
-  flex: 1;
-  position: relative;
-}
-
-.textarea {
-  width: 100%;
+.inputBox {
+  display: flex;
+  align-items: flex-end;
+  gap: $sol-space-2;
   padding: $sol-space-2 $sol-space-3;
   background: $sol-gray-50;
   border: 1px solid $sol-gray-200;
-  border-radius: $sol-radius-md;
+  border-radius: $sol-radius-xl;
+  transition: border-color $sol-duration-fast $sol-ease-default,
+              box-shadow $sol-duration-fast $sol-ease-default;
+
+  &:focus-within {
+    border-color: $sol-primary;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.08);
+    background: #FFFFFF;
+  }
+}
+
+.textarea {
+  flex: 1;
+  padding: $sol-space-1 $sol-space-2;
+  background: transparent;
+  border: none;
   color: $sol-gray-900;
-  font-size: $sol-font-sm;
+  font-size: $sol-font-md;
   font-family: $sol-font-family;
   line-height: 1.5;
   resize: none;
   outline: none;
-  min-height: 40px;
+  min-height: 24px;
   max-height: 200px;
   overflow-y: auto;
-  transition: border-color $sol-duration-fast, background $sol-duration-fast;
   @include scrollbar-thin;
 
   &::placeholder {
@@ -36,20 +42,70 @@
     font-size: $sol-font-sm;
   }
 
-  &:focus {
-    border-color: $sol-primary;
-    background: #FFFFFF;
-  }
-
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    background: $sol-gray-100;
   }
 }
 
-.buttons {
+.actions {
   display: flex;
-  gap: $sol-space-2;
+  align-items: center;
   flex-shrink: 0;
+  padding-bottom: 2px;
+}
+
+.sendBtn {
+  @include flex-center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: $sol-radius-full;
+  background: $sol-gray-200;
+  color: $sol-gray-400;
+  cursor: not-allowed;
+  transition: all $sol-duration-fast $sol-ease-default;
+
+  &.active {
+    background: $sol-primary;
+    color: #FFFFFF;
+    cursor: pointer;
+
+    &:hover {
+      background: $sol-primary-dark;
+    }
+  }
+}
+
+.stopBtn {
+  @include flex-center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: $sol-radius-full;
+  background: $sol-danger;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: background $sol-duration-fast $sol-ease-default;
+
+  &:hover {
+    background: #d93636;
+  }
+}
+
+.hint {
+  margin-top: $sol-space-1;
+  padding: 0 $sol-space-2;
+  font-size: $sol-font-xs;
+  color: $sol-gray-400;
+  text-align: center;
+
+  kbd {
+    padding: 1px 4px;
+    font-size: 10px;
+    font-family: $sol-font-mono;
+    background: $sol-gray-100;
+    border: 1px solid $sol-gray-200;
+    border-radius: $sol-radius-xs;
+  }
 }

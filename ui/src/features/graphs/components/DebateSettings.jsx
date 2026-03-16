@@ -37,10 +37,10 @@ export default function DebateSettings({
           >
             <option value="">Select moderator...</option>
             {agents
-              .filter((a) => a.name)
+              .filter((a) => a.agent)
               .map((a, i) => (
-                <option key={i} value={a.name}>
-                  {a.name}
+                <option key={i} value={a.agent}>
+                  {a.agent}{a.role ? ` (${a.role})` : ''}
                 </option>
               ))}
           </select>

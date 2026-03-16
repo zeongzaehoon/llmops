@@ -1,5 +1,5 @@
 .header {
-  margin-bottom: $sol-space-6;
+  margin-bottom: 0;
 }
 
 .top {
@@ -16,11 +16,11 @@
 
 .title {
   font-family: $sol-font-display;
-  font-size: $sol-font-3xl;
+  font-size: $sol-font-2xl;
   font-weight: $sol-weight-bold;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   line-height: 1.2;
-  color: $sol-gray-900;
+  color: $sol-gray-950;
   margin: 0 0 $sol-space-1;
 }
 

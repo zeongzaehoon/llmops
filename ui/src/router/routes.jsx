@@ -9,6 +9,7 @@ const DashboardPage = lazy(() => import('@/features/dashboard/DashboardPage'))
 const AgentHubPage = lazy(() => import('@/features/agents/AgentHubPage'))
 const AgentDetailPage = lazy(() => import('@/features/agents/AgentDetailPage'))
 const AgentBuilderPage = lazy(() => import('@/features/agents/AgentBuilderPage'))
+const ServersPage = lazy(() => import('@/features/servers/ServersPage'))
 const GraphHubPage = lazy(() => import('@/features/graphs/GraphHubPage'))
 const GraphBuilderPage = lazy(() => import('@/features/graphs/GraphBuilderPage'))
 const PlaygroundPage = lazy(() => import('@/features/playground/PlaygroundPage'))
@@ -51,6 +52,7 @@ export const router = createBrowserRouter([
       { path: 'agents/:agent', element: <LazyPage Component={AgentDetailPage} /> },
       { path: 'agents/:agent/toolset/new', element: <LazyPage Component={AgentBuilderPage} /> },
       { path: 'agents/:agent/toolset/:id', element: <LazyPage Component={AgentBuilderPage} /> },
+      { path: 'servers', element: <LazyPage Component={ServersPage} /> },
       { path: 'graphs', element: <LazyPage Component={GraphHubPage} /> },
       { path: 'graphs/new', element: <LazyPage Component={GraphBuilderPage} /> },
       { path: 'graphs/:id', element: <LazyPage Component={GraphBuilderPage} /> },

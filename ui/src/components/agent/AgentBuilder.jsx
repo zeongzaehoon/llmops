@@ -47,7 +47,7 @@ export default function AgentBuilder() {
   const fetchServers = useCallback(async () => {
     try {
       const res = await getMCPServerList()
-      const list = res.data?.res?.data || []
+      const list = res.data?.data || []
       setServers(list)
       updateMcpServerList(list)
     } catch (e) { console.error(e) }
@@ -59,7 +59,7 @@ export default function AgentBuilder() {
     setLoadingTools(prev => ({ ...prev, [serverId]: true }))
     try {
       const res = await getMCPServerTools({ serverId })
-      const tools = res.data?.res?.data || []
+      const tools = res.data?.data || []
       setServerToolsMap(prev => ({ ...prev, [serverId]: tools }))
     } catch (e) { console.error(e) }
     finally { setLoadingTools(prev => ({ ...prev, [serverId]: false })) }
@@ -71,7 +71,7 @@ export default function AgentBuilder() {
     try {
       const categoryParam = searchParams.get('category') || ''
       const res = await getMCPToolSetList({ agent: categoryParam })
-      const list = res.data?.res?.data || []
+      const list = res.data?.data || []
       const toolset = list.find(ts => ts.id === id)
       if (toolset) {
         setName(toolset.name || '')

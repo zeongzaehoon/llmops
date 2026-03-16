@@ -26,7 +26,7 @@ export async function connect(agent, onConnect = false) {
         resolve()
       })
       .catch((e) => {
-        if (authFailedStatus.includes(e.response.status)) {
+        if (authFailedStatus.includes(e.response?.status)) {
           refresh(agent, onConnect)
         }
         reject(new Error(e))
@@ -50,8 +50,7 @@ export function refresh(agent, onConnect = false) {
       sessionStorage.setItem(`${agent}_accessToken`, accessToken)
     })
     .catch((e) => {
-      console.log(e)
-      if (authFailedStatus.includes(e.response.status)) {
+      if (authFailedStatus.includes(e.response?.status)) {
         sessionStorage.removeItem(`${agent}_accessToken`)
         sessionStorage.removeItem(`${agent}_refreshToken`)
         sessionStorage.removeItem(`${agent}_sessionKey`)

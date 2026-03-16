@@ -6,6 +6,8 @@ from bson import ObjectId
 
 from payload.agent import *
 from helper.agent import *
+from payload.agent import GetPromptVersionsPayload, GetPromptDataPayload
+from helper.agent import helper_get_prompt_versions, helper_get_prompt_data
 from utils.error import *
 from utils.response import *
 from client.mongo import MongoClient, ProductionMongoClient
@@ -27,7 +29,7 @@ async def _get_models(
     query_params:GetModelQueryParams=Depends(),
 ):
     data = {
-        "modelList": MCP_MODEL_LIST if query_params.agent in MCP_LIST else MODEL_LIST
+        "modelList": MODEL_LIST
     }
     return Response200(
         message="success",
@@ -76,6 +78,29 @@ async def _insert_prompt(
     return Response200(
         message="success"
     ).to_dict()
+
+
+@agent.post("/get_prompt_versions")
+@handle_errors()
+async def _get_prompt_versions(
+    payload: GetPromptVersionsPayload,
+    main_db_client: MongoClient = Depends(get_main_db),
+):
+    # business logic
+    data = await helper_get_prompt_versions(main_db_client=main_db_client, payload=payload)
+    return Response200(data=data).to_dict()
+
+
+@agent.post("/get_prompt_data")
+@handle_errors()
+async def _get_prompt_data(
+    payload: GetPromptDataPayload,
+    main_db_client: MongoClient = Depends(get_main_db),
+):
+    # business logic
+    data = await helper_get_prompt_data(main_db_client=main_db_client, payload=payload)
+    return Response200(data=data).to_dict()
+
 
 
 @agent.post("/get_version")
@@ -136,7 +161,13 @@ async def _get_token_size(
     content = payload.prompt
     if not content:
         return Response500(message="THERE ARE NOT CONTENT").to_dict()
-    encoding = tiktoken.get_encoding(BASE_MODEL)
+    model_name = BASE_MODEL
+    try:
+        encoding = tiktoken.encoding_for_model(model_name)
+    except KeyError:
+        # fallback for older tiktoken versions that don't recognize newer model names
+        fallback_encoding = "o200k_base" if model_name.startswith(("gpt-4o", "o1", "o3", "o4")) else "cl100k_base"
+        encoding = tiktoken.get_encoding(fallback_encoding)
     tokens = encoding.encode(content)
     return len(tokens)
 
@@ -282,10 +313,7 @@ async def create_agent(
 
     document = {
         'agent': payload.agent,
-        'name': payload.name,
         'regDate': pytz.timezone('Asia/Seoul').localize(datetime.now()),
-        'mcpInfo': [],
-        'isService': False,
     }
     if payload.description:
         document['desc'] = payload.description
@@ -357,7 +385,7 @@ async def create_mcp_toolset(
     if payload.description:
         document['desc'] = payload.description
 
-    await main_db_client.insert_one(collection=AGENT_COLLECTION, document=document)
+    await main_db_client.insert_one(collection=MCP_TOOLSET_COLLECTION, document=document)
 
     # make response and return
     return Response200().to_orjson()
@@ -384,6 +412,8 @@ async def get_mcp_server(
             'uri': document['uri'],
             'description': document.get('desc', ''),
         }
+        logging.info(f"[agent.get_mcp_server] server_info: {server_info}")
+        logging.info(f"[agent.get_mcp_server] document: {document}")
 
         # check Redis cache first
         cache_key = f"mcp_health:{server_id}"
@@ -435,16 +465,18 @@ async def get_mcp_toolset(
     # business logic
     _filter = {'agent': payload.agent} if payload.agent else {}
     documents = await main_db_client.find(
-        collection=AGENT_COLLECTION,
+        collection=MCP_TOOLSET_COLLECTION,
         filter=_filter,
         sort=[('regDate', -1)]
     )
+    result = []
+    if not documents:
+        return Response200(data=result).to_orjson()
     mcp_server_ids = [_id['serverId'] for document in documents for _id in document['mcpInfo']]
     server_name_documents = await main_db_client.find(collection=MCP_SERVER_COLLECTION, filter={'_id': {'$in': mcp_server_ids}})
     server_names = {str(document['_id']): document['name'] for document in server_name_documents}
 
     # make response and return
-    result = []
     for document in documents:
         if document.get("mcpInfo"):
             for mcp_info in document["mcpInfo"]:
@@ -493,7 +525,7 @@ async def update_mcp_agent(
         update["$set"]["name"] = payload.name
     if payload.description:
         update["$set"]["desc"] = payload.description
-    await main_db_client.update_one(collection=AGENT_COLLECTION, filter=_filter, update=update)
+    await main_db_client.update_one(collection=MCP_TOOLSET_COLLECTION, filter=_filter, update=update)
 
     # make response and return
     return Response200().to_orjson()
@@ -506,24 +538,24 @@ async def adapt_agent_on_service(
     main_db_client: MongoClient = Depends(get_main_db),
 ):
     # verify target toolset exists
-    target = await main_db_client.find_one(collection=AGENT_COLLECTION, filter={"_id": ObjectId(payload.id)})
+    target = await main_db_client.find_one(collection=MCP_TOOLSET_COLLECTION, filter={"_id": ObjectId(payload.id)})
     if not target:
         return Response400(message="Target toolset not found").to_orjson()
 
     # step 1: deactivate current active toolset
     false_filter = {"agent": payload.agent, "isService": True}
     false_update = {"$set": {"isService": False}}
-    await main_db_client.update_one(collection=AGENT_COLLECTION, filter=false_filter, update=false_update)
+    await main_db_client.update_one(collection=MCP_TOOLSET_COLLECTION, filter=false_filter, update=false_update)
 
     # step 2: activate target toolset, with compensating rollback on failure
     try:
         _filter = {"_id": ObjectId(payload.id)}
         update = {"$set": {"isService": True}}
-        await main_db_client.update_one(collection=AGENT_COLLECTION, filter=_filter, update=update)
+        await main_db_client.update_one(collection=MCP_TOOLSET_COLLECTION, filter=_filter, update=update)
     except Exception:
         # rollback: re-activate the previously active toolset
         rollback_update = {"$set": {"isService": True}}
-        await main_db_client.update_one(collection=AGENT_COLLECTION, filter=false_filter, update=rollback_update)
+        await main_db_client.update_one(collection=MCP_TOOLSET_COLLECTION, filter=false_filter, update=rollback_update)
         raise
 
     # make response and return
@@ -563,7 +595,7 @@ async def delete_mcp_toolset(
 ):
     # business logic
     delete_filter = {"_id": ObjectId(payload.id)}
-    await main_db_client.delete_one(collection=AGENT_COLLECTION, filter=delete_filter)
+    await main_db_client.delete_one(collection=MCP_TOOLSET_COLLECTION, filter=delete_filter)
 
     # make response and return
     return Response200().to_orjson()

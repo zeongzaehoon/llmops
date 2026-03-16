@@ -5,7 +5,7 @@ import Card from '@/components/layout/Card'
 import Badge from '@/components/data-display/Badge'
 import StatusDot from '@/components/data-display/StatusDot'
 import EmptyState from '@/components/feedback/EmptyState'
-import { useAgents } from '@/hooks/queries/useToolsets'
+import { useAgents } from '@/hooks/queries/useAgents'
 import { useAuth } from '@/hooks/useAuth'
 import styles from './PlaygroundPage.module.scss'
 

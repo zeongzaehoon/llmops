@@ -19,11 +19,11 @@
   }
 }
 
-// Two-column layout: main (left) + sidebar (right)
+// Two-column layout: main 3 cols + sidebar 1 col (aligns with statGrid)
 .contentGrid {
   display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: $sol-space-6;
+  grid-template-columns: 3fr 1fr;
+  gap: $sol-space-5;
   align-items: start;
 
   @include tablet {

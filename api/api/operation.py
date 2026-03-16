@@ -1,5 +1,5 @@
-from fastapi import APIRouter, Depends
 import tiktoken
+from fastapi import APIRouter, Depends
 
 from auth.dependencies import get_optional_user
 from helper.operation import *
@@ -93,7 +93,13 @@ async def _get_token_size(
     content = payload.prompt
     if not content:
         return Response500(message="THERE ARE NOT CONTENT").to_dict()
-    encoding = tiktoken.get_encoding(BASE_MODEL)
+    model_name = payload.model or TIKTOKEN_MODEL_LIST[0]
+    try:
+        encoding = tiktoken.encoding_for_model(model_name)
+    except KeyError:
+        # fallback for older tiktoken versions that don't recognize newer model names
+        fallback_encoding = "o200k_base" if model_name.startswith(("gpt-4o", "o1", "o3", "o4")) else "cl100k_base"
+        encoding = tiktoken.get_encoding(fallback_encoding)
     tokens = encoding.encode(content)
     return len(tokens)
 
@@ -168,6 +174,9 @@ async def _get_deploy_list(
     staging_main_db_client: MongoClient = Depends(get_main_db),
     production_main_db_client: ProductionMongoClient = Depends(get_production_db),
 ):
+    if os.getenv("SERVER_STAGE", "development") != STAGING:
+        return Response200(message="success", data=[]).to_dict()
+    
     # get deploy list from production & staging
     data = await helper_get_deploy_list(production_main_db_client=production_main_db_client, staging_main_db_client=staging_main_db_client)
 
@@ -204,46 +213,4 @@ async def _rollback(
         raise ForbiddenError("cannot rollback because Invalid request")
 
     # make response
-    return Response200(message="success").to_dict()
-
-
-@operation.get("/get_models")
-def _get_models(
-    query_params:GetModelQueryParams=Depends(),
-):
-    data = {
-        "modelList": MCP_MODEL_LIST if query_params.agent in MCP_LIST else MODEL_LIST
-    }
-    return Response200(
-        message="success",
-        data=data
-    ).to_dict()
-
-
-@operation.get("/get_current_model")
-@handle_errors()
-async def _get_current_model(
-    query_params: GetCurrentModelQueryParams = Depends(),
-    main_db_client: MongoClient = Depends(get_main_db),
-):
-    # query_params
-    category = query_params.agent
-
-    # get vendor and model
-    data = await helper_get_current_model(main_db_client, category)
-
-    # make response and return
-    return Response200(data=data).to_dict()
-
-
-@operation.post("/set_vendor_and_model")
-@handle_errors()
-async def _set_vendor_and_model(
-    payload: SetVendorAndModelPayload,
-    main_db_client: MongoClient = Depends(get_main_db),
-):
-    # insert & update
-    await helper_set_vendor_and_model(main_db_client=main_db_client, payload=payload)
-
-    # make response and return
     return Response200(message="success").to_dict()

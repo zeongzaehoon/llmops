@@ -12,6 +12,7 @@
   border: 1px solid $sol-gray-200;
   border-radius: $sol-radius-lg;
   background: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .newFields {
@@ -34,12 +35,13 @@
 
 .newInput {
   padding: $sol-space-2 $sol-space-3;
-  border: 1px solid $sol-gray-300;
+  border: 1px solid $sol-gray-200;
   border-radius: $sol-radius-md;
   background: #FFF;
   font-size: $sol-font-base;
   color: $sol-gray-900;
   outline: none;
+  transition: all $sol-duration-fast $sol-ease-default;
 
   &::placeholder {
     color: $sol-gray-400;
@@ -47,7 +49,7 @@
 
   &:focus {
     border-color: $sol-primary;
-    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
   }
 }
 
@@ -66,8 +68,8 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: $sol-space-4;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: $sol-space-5;
 }
 
 .card {
@@ -79,11 +81,13 @@
   background: #FFFFFF;
   border: 1px solid $sol-gray-200;
   border-radius: $sol-radius-lg;
-  transition: border-color $sol-duration-fast, box-shadow $sol-duration-fast;
+  transition: all $sol-duration-normal $sol-ease-default;
+  position: relative;
 
   &:hover {
-    border-color: $sol-gray-300;
-    box-shadow: $sol-shadow-md;
+    border-color: $sol-primary;
+    box-shadow: 0 4px 16px rgba(79, 70, 229, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+    transform: translateY(-1px);
   }
 }
 
@@ -93,13 +97,15 @@
 
 .agentName {
   font-size: $sol-font-lg;
-  font-weight: $sol-weight-semibold;
+  font-weight: $sol-weight-bold;
   color: $sol-gray-900;
+  letter-spacing: -0.01em;
 }
 
 .cardDescription {
   font-size: $sol-font-sm;
   color: $sol-gray-500;
+  line-height: $sol-leading-normal;
   @include line-clamp(2);
 }
 
@@ -131,4 +137,10 @@
 .notSet {
   font-size: $sol-font-sm;
   color: $sol-gray-300;
+}
+
+.muted {
+  font-size: $sol-font-xs;
+  color: $sol-gray-400;
+  letter-spacing: 0.01em;
 }

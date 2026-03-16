@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import Button from '@/components/inputs/Button'
 import { useAppStore } from '@/store/useAppStore'
 import { useModels, useCurrentModel } from '@/hooks/queries/useModels'
-import { setVendorAndModel } from '@/api/models'
+import { setVendorAndModel } from '@/api/agents'
 import styles from './ChatHeader.module.scss'
 
 const LANGUAGES = [

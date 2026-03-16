@@ -98,7 +98,6 @@ export default function ChatContainer() {
   const handleSubmitQuestion = useCallback(
     async (questionData) => {
       let questionMessage = questionData.alternativePrompt || questionData.prompt
-      let requiredFields = Object.keys(questionData)
 
       insertMessage('human', questionMessage)
       setReferenceItem(agent, questionData)
@@ -106,20 +105,7 @@ export default function ChatContainer() {
 
       setIsLoading(true)
 
-      let formData = new FormData()
-
-      for (let key of requiredFields) {
-        if (key in questionData) {
-          if (Array.isArray(questionData[key])) {
-            const newStr = JSON.stringify(questionData[key])
-            formData.append(key, newStr)
-          } else {
-            formData.append(key, questionData[key])
-          }
-        }
-      }
-
-      askQuestion(agent, formData, startAnswering, onAnswering, endAnswering)
+      askQuestion(agent, questionData, startAnswering, onAnswering, endAnswering)
     },
     [agent, insertMessage, setReferenceItem, startAnswering, onAnswering, endAnswering]
   )

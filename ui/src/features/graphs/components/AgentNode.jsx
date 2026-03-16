@@ -1,8 +1,14 @@
-import { useToolsets } from '@/hooks/queries/useToolsets'
+import { useMemo } from 'react'
+import { useAgents } from '@/hooks/queries/useAgents'
 import styles from './AgentNode.module.scss'
 
 export default function AgentNode({ agent, index, onChange, onRemove, removable = true }) {
-  const { data: toolsets = [] } = useToolsets()
+  const { data: registeredAgents = [] } = useAgents()
+
+  const selectedInfo = useMemo(
+    () => registeredAgents.find((a) => a.agent === agent.agent),
+    [registeredAgents, agent.agent],
+  )
 
   const handleChange = (field, value) => {
     onChange(index, { ...agent, [field]: value })
@@ -24,15 +30,22 @@ export default function AgentNode({ agent, index, onChange, onRemove, removable 
       <div className={styles.stepLabel}>Step {index + 1}</div>
 
       <div className={styles.field}>
-        <label className={styles.fieldLabel}>Name</label>
-        <input
-          type="text"
-          className={styles.input}
-          value={agent.name || ''}
-          onChange={(e) => handleChange('name', e.target.value)}
-          placeholder="Agent name"
-          maxLength={50}
-        />
+        <label className={styles.fieldLabel}>Agent</label>
+        <select
+          className={styles.select}
+          value={agent.agent || ''}
+          onChange={(e) => handleChange('agent', e.target.value)}
+        >
+          <option value="">Select agent...</option>
+          {registeredAgents.map((a) => (
+            <option key={a.id || a.agent} value={a.agent}>
+              {a.agent}
+            </option>
+          ))}
+        </select>
+        {selectedInfo?.description && (
+          <span className={styles.agentDesc}>{selectedInfo.description}</span>
+        )}
       </div>
 
       <div className={styles.field}>
@@ -45,22 +58,6 @@ export default function AgentNode({ agent, index, onChange, onRemove, removable 
           placeholder="e.g. Researcher"
           maxLength={100}
         />
-      </div>
-
-      <div className={styles.field}>
-        <label className={styles.fieldLabel}>Toolset</label>
-        <select
-          className={styles.select}
-          value={agent.toolset_name || ''}
-          onChange={(e) => handleChange('toolset_name', e.target.value)}
-        >
-          <option value="">None</option>
-          {toolsets.map((ts) => (
-            <option key={ts._id || ts.name} value={ts.name}>
-              {ts.name}
-            </option>
-          ))}
-        </select>
       </div>
     </div>
   )

@@ -41,7 +41,7 @@ export default function ToolsetPanel() {
   const handleDeploy = () => {
     if (!deployTarget) return
     deployToolset.mutate(
-      { name: deployTarget.name, agent: deployTarget.agent },
+      { id: deployTarget.id, agent: deployTarget.agent },
       {
         onSuccess: () => {
           toast.success(`Toolset "${deployTarget.name}" deployed`)
@@ -55,7 +55,7 @@ export default function ToolsetPanel() {
   const handleDelete = () => {
     if (!deleteTarget) return
     deleteToolset.mutate(
-      { name: deleteTarget.name, agent: deleteTarget.agent },
+      { id: deleteTarget.id },
       {
         onSuccess: () => {
           toast.success(`Toolset "${deleteTarget.name}" deleted`)
@@ -111,7 +111,7 @@ export default function ToolsetPanel() {
             key={toolset.name}
             toolset={toolset}
             onDeploy={setDeployTarget}
-            onEdit={(t) => navigate(`/admin/agents/${encodeURIComponent(t.agent)}/toolset/${encodeURIComponent(t.name)}`)}
+            onEdit={(t) => navigate(`/admin/agents/${encodeURIComponent(t.agent)}/toolset/${encodeURIComponent(t.id)}`)}
             onDelete={setDeleteTarget}
           />
         ))}

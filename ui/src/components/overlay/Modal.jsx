@@ -5,7 +5,7 @@ import styles from './Modal.module.scss'
  * Native <dialog> based modal.
  * @param {boolean} open
  * @param {function} onClose
- * @param {'sm'|'md'|'lg'} size
+ * @param {'sm'|'md'|'lg'|'xl'} size
  */
 export default function Modal({ open, onClose, size = 'md', children }) {
   const dialogRef = useRef(null)

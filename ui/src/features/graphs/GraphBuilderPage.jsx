@@ -10,7 +10,7 @@ import DebateSettings from './components/DebateSettings'
 import GraphTestPanel from './components/GraphTestPanel'
 import styles from './GraphBuilderPage.module.scss'
 
-const EMPTY_AGENT = { name: '', role: '', toolset_name: '' }
+const EMPTY_AGENT = { agent: '', role: '' }
 
 const TYPE_BADGE_MAP = {
   linear: 'info',
@@ -94,8 +94,8 @@ export default function GraphBuilderPage() {
       return
     }
 
-    if (agents.every((a) => !a.name.trim())) {
-      toast.error('At least one agent must have a name.')
+    if (agents.every((a) => !a.agent)) {
+      toast.error('At least one agent must be selected.')
       return
     }
 
@@ -103,7 +103,7 @@ export default function GraphBuilderPage() {
       name: name.trim(),
       description: description.trim(),
       type,
-      agents: agents.filter((a) => a.name.trim()),
+      agents: agents.filter((a) => a.agent),
       max_iterations: type === 'debate' ? maxIterations : undefined,
       moderator: type === 'debate' ? moderator : undefined,
     }
@@ -114,7 +114,7 @@ export default function GraphBuilderPage() {
         toast.success('Graph updated successfully.')
       } else {
         const res = await createGraph.mutateAsync(payload)
-        const newId = res?.data?.res?.data?.graph_id
+        const newId = res?.data?.data?.graph_id
         if (newId) setSavedGraphId(newId)
         toast.success('Graph created successfully.')
       }

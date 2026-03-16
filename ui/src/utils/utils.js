@@ -95,7 +95,7 @@ export const getS3Url = (pathKey, timestamp) => {
 export function getDomainForView(value) {
   let domain = value.trim().replace('http://', '').replace('https://', '')
 
-  if (domain.startsWith('xn--') > -1) {
+  if (domain.startsWith('xn--')) {
     return punycode.toUnicode(domain)
   } else {
     return value
@@ -120,5 +120,5 @@ function b64DecodeUnicode(str) {
 }
 
 export function parseJwt(token) {
-  return JSON.parse(b64DecodeUnicode(token.split('.')[1].replace('-', '+').replace('_', '/')))
+  return JSON.parse(b64DecodeUnicode(token.split('.')[1].replaceAll('-', '+').replaceAll('_', '/')))
 }

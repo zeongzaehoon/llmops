@@ -12,25 +12,46 @@
   max-height: 100%;
 
   &::backdrop {
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(2px);
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(8px);
   }
 
   &[open] {
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: modalFadeIn $sol-duration-normal $sol-ease-out;
+  }
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
 .content {
   background: #FFFFFF;
-  border: 1px solid $sol-gray-200;
+  border: 1px solid var(--sol-border-primary);
   border-radius: $sol-radius-xl;
-  box-shadow: $sol-shadow-xl;
-  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.14), 0 8px 16px rgba(0, 0, 0, 0.08);
   max-height: 85vh;
   overflow-y: auto;
+  animation: modalSlideUp $sol-duration-normal $sol-ease-out;
   @include scrollbar-thin;
 }
 
@@ -52,5 +73,12 @@
   .content {
     width: 100%;
     max-width: 720px;
+  }
+}
+
+.xl {
+  .content {
+    width: 100%;
+    max-width: 880px;
   }
 }

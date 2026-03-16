@@ -4,7 +4,7 @@ import { getMcpServers, enrollMcpServer, updateMcpServer, deleteMcpServer } from
 export function useServers() {
   return useQuery({
     queryKey: ['servers'],
-    queryFn: () => getMcpServers().then((r) => r.data?.res?.data || []),
+    queryFn: () => getMcpServers().then((r) => r.data?.data || []),
     staleTime: 30_000,
   })
 }

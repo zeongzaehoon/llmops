@@ -23,6 +23,18 @@ class InsertPromptPayload(BaseModel):
     memo: Optional[str] = Field(None)
 
 
+class GetPromptVersionsPayload(BaseModel):
+    agent: str = Field(...)
+    kind: str = Field(..., description="보통 'prompt'")
+    role_name: Optional[str] = Field(None, alias="roleName")
+
+
+class GetPromptDataPayload(BaseModel):
+    agent: str = Field(...)
+    kind: str = Field(..., description="보통 'prompt'")
+    id: str = Field(...)
+
+
 class GetVersionPayload(BaseModel):
     agent: str = Field(...)
     kind: str = Field(...)

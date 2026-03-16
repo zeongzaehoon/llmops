@@ -5,7 +5,7 @@ import PageHeader from '@/components/layout/PageHeader'
 import Button from '@/components/inputs/Button'
 import { useAuth } from '@/hooks/useAuth'
 import { useServers } from '@/hooks/queries/useServers'
-import { useToolsets } from '@/hooks/queries/useToolsets'
+import { useAgents } from '@/hooks/queries/useAgents'
 import { useGraphs } from '@/hooks/queries/useGraphs'
 import { useDeployList } from '@/hooks/queries/usePrompts'
 import StatCard from './components/StatCard'
@@ -26,30 +26,25 @@ export default function DashboardPage() {
 
   // Data queries
   const { data: servers = [], isLoading: serversLoading } = useServers()
-  const { data: toolsets = [], isLoading: toolsetsLoading } = useToolsets()
+  const { data: agents = [], isLoading: agentsLoading } = useAgents()
   const { data: graphs = [], isLoading: graphsLoading } = useGraphs()
   const { data: deployList = [], isLoading: deploysLoading } = useDeployList()
 
-  const isLoading = serversLoading || toolsetsLoading || graphsLoading || deploysLoading
+  const isLoading = serversLoading || agentsLoading || graphsLoading || deploysLoading
 
   // Refresh all queries
   const handleRefresh = useCallback(() => {
     queryClient.invalidateQueries({ queryKey: ['servers'] })
-    queryClient.invalidateQueries({ queryKey: ['toolsets'] })
+    queryClient.invalidateQueries({ queryKey: ['agents'] })
     queryClient.invalidateQueries({ queryKey: ['graphs'] })
     queryClient.invalidateQueries({ queryKey: ['deployList'] })
   }, [queryClient])
 
   // Compute stats
-  const liveServers = servers.filter(
-    (s) => s.status === 'live' || s.status === 'active'
-  ).length
+  const liveServers = servers.filter((s) => !!s.live).length
   const downServers = servers.length - liveServers
 
-  const activeToolsets = toolsets.filter(
-    (t) => t.status === 'active' || t.deployStatus === 'live'
-  ).length
-  const draftToolsets = toolsets.length - activeToolsets
+  const agentCount = agents.length
 
   const totalVersions = deployList.length
   const stagedVersions = deployList.filter(
@@ -89,15 +84,15 @@ export default function DashboardPage() {
           subtitle={`${liveServers} live${downServers > 0 ? ` \u00B7 ${downServers} down` : ''}`}
           color="var(--sol-brand-primary)"
           loading={serversLoading}
-          onClick={() => navigate('/admin/agents')}
+          onClick={() => navigate('/admin/servers')}
         />
         <StatCard
           icon={'\uD83E\uDD16'}
           title="Agents"
-          value={toolsets.length}
-          subtitle={`${activeToolsets} active${draftToolsets > 0 ? ` \u00B7 ${draftToolsets} draft` : ''}`}
+          value={agentCount}
+          subtitle={`${agentCount} registered`}
           color="var(--sol-brand-accent)"
-          loading={toolsetsLoading}
+          loading={agentsLoading}
           onClick={() => navigate('/admin/agents')}
         />
         <StatCard
@@ -120,7 +115,7 @@ export default function DashboardPage() {
         <div className={styles.sideCol}>
           <QuickStart
             hasServers={servers.length > 0}
-            hasToolsets={toolsets.length > 0}
+            hasToolsets={agents.length > 0}
             hasPlayground={false}
           />
         </div>

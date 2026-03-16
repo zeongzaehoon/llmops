@@ -1,12 +1,16 @@
 .container {
-  background: #FFFFFF;
-  border: 1px solid $sol-gray-200;
+  background: var(--sol-surface-primary);
+  border: 1px solid var(--sol-border-primary);
   border-radius: $sol-radius-lg;
   padding: $sol-space-6;
   display: flex;
   flex-direction: column;
-  gap: $sol-space-4;
-  box-shadow: $sol-shadow-sm;
+  gap: $sol-space-5;
+  transition: box-shadow $sol-duration-normal $sol-ease-default;
+
+  &:hover {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  }
 }
 
 .heading {
@@ -14,6 +18,7 @@
   font-weight: $sol-weight-semibold;
   color: $sol-gray-900;
   margin: 0;
+  letter-spacing: -0.01em;
 }
 
 .empty {
@@ -33,8 +38,8 @@
   display: flex;
   align-items: center;
   gap: $sol-space-3;
-  border-bottom: 1px solid $sol-gray-200;
   padding-bottom: $sol-space-3;
+  border-bottom: 1px solid $sol-gray-100;
 
   &:last-child {
     border-bottom: none;
@@ -60,7 +65,7 @@
 .barWrap {
   flex: 1;
   height: 6px;
-  background: $sol-gray-200;
+  background: $sol-gray-100;
   border-radius: $sol-radius-full;
   overflow: hidden;
 }
@@ -73,11 +78,11 @@
 }
 
 .barLive {
-  background: $sol-success;
+  background: linear-gradient(90deg, #16A34A, #22C55E);
 }
 
 .barDown {
-  background: $sol-gray-400;
+  background: $sol-gray-300;
 }
 
 .toolCount {
@@ -97,8 +102,20 @@
   height: 28px;
 }
 
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
 .shimmerBlock {
   height: 14px;
   border-radius: $sol-radius-sm;
-  background: $sol-gray-100;
+  background: linear-gradient(
+    90deg,
+    $sol-gray-100 25%,
+    $sol-gray-50 50%,
+    $sol-gray-100 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
 }

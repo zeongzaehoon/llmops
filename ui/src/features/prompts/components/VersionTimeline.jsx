@@ -1,17 +1,10 @@
 import { useState } from 'react'
-import Badge from '@/components/data-display/Badge'
 import styles from './VersionTimeline.module.scss'
 
 function formatDate(dateStr) {
   if (!dateStr) return ''
   const d = new Date(dateStr)
-  return d.toLocaleDateString('ko-KR', { month: '2-digit', day: '2-digit' })
-}
-
-function getDeployBadge(status) {
-  if (status === 'blue') return <Badge variant="production">Production</Badge>
-  if (status === 'green') return <Badge variant="staging">Staging</Badge>
-  return null
+  return d.toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })
 }
 
 export default function VersionTimeline({
@@ -21,10 +14,11 @@ export default function VersionTimeline({
   onShowDiff,
 }) {
   const [diffPair, setDiffPair] = useState(null)
+  const total = versions.length
 
-  const handleDiffClick = (oldVer, newVer) => {
-    setDiffPair({ old: oldVer, new: newVer })
-    onShowDiff?.(oldVer, newVer)
+  const handleDiffClick = (oldId, newId) => {
+    setDiffPair({ old: oldId, new: newId })
+    onShowDiff?.(oldId, newId)
   }
 
   return (
@@ -32,33 +26,28 @@ export default function VersionTimeline({
       <h3 className={styles.title}>Version Timeline</h3>
       <div className={styles.list}>
         {versions.map((v, idx) => {
-          const isActive = v.version === activeVersion
-          const borderClass = v.deployStatus === 'blue'
-            ? styles.borderBlue
-            : v.deployStatus === 'green'
-              ? styles.borderGreen
-              : ''
+          const isActive = v.id === activeVersion
+          const versionNumber = total - idx
 
           return (
-            <div key={v.version}>
+            <div key={v.id}>
               <button
-                className={`${styles.entry} ${isActive ? styles.active : ''} ${borderClass}`}
-                onClick={() => onSelectVersion(v.version)}
+                className={`${styles.entry} ${isActive ? styles.active : ''}`}
+                onClick={() => onSelectVersion(v.id)}
               >
                 <div className={styles.entryHeader}>
-                  <span className={styles.version}>v{v.version}</span>
-                  {getDeployBadge(v.deployStatus)}
+                  <span className={styles.version}>v{versionNumber}</span>
                 </div>
-                <span className={styles.date}>{formatDate(v.regDate)}</span>
+                <span className={styles.date}>{formatDate(v.date)}</span>
                 {v.memo && <p className={styles.memo}>{v.memo}</p>}
               </button>
 
               {idx < versions.length - 1 && (
                 <button
                   className={styles.diffLink}
-                  onClick={() => handleDiffClick(versions[idx + 1].version, v.version)}
+                  onClick={() => handleDiffClick(versions[idx + 1].id, v.id)}
                 >
-                  Show diff: v{versions[idx + 1].version} vs v{v.version}
+                  Show diff: v{total - idx - 1} vs v{versionNumber}
                 </button>
               )}
             </div>

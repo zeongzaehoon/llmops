@@ -32,6 +32,8 @@ services:
         condition: service_started
       solomon-vector:
         condition: service_healthy
+      solomon-mcp:
+        condition: service_started
     extends:
       file: env/api.yaml
       service: config_node
@@ -171,8 +173,6 @@ services:
       dockerfile: Dockerfile
     image: solomon-llm-proxy
     container_name: solomon-llm-proxy
-    ports:
-    - "9999:9999"
     volumes:
       - ./llm-proxy:/home/app
     extends:

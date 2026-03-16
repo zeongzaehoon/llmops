@@ -7,6 +7,7 @@ import Card from '@/components/layout/Card'
 import Badge from '@/components/data-display/Badge'
 import Button from '@/components/inputs/Button'
 import EmptyState from '@/components/feedback/EmptyState'
+import ConfirmDialog from '@/components/feedback/ConfirmDialog'
 
 // Model components
 import VendorSelector from '@/features/models/components/VendorSelector'
@@ -29,15 +30,12 @@ import DeployModal from '@/features/prompts/components/DeployModal'
 import DiffViewer from '@/features/prompts/components/DiffViewer'
 
 // Toolset components
-import { useToolsets, useDeleteToolset, useDeployToolset } from '@/hooks/queries/useToolsets'
-import { useServers } from '@/hooks/queries/useServers'
+import { useToolsetsByAgent, useDeleteToolset, useDeployToolset } from '@/hooks/queries/useToolsets'
 import ToolsetCard from './components/ToolsetCard'
-import ServerPanel from './components/ServerPanel'
-import ServerFormModal from './components/ServerFormModal'
 
 import styles from './AgentDetailPage.module.scss'
 
-const TAB_KEYS = { MODEL: 'model', PROMPT: 'prompt', TOOLSET: 'toolset', SERVERS: 'servers' }
+const TAB_KEYS = { MODEL: 'model', PROMPT: 'prompt', TOOLSET: 'toolset' }
 
 export default function AgentDetailPage() {
   const { agent } = useParams()
@@ -76,7 +74,7 @@ export default function AgentDetailPage() {
       return
     }
     setModelMutation.mutate(
-      { agent, vendor: selectedVendor, model: selectedModel },
+      { agent, company: selectedVendor, model: selectedModel },
       {
         onSuccess: () => toast.success('Model updated'),
         onError: () => toast.error('Failed to update model'),
@@ -88,13 +86,13 @@ export default function AgentDetailPage() {
   const { data: deployList = [] } = useDeployList()
   const { data: versions = [], isLoading: versionsLoading } = useVersions(agent)
   const sortedVersions = useMemo(
-    () => [...versions].sort((a, b) => (b.version ?? 0) - (a.version ?? 0)),
+    () => [...versions].sort((a, b) => new Date(b.date) - new Date(a.date)),
     [versions],
   )
-  const latestVersion = sortedVersions[0]?.version ?? null
-  const [selectedVersion, setSelectedVersion] = useState(null)
-  const currentVersion = selectedVersion ?? latestVersion
-  const { data: promptData } = usePromptData(agent, currentVersion)
+  const latestId = sortedVersions[0]?.id ?? null
+  const [selectedId, setSelectedId] = useState(null)
+  const currentId = selectedId ?? latestId
+  const { data: promptData } = usePromptData(agent, currentId)
 
   const saveMutation = useSavePrompt()
   const deployMutation = useDeploy()
@@ -106,7 +104,7 @@ export default function AgentDetailPage() {
   const handlePromptSave = useCallback(
     (data) => {
       saveMutation.mutate(data, {
-        onSuccess: () => { toast.success('Prompt saved as new version'); setSelectedVersion(null) },
+        onSuccess: () => { toast.success('Prompt saved as new version'); setSelectedId(null) },
         onError: () => toast.error('Failed to save prompt'),
       })
     },
@@ -117,12 +115,12 @@ export default function AgentDetailPage() {
     async (oldVer, newVer) => {
       try {
         const [oldRes, newRes] = await Promise.all([
-          import('@/api/prompts').then((m) => m.getData({ agent, kind: 'prompt', id: oldVer })),
-          import('@/api/prompts').then((m) => m.getData({ agent, kind: 'prompt', id: newVer })),
+          import('@/api/agents').then((m) => m.getPromptData({ agent, kind: 'prompt', id: oldVer })),
+          import('@/api/agents').then((m) => m.getPromptData({ agent, kind: 'prompt', id: newVer })),
         ])
         setDiffTexts({
-          old: oldRes.data?.res?.data?.prompt || '',
-          new: newRes.data?.res?.data?.prompt || '',
+          old: oldRes.data?.data?.prompt || '',
+          new: newRes.data?.data?.prompt || '',
         })
         setDiffState({ old: oldVer, new: newVer })
       } catch {
@@ -150,21 +148,40 @@ export default function AgentDetailPage() {
   const deployInfo = useMemo(() => deployList.find((d) => d.agent === agent) || {}, [deployList, agent])
 
   // ---- Toolset state ----
-  const { data: toolsets = [] } = useToolsets()
-  const agentToolsets = useMemo(() => toolsets.filter((t) => t.agent === agent), [toolsets, agent])
+  const { data: agentToolsets = [] } = useToolsetsByAgent(agent)
   const deleteToolset = useDeleteToolset()
-  const deployToolset = useDeployToolset()
+  const deployToolsetMutation = useDeployToolset()
   const [deleteTarget, setDeleteTarget] = useState(null)
   const [deployTarget, setDeployTarget] = useState(null)
 
-  // ---- Server state ----
-  const [serverModalOpen, setServerModalOpen] = useState(false)
+  const liveToolset = useMemo(() => agentToolsets.find((t) => t.isService), [agentToolsets])
+
+  const handleDeployToolset = () => {
+    if (!deployTarget) return
+    deployToolsetMutation.mutate(
+      { id: deployTarget.id, agent: deployTarget.agent },
+      {
+        onSuccess: () => { toast.success('Toolset deployed'); setDeployTarget(null) },
+        onError: () => toast.error('Failed to deploy'),
+      },
+    )
+  }
+
+  const handleDeleteToolset = () => {
+    if (!deleteTarget) return
+    deleteToolset.mutate(
+      { id: deleteTarget.id },
+      {
+        onSuccess: () => { toast.success('Toolset deleted'); setDeleteTarget(null) },
+        onError: () => toast.error('Failed to delete'),
+      },
+    )
+  }
 
   const tabItems = useMemo(() => [
     { key: TAB_KEYS.MODEL, label: 'Model' },
     { key: TAB_KEYS.PROMPT, label: 'Prompt' },
     { key: TAB_KEYS.TOOLSET, label: 'Toolset', count: agentToolsets.length },
-    { key: TAB_KEYS.SERVERS, label: 'Servers' },
   ], [agentToolsets.length])
 
   return (
@@ -194,7 +211,7 @@ export default function AgentDetailPage() {
                   <span className={styles.muted}>Loading...</span>
                 ) : currentModel ? (
                   <>
-                    <span className={styles.vendorName}>{currentModel.vendor}</span>
+                    <span className={styles.vendorName}>{currentModel.company}</span>
                     <span className={styles.separator}>/</span>
                     <span className={styles.modelName}>{currentModel.model}</span>
                   </>
@@ -260,8 +277,8 @@ export default function AgentDetailPage() {
                 ) : (
                   <VersionTimeline
                     versions={sortedVersions}
-                    activeVersion={currentVersion}
-                    onSelectVersion={setSelectedVersion}
+                    activeVersion={currentId}
+                    onSelectVersion={setSelectedId}
                     onShowDiff={handleShowDiff}
                   />
                 )}
@@ -271,7 +288,7 @@ export default function AgentDetailPage() {
                 <PromptEditor
                   promptData={promptData}
                   agent={agent}
-                  isLatest={currentVersion === latestVersion}
+                  isLatest={currentId === latestId}
                   onSave={handlePromptSave}
                   isSaving={saveMutation.isPending}
                 />
@@ -316,6 +333,25 @@ export default function AgentDetailPage() {
               </Button>
             </div>
 
+            {/* Live toolset summary */}
+            {liveToolset && (
+              <Card className={styles.liveToolsetCard}>
+                <div className={styles.liveToolsetHeader}>
+                  <Badge variant="live">LIVE</Badge>
+                  <span className={styles.liveToolsetName}>{liveToolset.name}</span>
+                </div>
+                {liveToolset.mcpInfo?.length > 0 && (
+                  <div className={styles.liveToolsetMeta}>
+                    {liveToolset.mcpInfo.map((info, idx) => (
+                      <span key={idx} className={styles.liveToolsetServer}>
+                        {info.serverName || info.serverId}: {info.tools?.length || 0} tools
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </Card>
+            )}
+
             {agentToolsets.length === 0 ? (
               <EmptyState
                 title="No toolsets"
@@ -329,84 +365,41 @@ export default function AgentDetailPage() {
               <div className={styles.toolsetGrid}>
                 {agentToolsets.map((toolset) => (
                   <ToolsetCard
-                    key={toolset.name}
+                    key={toolset.id}
                     toolset={toolset}
                     onDeploy={setDeployTarget}
-                    onEdit={(t) => navigate(`/admin/agents/${encodeURIComponent(agent)}/toolset/${encodeURIComponent(t.name)}`)}
+                    onEdit={(t) => navigate(`/admin/agents/${encodeURIComponent(agent)}/toolset/${encodeURIComponent(t.id)}`)}
                     onDelete={setDeleteTarget}
                   />
                 ))}
               </div>
             )}
 
-            {deployTarget && (
-              <ConfirmAction
-                title="Deploy Toolset"
-                description={`Deploy "${deployTarget.name}" to production?`}
-                onConfirm={() => {
-                  deployToolset.mutate(
-                    { name: deployTarget.name, agent: deployTarget.agent },
-                    {
-                      onSuccess: () => { toast.success('Toolset deployed'); setDeployTarget(null) },
-                      onError: () => toast.error('Failed to deploy'),
-                    },
-                  )
-                }}
-                onCancel={() => setDeployTarget(null)}
-              />
-            )}
+            <ConfirmDialog
+              open={!!deployTarget}
+              title="Deploy Toolset"
+              description={
+                liveToolset
+                  ? `Replace live toolset "${liveToolset.name}" with "${deployTarget?.name}"?`
+                  : `Deploy "${deployTarget?.name}" to production?`
+              }
+              confirmLabel="Deploy"
+              variant="primary"
+              onConfirm={handleDeployToolset}
+              onCancel={() => setDeployTarget(null)}
+            />
 
-            {deleteTarget && (
-              <ConfirmAction
-                title="Delete Toolset"
-                description={`Delete "${deleteTarget.name}"? This cannot be undone.`}
-                variant="danger"
-                onConfirm={() => {
-                  deleteToolset.mutate(
-                    { name: deleteTarget.name, agent: deleteTarget.agent },
-                    {
-                      onSuccess: () => { toast.success('Toolset deleted'); setDeleteTarget(null) },
-                      onError: () => toast.error('Failed to delete'),
-                    },
-                  )
-                }}
-                onCancel={() => setDeleteTarget(null)}
-              />
-            )}
-          </div>
-        )}
-
-        {/* ===== SERVERS TAB ===== */}
-        {activeTab === TAB_KEYS.SERVERS && (
-          <div className={styles.serversTab}>
-            <div className={styles.toolsetHeader}>
-              <Button size="sm" onClick={() => setServerModalOpen(true)}>
-                + Register Server
-              </Button>
-            </div>
-            <ServerPanel onRegister={() => setServerModalOpen(true)} />
-            <ServerFormModal
-              open={serverModalOpen}
-              onClose={() => setServerModalOpen(false)}
+            <ConfirmDialog
+              open={!!deleteTarget}
+              title="Delete Toolset"
+              description={`Delete "${deleteTarget?.name}"? This cannot be undone.`}
+              confirmLabel="Delete"
+              variant="danger"
+              onConfirm={handleDeleteToolset}
+              onCancel={() => setDeleteTarget(null)}
             />
           </div>
         )}
-      </div>
-    </div>
-  )
-}
-
-// Inline confirm dialog to avoid importing ConfirmDialog with complex logic
-function ConfirmAction({ title, description, variant = 'primary', onConfirm, onCancel }) {
-  return (
-    <div className={styles.confirmOverlay} onClick={onCancel}>
-      <div className={styles.confirmBox} onClick={(e) => e.stopPropagation()}>
-        <h4 className={styles.confirmTitle}>{title}</h4>
-        <p className={styles.confirmDesc}>{description}</p>
-        <div className={styles.confirmActions}>
-          <Button variant="secondary" size="sm" onClick={onCancel}>Cancel</Button>
-          <Button variant={variant} size="sm" onClick={onConfirm}>Confirm</Button>
-        </div>
       </div>
     </div>
   )

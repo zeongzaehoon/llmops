@@ -29,7 +29,7 @@ export default function ServerFormModal({ server, onClose, onSuccess }) {
       // For new server, we can't test via ID. For edit, use server ID.
       if (isEdit && server?.id) {
         const res = await getMCPServerTools({ id: server.id })
-        const tools = res.data?.res?.data || []
+        const tools = res.data?.data || []
         setTestTools(tools)
         setTestResult(tools.length > 0 ? 'success' : 'fail')
       } else {

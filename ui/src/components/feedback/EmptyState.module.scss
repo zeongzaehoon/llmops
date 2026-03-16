@@ -3,14 +3,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: $sol-space-12 $sol-space-6;
+  padding: $sol-space-16 $sol-space-6;
   text-align: center;
 }
 
 .icon {
-  font-size: 48px;
-  margin-bottom: $sol-space-4;
+  font-size: 56px;
+  margin-bottom: $sol-space-5;
   color: $sol-gray-300;
+  opacity: 0.6;
 }
 
 .title {
@@ -19,6 +20,7 @@
   font-weight: $sol-weight-semibold;
   color: $sol-gray-900;
   margin: 0 0 $sol-space-2;
+  letter-spacing: -0.01em;
 }
 
 .description {
@@ -31,16 +33,17 @@
 
 .actionBtn {
   padding: $sol-space-2 $sol-space-5;
-  background: $sol-primary;
-  color: #FFFFFF;
+  background: $sol-primary-light;
+  color: $sol-primary;
   border: none;
   border-radius: $sol-radius-md;
   font-size: $sol-font-base;
-  font-weight: $sol-weight-medium;
+  font-weight: $sol-weight-semibold;
   cursor: pointer;
-  transition: background $sol-duration-fast $sol-ease-default;
+  transition: all $sol-duration-fast $sol-ease-default;
 
   &:hover {
-    background: $sol-primary-dark;
+    background: rgba(79, 70, 229, 0.12);
+    color: $sol-primary-dark;
   }
 }

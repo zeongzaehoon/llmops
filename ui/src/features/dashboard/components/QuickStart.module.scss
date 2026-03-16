@@ -1,25 +1,40 @@
 .container {
-  background: #FFFFFF;
-  border: 1px solid $sol-gray-200;
+  background: var(--sol-surface-primary);
+  border: 1px solid var(--sol-border-primary);
   border-radius: $sol-radius-lg;
   padding: $sol-space-6;
   display: flex;
   flex-direction: column;
-  gap: $sol-space-4;
-  box-shadow: $sol-shadow-sm;
+  gap: $sol-space-5;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(180deg, rgba(79, 70, 229, 0.04) 0%, transparent 100%);
+    pointer-events: none;
+  }
 }
 
 .header {
   display: flex;
   flex-direction: column;
   gap: $sol-space-1;
+  position: relative;
 }
 
 .title {
-  font-size: $sol-font-base;
-  font-weight: $sol-weight-semibold;
+  font-size: $sol-font-lg;
+  font-weight: $sol-weight-bold;
   color: $sol-gray-900;
   margin: 0;
+  letter-spacing: -0.01em;
 }
 
 .subtitle {
@@ -38,14 +53,14 @@
 .progressBar {
   flex: 1;
   height: 6px;
-  background: $sol-gray-200;
+  background: $sol-gray-100;
   border-radius: $sol-radius-full;
   overflow: hidden;
 }
 
 .progressFill {
   height: 100%;
-  background: $sol-primary;
+  background: linear-gradient(90deg, #4F46E5, #818CF8);
   border-radius: $sol-radius-full;
   transition: width $sol-duration-normal $sol-ease-out;
 }
@@ -53,7 +68,7 @@
 .progressText {
   font-family: $sol-font-display;
   font-size: $sol-font-sm;
-  font-weight: $sol-weight-medium;
+  font-weight: $sol-weight-semibold;
   color: $sol-gray-600;
   flex-shrink: 0;
 }
@@ -62,7 +77,7 @@
 .steps {
   display: flex;
   flex-direction: column;
-  gap: $sol-space-2;
+  gap: $sol-space-1;
 }
 
 .step {
@@ -71,12 +86,7 @@
   gap: $sol-space-3;
   padding: $sol-space-3;
   border-radius: $sol-radius-md;
-  border-bottom: 1px solid $sol-gray-200;
   transition: background $sol-duration-fast $sol-ease-default;
-
-  &:last-child {
-    border-bottom: none;
-  }
 
   &:hover {
     background: $sol-gray-50;
@@ -89,15 +99,16 @@
 
 .stepCheck {
   @include flex-center;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: $sol-radius-full;
-  font-size: $sol-font-sm;
+  font-size: $sol-font-xs;
   font-weight: $sol-weight-semibold;
   flex-shrink: 0;
   background: $sol-gray-100;
-  border: 1px solid $sol-gray-200;
+  border: 1.5px solid $sol-gray-200;
   color: $sol-gray-600;
+  transition: all $sol-duration-fast $sol-ease-default;
 
   .stepDone & {
     background: $sol-primary;

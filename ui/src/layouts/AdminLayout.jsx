@@ -1,16 +1,26 @@
 import { Outlet, NavLink, useLocation } from 'react-router-dom'
+import {
+  LayoutDashboard,
+  Bot,
+  Server,
+  GitFork,
+  MessageSquare,
+  BookOpen,
+  Settings,
+} from 'lucide-react'
 import styles from './AdminLayout.module.scss'
 
 const NAV_ITEMS = [
-  { path: '/admin', label: 'Dashboard', icon: '🏠', end: true },
-  { path: '/admin/agents', label: 'Agents', icon: '🤖' },
-  { path: '/admin/graphs', label: 'Graphs', icon: '🔀' },
-  { path: '/admin/playground', label: 'Playground', icon: '💬' },
-  { path: '/admin/knowledge', label: 'Knowledge', icon: '📚' },
+  { path: '/admin', label: 'Dashboard', icon: LayoutDashboard, end: true },
+  { path: '/admin/agents', label: 'Agents', icon: Bot },
+  { path: '/admin/servers', label: 'Servers', icon: Server },
+  { path: '/admin/graphs', label: 'Graphs', icon: GitFork },
+  { path: '/admin/playground', label: 'Playground', icon: MessageSquare },
+  { path: '/admin/knowledge', label: 'Knowledge', icon: BookOpen },
 ]
 
 const BOTTOM_ITEMS = [
-  { path: '/admin/settings', label: 'Settings', icon: '⚙️' },
+  { path: '/admin/settings', label: 'Settings', icon: Settings },
 ]
 
 export default function AdminLayout() {
@@ -30,39 +40,49 @@ export default function AdminLayout() {
       {/* Sidebar */}
       <aside className={styles.sidebar}>
         <div className={styles.sidebarLogo}>
-          <span className={styles.logoIcon}>◆</span>
+          <div className={styles.logoMark}>S</div>
           <span className={styles.logoText}>Solomon</span>
         </div>
 
         <nav className={styles.sidebarNav}>
-          {NAV_ITEMS.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              end={item.end}
-              className={({ isActive }) =>
-                `${styles.navItem} ${isActive ? styles.active : ''}`
-              }
-            >
-              <span className={styles.navIcon}>{item.icon}</span>
-              <span className={styles.navLabel}>{item.label}</span>
-            </NavLink>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const Icon = item.icon
+            return (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                end={item.end}
+                className={({ isActive }) =>
+                  `${styles.navItem} ${isActive ? styles.active : ''}`
+                }
+              >
+                <span className={styles.navIcon}>
+                  <Icon size={18} strokeWidth={1.8} />
+                </span>
+                <span className={styles.navLabel}>{item.label}</span>
+              </NavLink>
+            )
+          })}
         </nav>
 
         <div className={styles.sidebarBottom}>
-          {BOTTOM_ITEMS.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={({ isActive }) =>
-                `${styles.navItem} ${isActive ? styles.active : ''}`
-              }
-            >
-              <span className={styles.navIcon}>{item.icon}</span>
-              <span className={styles.navLabel}>{item.label}</span>
-            </NavLink>
-          ))}
+          {BOTTOM_ITEMS.map((item) => {
+            const Icon = item.icon
+            return (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={({ isActive }) =>
+                  `${styles.navItem} ${isActive ? styles.active : ''}`
+                }
+              >
+                <span className={styles.navIcon}>
+                  <Icon size={18} strokeWidth={1.8} />
+                </span>
+                <span className={styles.navLabel}>{item.label}</span>
+              </NavLink>
+            )
+          })}
         </div>
       </aside>
 

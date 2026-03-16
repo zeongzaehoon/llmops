@@ -111,10 +111,7 @@ section {
 }
 
 body {
-  font-size: 14px;
   word-break: keep-all;
-  color: #1E293B;
-  background: #F8FAFC;
 }
 
 ol,
@@ -170,7 +167,7 @@ button {
 
 a {
   text-decoration: none;
-  color: #1E293B;
+  color: var(--sol-text-primary);
 }
 
 input:focus,
@@ -180,19 +177,19 @@ button:focus {
 }
 
 input::placeholder {
-  color: #AAAAAA;
+  color: var(--sol-text-disabled);
 }
 
 input:-ms-input-placeholder {
-  color: #AAAAAA !important;
+  color: var(--sol-text-disabled) !important;
 }
 
 textarea::placeholder {
-  color: #AAAAAA;
+  color: var(--sol-text-disabled);
 }
 
 textarea:-ms-input-placeholder {
-  color: #AAAAAA !important;
+  color: var(--sol-text-disabled) !important;
 }
 
 textarea,

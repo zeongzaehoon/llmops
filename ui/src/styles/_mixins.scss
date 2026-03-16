@@ -108,14 +108,9 @@ $bp-wide: 1280px;
 
 @mixin editorial-headline {
   font-family: $sol-font-display;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   line-height: 1.2;
   color: $sol-gray-900;
-}
-
-@mixin editorial-serif {
-  font-family: $sol-font-serif;
-  font-weight: 400;
 }
 
 @mixin editorial-rule {

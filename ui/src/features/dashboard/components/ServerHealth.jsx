@@ -42,7 +42,7 @@ export default function ServerHealth({ servers = [], loading = false }) {
       <div className={styles.list}>
         {servers.map((server) => {
           const toolCount = server.tools?.length || 0
-          const isLive = server.status === 'live' || server.status === 'active'
+          const isLive = !!server.live
           const pct = maxTools > 0 ? (toolCount / maxTools) * 100 : 0
 
           return (

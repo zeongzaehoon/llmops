@@ -2,7 +2,7 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import Button from '@/components/inputs/Button'
 import EmptyState from '@/components/feedback/EmptyState'
-import { updateMemo, downloadQuestion } from '@/api/prompts'
+import { updateMemo, downloadQuestion } from '@/api/agents'
 import styles from './HistoryDetail.module.scss'
 
 function formatDate(dateStr) {

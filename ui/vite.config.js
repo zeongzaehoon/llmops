@@ -16,7 +16,6 @@ export default defineConfig({
       scss: {
         api: 'modern',
         additionalData: `
-          @import "@/styles/_variable.scss";
           @import "@/styles/_tokens.scss";
           @import "@/styles/_mixins.scss";
         `

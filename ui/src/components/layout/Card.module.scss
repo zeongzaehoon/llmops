@@ -1,17 +1,18 @@
 .card {
-  background: #FFFFFF;
-  border: 1px solid $sol-gray-200;
+  background: var(--sol-surface-primary);
+  border: 1px solid var(--sol-border-primary);
   border-radius: $sol-radius-lg;
   padding: $sol-space-5;
-  transition: border-color $sol-duration-fast $sol-ease-default,
-              box-shadow $sol-duration-fast $sol-ease-default;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all $sol-duration-normal $sol-ease-default;
 }
 
 .hoverable {
   cursor: pointer;
 
   &:hover {
-    border-color: $sol-gray-300;
-    box-shadow: $sol-shadow-md;
+    border-color: var(--sol-border-strong);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
   }
 }

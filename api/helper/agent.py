@@ -75,6 +75,46 @@ async def helper_get_prompt(main_db_client:MongoClient, payload):
         raise Exception(e)
 
 
+async def helper_get_prompt_versions(main_db_client: MongoClient, payload: GetPromptVersionsPayload):
+    try:
+        sort = [("date", -1)]
+        filter = {'agent': payload.agent}
+        cursor = await main_db_client.find(collection=PROMPT_COLLECTION, filter=filter, sort=sort)
+        result = [
+            {
+                "id": str(c['_id']),
+                "date": c['date'],
+                "memo": c.get('memo', None),
+                "getResult": c.get('getResult', False),
+            } for c in cursor
+        ]
+        logging.info(f"[helper.agent.helper_get_prompt_versions] result: {result}")
+        return result
+    except DBError as e:
+        logging.info(f"[helper.agent.helper_get_prompt_versions] 🔴 Failed to get prompt versions: {e}")
+        raise DBError(e)
+    except Exception as e:
+        logging.info(f"[helper.agent.helper_get_prompt_versions] 🔴 Failed to get prompt versions: {e}")
+        raise Exception(e)
+
+
+async def helper_get_prompt_data(main_db_client: MongoClient, payload: GetPromptDataPayload):
+    try:
+        _id = payload.id
+        cursor = await main_db_client.find_one(collection=PROMPT_COLLECTION, filter={"_id": ObjectId(_id)})
+        if not cursor:
+            return None
+
+        return _reform_prompt_cursor(cursor=cursor)
+
+    except DBError as e:
+        logging.info(f"[helper.agent.helper_get_prompt_data] 🔴 Failed to get prompt data: {e}")
+        raise DBError(e)
+    except Exception as e:
+        logging.info(f"[helper.agent.helper_get_prompt_data] 🔴 Failed to get prompt data: {e}")
+        raise Exception(e)
+
+
 async def helper_get_data(main_db_client:MongoClient, vector_db_client:PineconeClient, payload):
     try:
         category = payload.agent

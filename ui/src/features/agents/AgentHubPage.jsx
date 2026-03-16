@@ -3,12 +3,10 @@ import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import PageHeader from '@/components/layout/PageHeader'
 import Card from '@/components/layout/Card'
-import Badge from '@/components/data-display/Badge'
 import Button from '@/components/inputs/Button'
-import StatusDot from '@/components/data-display/StatusDot'
 import SearchInput from '@/components/inputs/SearchInput'
 import EmptyState from '@/components/feedback/EmptyState'
-import { useAgents, useCreateAgent } from '@/hooks/queries/useToolsets'
+import { useAgents, useCreateAgent } from '@/hooks/queries/useAgents'
 import styles from './AgentHubPage.module.scss'
 
 export default function AgentHubPage() {
@@ -48,7 +46,7 @@ export default function AgentHubPage() {
           navigate(`/admin/agents/${encodeURIComponent(agent)}`)
         },
         onError: (err) => {
-          const msg = err?.response?.data?.res?.message || 'Failed to create agent'
+          const msg = err?.response?.data?.message || 'Failed to create agent'
           toast.error(msg)
         },
       },
@@ -134,49 +132,30 @@ export default function AgentHubPage() {
         />
       ) : (
         <div className={styles.grid}>
-          {filtered.map((a) => {
-            const hasToolset = a.mcpInfo?.length > 0
+          {filtered.map((a) => (
+            <Card
+              key={a.id}
+              hoverable
+              className={styles.card}
+              onClick={() => navigate(`/admin/agents/${encodeURIComponent(a.agent)}`)}
+            >
+              <div className={styles.cardHeader}>
+                <span className={styles.agentName}>{a.agent}</span>
+              </div>
 
-            return (
-              <Card
-                key={a.id}
-                hoverable
-                className={styles.card}
-                onClick={() => navigate(`/admin/agents/${encodeURIComponent(a.agent)}`)}
-              >
-                <div className={styles.cardHeader}>
-                  <span className={styles.agentName}>{a.name}</span>
-                  <StatusDot
-                    status={a.isService ? 'live' : 'offline'}
-                    label={a.isService ? 'Active' : 'Draft'}
-                  />
-                </div>
+              {a.description && (
+                <p className={styles.cardDescription}>{a.description}</p>
+              )}
 
-                {a.description && (
-                  <p className={styles.cardDescription}>{a.description}</p>
-                )}
-
+              {a.regDate && (
                 <div className={styles.statusGrid}>
-                  <div className={styles.statusRow}>
-                    <span className={styles.statusLabel}>ID</span>
-                    <span className={styles.statusValue}>
-                      <Badge variant="info">{a.agent}</Badge>
-                    </span>
-                  </div>
-                  <div className={styles.statusRow}>
-                    <span className={styles.statusLabel}>Toolset</span>
-                    <span className={styles.statusValue}>
-                      {hasToolset ? (
-                        <Badge variant="count">{a.mcpInfo.length}</Badge>
-                      ) : (
-                        <span className={styles.notSet}>—</span>
-                      )}
-                    </span>
-                  </div>
+                  <span className={styles.muted}>
+                    Created {new Date(a.regDate).toLocaleDateString()}
+                  </span>
                 </div>
-              </Card>
-            )
-          })}
+              )}
+            </Card>
+          ))}
         </div>
       )}
     </div>

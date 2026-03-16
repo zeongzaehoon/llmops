@@ -10,17 +10,18 @@ export default function ServerFormModal({ open, onClose, server = null }) {
   const createServer = useCreateServer()
   const updateServer = useUpdateServer()
 
-  const [form, setForm] = useState({ name: '', uri: '', description: '' })
+  const [form, setForm] = useState({ name: '', uri: '', token: '', description: '' })
 
   useEffect(() => {
     if (server) {
       setForm({
         name: server.name || '',
         uri: server.uri || '',
+        token: '',
         description: server.description || '',
       })
     } else {
-      setForm({ name: '', uri: '', description: '' })
+      setForm({ name: '', uri: '', token: '', description: '' })
     }
   }, [server, open])
 
@@ -37,11 +38,19 @@ export default function ServerFormModal({ open, onClose, server = null }) {
     }
 
     const mutation = isEdit ? updateServer : createServer
-    const payload = {
-      name: form.name.trim(),
-      uri: form.uri.trim(),
-      description: form.description.trim(),
-    }
+    const payload = isEdit
+      ? {
+          id: server.id,
+          name: form.name.trim(),
+          uri: form.uri.trim(),
+          description: form.description.trim(),
+        }
+      : {
+          name: form.name.trim(),
+          uri: form.uri.trim(),
+          token: form.token.trim(),
+          description: form.description.trim(),
+        }
 
     mutation.mutate(payload, {
       onSuccess: () => {
@@ -79,6 +88,17 @@ export default function ServerFormModal({ open, onClose, server = null }) {
             value={form.uri}
             onChange={handleChange('uri')}
             placeholder="stdio:// or sse://"
+          />
+        </label>
+
+        <label className={styles.field}>
+          <span className={styles.label}>Token</span>
+          <input
+            type="password"
+            className={styles.input}
+            value={form.token}
+            onChange={handleChange('token')}
+            placeholder={isEdit ? 'Leave blank to keep current token' : 'MCP server auth token'}
           />
         </label>
 

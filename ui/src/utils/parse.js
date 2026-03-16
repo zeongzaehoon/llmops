@@ -107,7 +107,6 @@ const setAdditionalHtmlProcess = ({ reportId, chartOption }) => {
               }
             }
 
-            console.log(labels)
             const isCompare = labels.every((item) => COMPARE_TABLE_COL_NAMES.includes(item))
 
             if (!isCompare) return
@@ -291,11 +290,7 @@ export const convertMarkdownToHtmlReport = (markDownText, reportOption = null) =
     processor = processor.use(setAdditionalHtmlProcess, { ...reportOption })
   }
 
-  const htmlText = processor.use(html).processSync(markDownText)
-
-  return new Promise((resolve) => {
-    resolve(htmlText)
-  })
+  return processor.use(html).processSync(markDownText)
 }
 
 export const formatDate = (dateStr, type = null) => {

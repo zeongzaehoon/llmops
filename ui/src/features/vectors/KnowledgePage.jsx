@@ -21,7 +21,7 @@ export default function KnowledgePage() {
     setLastAgent(params.agent)
     searchMutation.mutate(params, {
       onSuccess: (res) => {
-        const data = res.data?.res?.data || []
+        const data = res.data?.data || []
         setResults(data)
         if (data.length === 0) {
           toast('No matching vectors found')

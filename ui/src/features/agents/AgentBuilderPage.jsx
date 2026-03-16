@@ -1,12 +1,12 @@
 import { useState, useEffect, useMemo } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import PageHeader from '@/components/layout/PageHeader'
 import Card from '@/components/layout/Card'
 import Badge from '@/components/data-display/Badge'
 import Button from '@/components/inputs/Button'
 import { useServers } from '@/hooks/queries/useServers'
-import { useToolset, useCreateToolset, useUpdateToolset } from '@/hooks/queries/useToolsets'
+import { useToolsetsByAgent, useCreateToolset, useUpdateToolset } from '@/hooks/queries/useToolsets'
 import styles from './AgentBuilderPage.module.scss'
 
 export default function AgentBuilderPage() {
@@ -16,15 +16,23 @@ export default function AgentBuilderPage() {
   const backPath = `/admin/agents/${encodeURIComponent(agent)}`
 
   const { data: servers = [] } = useServers()
-  const { data: existingToolset } = useToolset(isEdit ? { name: decodeURIComponent(id) } : null)
+  const { data: toolsets = [] } = useToolsetsByAgent(agent)
   const createToolset = useCreateToolset()
   const updateToolset = useUpdateToolset()
+
+  // Find existing toolset by id for edit mode
+  const existingToolset = useMemo(() => {
+    if (!isEdit || !toolsets.length) return null
+    return toolsets.find((t) => t.id === id) || null
+  }, [isEdit, id, toolsets])
 
   const [form, setForm] = useState({
     name: '',
     description: '',
   })
+  // selectedTools: { serverId: Set(toolNames) }
   const [selectedTools, setSelectedTools] = useState({})
+  // expandedServers: { serverId: bool }
   const [expandedServers, setExpandedServers] = useState({})
 
   useEffect(() => {
@@ -34,36 +42,34 @@ export default function AgentBuilderPage() {
         description: existingToolset.description || '',
       })
       const toolMap = {}
-      existingToolset.mcp_servers?.forEach((srv) => {
-        toolMap[srv.name] = new Set(srv.tools || [])
+      const expanded = {}
+      existingToolset.mcpInfo?.forEach((info) => {
+        const key = typeof info.serverId === 'string' ? info.serverId : String(info.serverId)
+        toolMap[key] = new Set(info.tools || [])
+        expanded[key] = true
       })
       setSelectedTools(toolMap)
-
-      const expanded = {}
-      existingToolset.mcp_servers?.forEach((srv) => {
-        expanded[srv.name] = true
-      })
       setExpandedServers(expanded)
     }
   }, [existingToolset, isEdit])
 
-  const toggleServer = (serverName) => {
-    setExpandedServers((prev) => ({ ...prev, [serverName]: !prev[serverName] }))
+  const toggleServer = (serverId) => {
+    setExpandedServers((prev) => ({ ...prev, [serverId]: !prev[serverId] }))
   }
 
-  const toggleTool = (serverName, toolName) => {
+  const toggleTool = (serverId, toolName) => {
     setSelectedTools((prev) => {
       const next = { ...prev }
-      if (!next[serverName]) {
-        next[serverName] = new Set()
+      if (!next[serverId]) {
+        next[serverId] = new Set()
       } else {
-        next[serverName] = new Set(next[serverName])
+        next[serverId] = new Set(next[serverId])
       }
-      if (next[serverName].has(toolName)) {
-        next[serverName].delete(toolName)
-        if (next[serverName].size === 0) delete next[serverName]
+      if (next[serverId].has(toolName)) {
+        next[serverId].delete(toolName)
+        if (next[serverId].size === 0) delete next[serverId]
       } else {
-        next[serverName].add(toolName)
+        next[serverId].add(toolName)
       }
       return next
     })
@@ -73,20 +79,28 @@ export default function AgentBuilderPage() {
     setForm((prev) => ({ ...prev, [field]: e.target.value }))
   }
 
-  const mcpServersPayload = useMemo(() => {
+  // Build mcpInfo payload: [{serverId, tools}]
+  const mcpInfoPayload = useMemo(() => {
     return Object.entries(selectedTools)
       .filter(([, tools]) => tools.size > 0)
-      .map(([name, tools]) => ({ name, tools: Array.from(tools) }))
+      .map(([serverId, tools]) => ({ serverId, tools: Array.from(tools) }))
   }, [selectedTools])
 
-  const totalTools = mcpServersPayload.reduce((sum, s) => sum + s.tools.length, 0)
+  const totalTools = mcpInfoPayload.reduce((sum, s) => sum + s.tools.length, 0)
+
+  // Map serverId → server name for display
+  const serverNameMap = useMemo(() => {
+    const m = {}
+    servers.forEach((s) => { m[s.id] = s.name })
+    return m
+  }, [servers])
 
   const handleSave = () => {
     if (!form.name.trim()) {
       toast.error('Name is required')
       return
     }
-    if (mcpServersPayload.length === 0) {
+    if (mcpInfoPayload.length === 0) {
       toast.error('Select at least one tool')
       return
     }
@@ -95,7 +109,11 @@ export default function AgentBuilderPage() {
       name: form.name.trim(),
       description: form.description.trim(),
       agent,
-      mcp_servers: mcpServersPayload,
+      mcpInfo: mcpInfoPayload,
+    }
+
+    if (isEdit && existingToolset) {
+      payload.id = existingToolset.id
     }
 
     const mutation = isEdit ? updateToolset : createToolset
@@ -128,21 +146,25 @@ export default function AgentBuilderPage() {
           <h3 className={styles.sectionTitle}>Servers & Tools</h3>
           <div className={styles.serverList}>
             {servers.length === 0 && (
-              <p className={styles.emptyHint}>No servers available. Register a server first.</p>
+              <p className={styles.emptyHint}>
+                No servers available.{' '}
+                <Link to="/admin/servers" className={styles.link}>Register a server first</Link>
+              </p>
             )}
             {servers.map((server) => {
-              const isExpanded = expandedServers[server.name]
+              const isExpanded = expandedServers[server.id]
               const tools = server.tools || []
-              const selected = selectedTools[server.name] || new Set()
+              const selected = selectedTools[server.id] || new Set()
 
               return (
-                <div key={server.name} className={styles.serverGroup}>
+                <div key={server.id} className={styles.serverGroup}>
                   <button
                     className={styles.serverToggle}
-                    onClick={() => toggleServer(server.name)}
+                    onClick={() => toggleServer(server.id)}
                   >
                     <span className={styles.chevron}>{isExpanded ? '\u25BE' : '\u25B8'}</span>
                     <span className={styles.serverLabel}>{server.name}</span>
+                    {!server.live && <Badge variant="draft">Offline</Badge>}
                     {selected.size > 0 && (
                       <Badge variant="count">{selected.size}</Badge>
                     )}
@@ -153,14 +175,14 @@ export default function AgentBuilderPage() {
                         <span className={styles.noTools}>No tools available</span>
                       )}
                       {tools.map((tool) => {
-                        const toolName = typeof tool === 'string' ? tool : tool.name
+                        const toolName = typeof tool === 'string' ? tool : tool.toolName || tool.name
                         const isChecked = selected.has(toolName)
                         return (
                           <label key={toolName} className={styles.toolItem}>
                             <input
                               type="checkbox"
                               checked={isChecked}
-                              onChange={() => toggleTool(server.name, toolName)}
+                              onChange={() => toggleTool(server.id, toolName)}
                             />
                             <span className={styles.toolName}>{toolName}</span>
                           </label>
@@ -205,14 +227,16 @@ export default function AgentBuilderPage() {
             <h4 className={styles.summaryTitle}>
               Selected Tools <Badge variant="count">{totalTools}</Badge>
             </h4>
-            {mcpServersPayload.length === 0 ? (
+            {mcpInfoPayload.length === 0 ? (
               <p className={styles.emptyHint}>No tools selected yet</p>
             ) : (
-              mcpServersPayload.map((srv) => (
-                <div key={srv.name} className={styles.summaryServer}>
-                  <span className={styles.summaryServerName}>{srv.name}</span>
+              mcpInfoPayload.map((info) => (
+                <div key={info.serverId} className={styles.summaryServer}>
+                  <span className={styles.summaryServerName}>
+                    {serverNameMap[info.serverId] || info.serverId}
+                  </span>
                   <div className={styles.summaryTools}>
-                    {srv.tools.map((t) => (
+                    {info.tools.map((t) => (
                       <span key={t} className={styles.summaryTag}>{t}</span>
                     ))}
                   </div>
@@ -243,14 +267,16 @@ export default function AgentBuilderPage() {
             {form.description && (
               <p className={styles.previewDesc}>{form.description}</p>
             )}
-            {mcpServersPayload.length > 0 && (
+            {mcpInfoPayload.length > 0 && (
               <div className={styles.previewServers}>
                 <span className={styles.previewLabel}>Servers & Tools:</span>
-                {mcpServersPayload.map((srv) => (
-                  <div key={srv.name} className={styles.previewServerItem}>
-                    <span className={styles.previewServerName}>{srv.name}:</span>
+                {mcpInfoPayload.map((info) => (
+                  <div key={info.serverId} className={styles.previewServerItem}>
+                    <span className={styles.previewServerName}>
+                      {serverNameMap[info.serverId] || info.serverId}:
+                    </span>
                     <div className={styles.previewTools}>
-                      {srv.tools.map((t) => (
+                      {info.tools.map((t) => (
                         <span key={t} className={styles.previewToolTag}>{t}</span>
                       ))}
                     </div>

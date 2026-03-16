@@ -26,7 +26,7 @@ export default function AgentHub() {
   const fetchServers = useCallback(async () => {
     try {
       const res = await getMCPServerList()
-      const list = res.data?.res?.data || []
+      const list = res.data?.data || []
       setServers(list)
       updateMcpServerList(list)
     } catch (e) { console.error(e) }
@@ -36,7 +36,7 @@ export default function AgentHub() {
     setIsLoading(true)
     try {
       const res = await getMCPToolSetList({ agent })
-      setToolsets(res.data?.res?.data || [])
+      setToolsets(res.data?.data || [])
     } catch (e) { console.error(e) }
     finally { setIsLoading(false) }
   }, [])

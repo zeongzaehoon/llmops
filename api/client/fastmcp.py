@@ -117,17 +117,13 @@ class FastMCPClient:
                     "input_schema": tool.inputSchema if hasattr(tool, 'inputSchema') else {}
                 })
 
+            # 성공 시에만 정리. 실패 시 disconnect()는 호출하지 않음 (anyio cancel scope 오류 방지)
+            await self.disconnect()
             return tools
 
         except (Exception, asyncio.CancelledError) as e:
             logging.error(f"[FastMCPClient.list_tools] ERROR: {e}")
             return False
-
-        finally:
-            try:
-                await self.disconnect()
-            except (Exception, asyncio.CancelledError):
-                pass
 
 
     async def call_tool(self, tool_name: str, arguments: dict):

@@ -6,11 +6,11 @@ const STEPS = [
   {
     id: 'server',
     label: 'Register an MCP Server',
-    path: '/admin/agents',
+    path: '/admin/servers',
   },
   {
     id: 'toolset',
-    label: 'Build an Agent Toolset',
+    label: 'Create an Agent',
     path: '/admin/agents',
   },
   {
