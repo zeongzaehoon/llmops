@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 
 # fast-api
 from fastapi import FastAPI, Depends, Request
-from fastapi.responses import JSONResponse, ORJSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
@@ -22,7 +21,7 @@ from auth.jwt import create_token
 from auth.dependencies import get_refresh_user
 from client.slack import SlackClient
 from utils.constants import STAGING, PRODUCTION
-from utils.response import Response200
+from response import Res200, TokenRes
 from client.mongo import MongoClient, ProductionMongoClient
 from client.redis import RedisClient
 from client.milvus import MilvusClient
@@ -103,9 +102,8 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="Solomon API",
     version="1.0.0",
-    description="LLM service API by 4grit",
+    description="LLM service API",
     root_path="/solomon-api",
-    default_response_class=ORJSONResponse,
     lifespan=lifespan
 )
 app.include_router(agent)
@@ -150,56 +148,51 @@ app.add_middleware(
 
 
 # 엔드포인트 정의
-@app.get("/check")
+@app.get("/check", response_model=Res200)
 async def check():
     """CHECK SERVER IS LIVING"""
-    return Response200(message="I AM LIVING").to_orjson()
+    return Res200(message="I AM LIVING")
 
 
-@app.get("/hello")
+@app.get("/get_token", response_model=TokenRes)
 @handle_errors()
-async def hello(
+async def get_token(
     session_key: str = Depends(get_optional_user)
 ):
     """CREATE SESSION"""
     if not session_key:
         session_key = str(uuid4())
     access_token, refresh_token = create_token(session_key)
-    return ORJSONResponse(
-        content={
-            "res": {"code": 200, "message": "hello", "data": session_key},
-            "access_token": access_token,
-            "refresh_token": refresh_token
-        }
+    return TokenRes(
+        res=Res200(message="access"),
+        access_token=access_token,
+        refresh_token=refresh_token
     )
 
 
-@app.get("/get_new_session_token")
+@app.get("/get_new_session_token", response_model=TokenRes)
 @handle_errors()
 async def get_new_token():
     session_key = str(uuid4())
     access_token, refresh_token = create_token(session_key)
-    return ORJSONResponse(
-        content={
-            "res": {"code": 200, "message": "hello", "data": session_key},
-            "access_token": access_token,
-            "refresh_token": refresh_token
-        }
+    return TokenRes(
+        res=Res200(message="access"),
+        access_token=access_token,
+        refresh_token=refresh_token
     )
 
 
-@app.get("/refresh")
+@app.get("/refresh", response_model=TokenRes)
 @handle_errors()
 async def refresh(
     session_key: str = Depends(get_refresh_user)
 ):
     """REFRESH SESSION"""
-    access_token, _ = create_token(session_key)
-    return ORJSONResponse(
-        content={
-            "res": {"code": 200, "message": "refresh", "data": ""},
-            "access_token": access_token
-        }
+    access_token, refresh_token = create_token(session_key)
+    return TokenRes(
+        res=Res200(message="refresh"),
+        access_token=access_token,
+        refresh_token=refresh_token
     )
 
 

@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, File, UploadFile
-from fastapi.responses import JSONResponse
 from auth.jwt import create_token
 
 from payload.question import *
@@ -15,7 +14,8 @@ from client import get_main_db, get_memory_db, get_s3, get_llm_proxy, get_messag
 
 from utils.date import *
 from utils.error import *
-from utils.response import *
+from utils.streaming import get_response_queue
+from response import Res200, Res400, Res500, TokenRes
 
 
 from module.llm.activate import RunLLM as RunLLMProxy
@@ -27,7 +27,7 @@ question = APIRouter(prefix="/question", tags=["Question"])
 
 
 
-@question.post("/ask")
+@question.post("/ask", response_model=Res200)
 @handle_errors()
 async def _ask(
     payload: askPayload,
@@ -57,7 +57,7 @@ async def _ask(
                 filter={"_id": ObjectId(payload.graph_id)}
             )
             if not graph_doc:
-                return Response400(message="Multi agent graph not found").to_orjson()
+                return Res400(message="Multi agent graph not found").to_response()
 
             multi_agent_args = {
                 "server_stage": server_stage,
@@ -88,7 +88,7 @@ async def _ask(
                 answer = ""
                 async for chunk in generator:
                     answer += chunk
-                return Response200(data=answer)
+                return Res200(data=answer)
 
         # make args
         if payload.is_mcp:
@@ -138,7 +138,7 @@ async def _ask(
             generator = make_error_message(streaming=payload.streaming, **args["error"])
             return await streaming_response(response=response, generator=generator, ask_id=args.get("ask_id"), is_error=True)
         elif args.get("error") and not payload.streaming:
-            return Response500(data=make_error_message(streaming=payload.streaming, **args["error"]))
+            return Res500(data=make_error_message(streaming=payload.streaming, **args["error"])).to_response()
 
         # run LLM
         logging.info(f"session_key: {session_key} | ==================== START Analysis agent: {args.get('agent')}")
@@ -158,7 +158,7 @@ async def _ask(
             answer = str()
             async for chunk in llm_generator.activate():
                 answer += chunk
-            return Response200(data=answer)
+            return Res200(data=answer)
 
     # asyncio tasks에서 에러가 발생했을 때, handle error decorator에서 except 처리 불가
     except Exception as e:
@@ -175,10 +175,10 @@ async def _ask(
             response=response,
             generator=make_error_message(streaming=payload.streaming, agent=payload.agent, **{"LLMError": True}),
             is_error=True
-        ) if payload.streaming else Response500(data=await make_error_message(**{"LLMError": True}))
+        ) if payload.streaming else Res500(data=await make_error_message(**{"LLMError": True})).to_response()
 
 
-@question.post("/set_report")
+@question.post("/set_report", response_model=Res200)
 async def _set_report(
     payload: setReportPayload,
     session_key: str = Depends(get_current_user),
@@ -202,12 +202,10 @@ async def _set_report(
     )
 
     # make response and return
-    return Response200(
-        message="success to set report"
-    ).to_orjson()
+    return Res200(message="success to set report")
 
 
-@question.post("/insert_init_reportchat_row")
+@question.post("/insert_init_reportchat_row", response_model=Res200)
 @handle_errors()
 async def _insert_init_reportchat_row(
     payload: insertInitReportchatRowPayload,
@@ -218,13 +216,11 @@ async def _insert_init_reportchat_row(
     await helper_insert_init_reportchat_row(main_db_client=main_db_client, session_key=session_key, payload=payload)
 
     # make response
-    return Response200(
-        message="success to insert init reportchat row"
-    ).to_orjson()
+    return Res200(message="success to insert init reportchat row")
 
 
 
-@question.get("/reset_report")
+@question.get("/reset_report", response_model=TokenRes)
 @handle_errors()
 async def _reset_report(
     session_key: str = Depends(get_current_user),
@@ -241,16 +237,14 @@ async def _reset_report(
     )
 
     # make response
-    return JSONResponse(
-        content={
-            "res": {"code": 200, "message": "success to reset report", "data": new_session_key},
-            "access_token": access_token,
-            "refresh_token": refresh_token
-        }
+    return TokenRes(
+        res=Res200(message="success to reset report", data=new_session_key),
+        access_token=access_token,
+        refresh_token=refresh_token
     )
 
 
-@question.get("/remove_session_key")
+@question.get("/remove_session_key", response_model=Res200)
 async def _remove_session_key(
     session_key: str = Depends(get_optional_user),
     memory_db_client: RedisClient = Depends(get_memory_db),
@@ -262,10 +256,10 @@ async def _remove_session_key(
         await memory_db_client.delete(key=f"rc_id:{session_key}")
 
     # make response
-    return Response200(message="success to remove session key").to_orjson()
+    return Res200(message="success to remove session key")
 
 
-@question.route("/get_reportchat_datas", methods=['POST'])
+@question.post("/get_reportchat_datas", response_model=Res200)
 async def _get_reportchat_data(
     payload: getReportChatDatasPayload,
     main_db_client: MongoClient = Depends(get_main_db),
@@ -274,13 +268,13 @@ async def _get_reportchat_data(
     data = await helper_get_reportchat_data(main_db_client=main_db_client, payload=payload)
 
     # make response
-    return Response200(
+    return Res200(
         message="success to get reportchat datas",
         data=data
-    ).to_orjson()
+    )
 
 
-@question.get("/get_current_set_report")
+@question.get("/get_current_set_report", response_model=Res200)
 async def _get_current_set_report(
     session_key: str = Depends(get_current_user),
     memory_db_client: RedisClient = Depends(get_memory_db),
@@ -289,13 +283,13 @@ async def _get_current_set_report(
     data = await memory_db_client.get(key=f"rc:{session_key}")
 
     # make response
-    return Response200(
+    return Res200(
         message="success to get current set report",
         data=data
-    ).to_orjson()
+    )
 
 
-@question.get("/get_current_set_report_id")
+@question.get("/get_current_set_report_id", response_model=Res200)
 async def _get_current_set_report_id(
     session_key: str = Depends(get_current_user),
     memory_db_client: RedisClient = Depends(get_memory_db),
@@ -304,13 +298,13 @@ async def _get_current_set_report_id(
     data = await memory_db_client.get(key=f"rc_id:{session_key}")
 
     # make response
-    return Response200(
+    return Res200(
         message="success",
         data=data
-    ).to_orjson()
+    )
 
 
-@question.get("/model")
+@question.get("/model", response_model=Res200)
 @handle_errors()
 async def _model(
     query_params: GetModelQueryParams = Depends(),
@@ -336,13 +330,13 @@ async def _model(
     }
 
     # return response
-    return Response200(
+    return Res200(
         message="success",
         data=data
-    ).to_orjson()
+    )
 
 
-@question.post("/refer")
+@question.post("/refer", response_model=Res200)
 async def _refer(
     payload: referPayload,
     session_key: str = Depends(get_optional_user),
@@ -374,13 +368,13 @@ async def _refer(
         retrieval_data = await RunLLMProxy.get_retrieval_data_for_view(llm_proxy_client=llm_proxy_client, vector_db_client=vector_db_client, question=payload.question, service=service)
 
     # make response and return
-    return Response200(
+    return Res200(
         message="success",
         data={"refer":retrieval_data}
-    ).to_orjson()
+    )
 
 
-@question.get("/get")
+@question.get("/get", response_model=Res200)
 async def _get_report_chat_datas(
     session_key: str = Depends(get_optional_user),
     memory_db_client: RedisClient = Depends(get_memory_db),
@@ -389,13 +383,13 @@ async def _get_report_chat_datas(
     data = [] if not session_key else await helper_get_conversation_history_from_redis(memory_db_client=memory_db_client, session_key=session_key)
 
     # make response
-    return Response200(
+    return Res200(
         message="success",
         data=data
-    ).to_orjson()
+    )
 
 
-@question.post("/update_rating")
+@question.post("/update_rating", response_model=Res200)
 @handle_errors()
 async def _update_rating(
     payload: updateRatingPayload,
@@ -414,12 +408,10 @@ async def _update_rating(
         await helper_update_rating_to_memory_db(memory_db_client=memory_db_client, session_key=session_key, rating=rating, ask_id=ask_id, history_data=history_data)
 
     # make response
-    return Response200(
-        message="success"
-    ).to_orjson()
+    return Res200(message="success")
 
 
-@question.get("/get_token_for_reportchat")
+@question.get("/get_token_for_reportchat", response_model=Res200)
 @handle_errors()
 async def _get_token_for_reportchat(
     Id: str,
@@ -430,13 +422,13 @@ async def _get_token_for_reportchat(
     data = await helper_get_token_for_docent(main_db_client=main_db_client, Id=Id)
 
     # make response
-    return Response200(
+    return Res200(
         message="success",
         data=data
-    ).to_orjson()
+    )
 
 
-@question.get("/checking_schema_simple")
+@question.get("/checking_schema_simple", response_model=Res200)
 @handle_errors()
 async def checking_schema_simple(
     session_key: str = Depends(get_current_user),
@@ -457,4 +449,4 @@ async def checking_schema_simple(
 
     # make result and response
     data = {"is_success": is_success}
-    return Response200(data=data).to_orjson()
+    return Res200(data=data)

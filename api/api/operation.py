@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends
 from auth.dependencies import get_optional_user
 from helper.operation import *
 from utils.error import *
-from utils.response import *
+from response import Res200, Res500
 from client.mongo import MongoClient, ProductionMongoClient
 from client.pinecone import PineconeClient
 from client import get_main_db, get_production_db
@@ -15,7 +15,7 @@ operation = APIRouter(prefix="/operation", tags=["Operation"])
 
 
 
-@operation.post("/get_version")
+@operation.post("/get_version", response_model=Res200)
 @handle_errors()
 async def _get_version(
     payload: getVersionPayload,
@@ -25,13 +25,13 @@ async def _get_version(
     data = await helper_get_version(main_db_client=main_db_client, payload=payload)
 
     # make response
-    return Response200(
+    return Res200(
         message="success",
         data=data
-    ).to_dict()
+    )
 
 
-@operation.post("/get_data")
+@operation.post("/get_data", response_model=Res200)
 @handle_errors()
 async def _get_data(
     payload: getDataPayload,
@@ -48,10 +48,10 @@ async def _get_data(
     data = await helper_get_data(main_db_client=main_db_client, vector_db_client=vector_db_client, payload=payload)
 
     # make response
-    return Response200(
+    return Res200(
         message="success",
         data=data
-    ).to_dict()
+    )
 
 
 @operation.post("/download_question")
@@ -70,7 +70,7 @@ async def _download_question(
     return response
 
 
-@operation.post("/update_memo")
+@operation.post("/update_memo", response_model=Res200)
 @handle_errors()
 async def _update_memo(
     payload: updateMemoPayload,
@@ -80,9 +80,7 @@ async def _update_memo(
     await helper_update_memo(main_db_client=main_db_client, payload=payload)
 
     # make response and return response
-    return Response200(
-        message="success"
-    ).to_dict()
+    return Res200(message="success")
 
 
 @operation.post("/get_token_size")
@@ -92,7 +90,7 @@ async def _get_token_size(
 ):
     content = payload.prompt
     if not content:
-        return Response500(message="THERE ARE NOT CONTENT").to_dict()
+        return Res500(message="THERE ARE NOT CONTENT").to_response()
     model_name = payload.model or TIKTOKEN_MODEL_LIST[0]
     try:
         encoding = tiktoken.encoding_for_model(model_name)
@@ -106,7 +104,7 @@ async def _get_token_size(
 
 
 # for EAGLE
-@operation.post("/update_not_satisfy")
+@operation.post("/update_not_satisfy", response_model=Res200)
 @handle_errors()
 async def _update_not_satisfy(
     payload: updateNotSatisfyPayload,
@@ -127,13 +125,11 @@ async def _update_not_satisfy(
     )
 
     # make response and return response
-    return Response200(
-        message="success"
-    ).to_dict()
+    return Res200(message="success")
 
 
 
-@operation.post("/deploy")
+@operation.post("/deploy", response_model=Res200)
 @handle_errors()
 async def _deploy(
     payload: deployPayload,
@@ -163,31 +159,29 @@ async def _deploy(
     )
 
     # make response and return response
-    return Response200(
-        message="success"
-    ).to_dict()
+    return Res200(message="success")
 
 
-@operation.get("/get_deploy_list")
+@operation.get("/get_deploy_list", response_model=Res200)
 @handle_errors()
 async def _get_deploy_list(
     staging_main_db_client: MongoClient = Depends(get_main_db),
     production_main_db_client: ProductionMongoClient = Depends(get_production_db),
 ):
     if os.getenv("SERVER_STAGE", "development") != STAGING:
-        return Response200(message="success", data=[]).to_dict()
-    
+        return Res200(message="success", data=[])
+
     # get deploy list from production & staging
     data = await helper_get_deploy_list(production_main_db_client=production_main_db_client, staging_main_db_client=staging_main_db_client)
 
     # make response
-    return Response200(
+    return Res200(
         message="success",
         data=data
-    ).to_dict()
+    )
 
 
-@operation.post("/rollback")
+@operation.post("/rollback", response_model=Res200)
 @handle_errors()
 async def _rollback(
     payload: rollbackPayload,
@@ -213,4 +207,4 @@ async def _rollback(
         raise ForbiddenError("cannot rollback because Invalid request")
 
     # make response
-    return Response200(message="success").to_dict()
+    return Res200(message="success")

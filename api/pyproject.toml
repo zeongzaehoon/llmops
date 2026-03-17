@@ -5,11 +5,11 @@ description = "Solomon LLM Service API by 4grit"
 requires-python = ">=3.12"
 dependencies = [
     # Web Framework
-    "fastapi>=0.116.1",
+    "fastapi>=0.131.0",
     "uvicorn>=0.23.1",
     "gunicorn>=23.0.0",
     "httptools>=0.6.4",
-    "pydantic>=2.11.7",
+    "pydantic>=2.12.5",
     "python-multipart>=0.0.9",
 
     # HTTP & Serialization

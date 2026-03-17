@@ -1,11 +1,11 @@
 from functools import wraps
 import logging
-import time
 
 from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 
 from .constants import *
-from .response import *
+from response import Res400, Res401, Res403, Res500
 
 
 SUCCESS_CODE = 200
@@ -23,42 +23,42 @@ def handle_errors():
             # Token Error
             except OverTokenError as e:
                 logging.error(f"[OverTokenError] ::: {e}")
-                return Response500(message="[OverTokenError] ::: Over Token Size")
+                return Res500(message="[OverTokenError] ::: Over Token Size").to_response()
 
             # client Error
             except AWSError as e:
                 logging.error(f"[AWSError] ::: {e}")
-                return Response500(message="[AWSError] ::: AWS Error")
+                return Res500(message="[AWSError] ::: AWS Error").to_response()
 
             except VectorDBError as e:
                 logging.error(f"[VectorDBError] ::: {e}")
-                return Response500(message="[VectorDBError] ::: Vector DB Error")
+                return Res500(message="[VectorDBError] ::: Vector DB Error").to_response()
 
             except DBError as e:
                 logging.error(f"[DBError] ::: {e}")
-                return Response500(message="[DBError] ::: DB Error")
+                return Res500(message="[DBError] ::: DB Error").to_response()
 
             except MemoryDBError as e:
                 logging.error(f"[MemoryDBError] ::: {e}")
-                return Response500(message="[MemoryDBError] ::: Memory DB Error")
+                return Res500(message="[MemoryDBError] ::: Memory DB Error").to_response()
 
             # Token Error
             except TokenError as e:
                 logging.error(f"[TokenError] ::: {e}")
-                return ORJSONResponse(content="[TokenError] ::: Token Error", status_code=401)
+                return Res401(message="[TokenError] ::: Token Error").to_response()
 
             # route side Error
             except ForbiddenError as e:
                 logging.error(f"[ForbiddenError] ::: {e}")
-                return Response403(message="[ForbiddenError] ::: Forbidden Error")
+                return Res403(message="[ForbiddenError] ::: Forbidden Error").to_response()
 
             except DataError as e:
                 logging.error(f"[DataError] ::: {e}")
-                return Response400(message="[DataError] ::: Data Error")
+                return Res400(message="[DataError] ::: Data Error").to_response()
 
             except Exception as e:
                 logging.error(f"[Exception] ::: {e}")
-                return Response500(message="[Exception] ::: Exception")
+                return Res500(message="[Exception] ::: Exception").to_response()
         return decorated_function
     return decorator
 
@@ -180,13 +180,9 @@ class TokenError(AppError):
 def token_exception_handler(app: FastAPI):
     @app.exception_handler(TokenError)
     async def token_error_handler(request: Request, exc: TokenError):
-        return ORJSONResponse(
+        return JSONResponse(
             status_code=401,
             content={
-                "res": {
-                    "code": 401,
-                    "message": str(exc),
-                    "data": None
-                }
+                "res": Res401(message=str(exc)).model_dump()
             }
         )

@@ -9,7 +9,7 @@ from helper.agent import *
 from payload.agent import GetPromptVersionsPayload, GetPromptDataPayload
 from helper.agent import helper_get_prompt_versions, helper_get_prompt_data
 from utils.error import *
-from utils.response import *
+from response import Res200, Res400, Res500
 from client.mongo import MongoClient, ProductionMongoClient
 from client.redis import RedisClient
 from client.pinecone import PineconeClient
@@ -23,7 +23,7 @@ agent = APIRouter(prefix="/agent", tags=["Agent"])
 
 
 
-@agent.get("/get_models")
+@agent.get("/get_models", response_model=Res200)
 @handle_errors()
 async def _get_models(
     query_params:GetModelQueryParams=Depends(),
@@ -31,13 +31,13 @@ async def _get_models(
     data = {
         "modelList": MODEL_LIST
     }
-    return Response200(
+    return Res200(
         message="success",
         data=data
-    ).to_dict()
+    )
 
 
-@agent.get("/get_current_model")
+@agent.get("/get_current_model", response_model=Res200)
 @handle_errors()
 async def _get_current_model(
     query_params: GetCurrentModelQueryParams = Depends(),
@@ -49,10 +49,10 @@ async def _get_current_model(
     data = await helper_get_current_model(main_db_client, query_params.agent)
 
     # make response and return
-    return Response200(data=data).to_dict()
+    return Res200(data=data)
 
 
-@agent.post("/set_vendor_and_model")
+@agent.post("/set_vendor_and_model", response_model=Res200)
 @handle_errors()
 async def _set_vendor_and_model(
     payload: SetVendorAndModelPayload,
@@ -62,10 +62,10 @@ async def _set_vendor_and_model(
     await helper_set_vendor_and_model(main_db_client=main_db_client, payload=payload)
 
     # make response and return
-    return Response200(message="success").to_dict()
+    return Res200(message="success")
 
 
-@agent.post("/insert_prompt")
+@agent.post("/insert_prompt", response_model=Res200)
 @handle_errors()
 async def _insert_prompt(
     payload: InsertPromptPayload,
@@ -75,12 +75,10 @@ async def _insert_prompt(
     await helper_insert_prompt_data(main_db_client=main_db_client, payload=payload)
 
     # make response and return response
-    return Response200(
-        message="success"
-    ).to_dict()
+    return Res200(message="success")
 
 
-@agent.post("/get_prompt_versions")
+@agent.post("/get_prompt_versions", response_model=Res200)
 @handle_errors()
 async def _get_prompt_versions(
     payload: GetPromptVersionsPayload,
@@ -88,10 +86,10 @@ async def _get_prompt_versions(
 ):
     # business logic
     data = await helper_get_prompt_versions(main_db_client=main_db_client, payload=payload)
-    return Response200(data=data).to_dict()
+    return Res200(data=data)
 
 
-@agent.post("/get_prompt_data")
+@agent.post("/get_prompt_data", response_model=Res200)
 @handle_errors()
 async def _get_prompt_data(
     payload: GetPromptDataPayload,
@@ -99,11 +97,11 @@ async def _get_prompt_data(
 ):
     # business logic
     data = await helper_get_prompt_data(main_db_client=main_db_client, payload=payload)
-    return Response200(data=data).to_dict()
+    return Res200(data=data)
 
 
 
-@agent.post("/get_version")
+@agent.post("/get_version", response_model=Res200)
 @handle_errors()
 async def _get_version(
     payload: GetVersionPayload,
@@ -113,13 +111,13 @@ async def _get_version(
     data = await helper_get_version(main_db_client=main_db_client, payload=payload)
 
     # make response
-    return Response200(
+    return Res200(
         message="success",
         data=data
-    ).to_dict()
+    )
 
 
-@agent.post("/get_data")
+@agent.post("/get_data", response_model=Res200)
 @handle_errors()
 async def _get_data(
     payload: GetDataPayload,
@@ -136,13 +134,13 @@ async def _get_data(
     data = await helper_get_data(main_db_client=main_db_client, vector_db_client=vector_db_client, payload=payload)
 
     # make response
-    return Response200(
+    return Res200(
         message="success",
         data=data
-    ).to_dict()
+    )
 
 
-@agent.post("/get_prompt")
+@agent.post("/get_prompt", response_model=Res200)
 @handle_errors()
 async def _get_prompt(
     payload: GetPromptPayload,
@@ -150,7 +148,7 @@ async def _get_prompt(
 ):
     # business logic
     data = await helper_get_prompt(main_db_client=main_db_client, payload=payload)
-    return Response200(data=data).to_dict()
+    return Res200(data=data)
 
 
 @agent.post("/get_token_size")
@@ -160,7 +158,7 @@ async def _get_token_size(
 ):
     content = payload.prompt
     if not content:
-        return Response500(message="THERE ARE NOT CONTENT").to_dict()
+        return Res500(message="THERE ARE NOT CONTENT").to_response()
     model_name = BASE_MODEL
     try:
         encoding = tiktoken.encoding_for_model(model_name)
@@ -172,7 +170,7 @@ async def _get_token_size(
     return len(tokens)
 
 
-@agent.post("/update_memo")
+@agent.post("/update_memo", response_model=Res200)
 @handle_errors()
 async def _update_memo(
     payload: UpdateMemoPayload,
@@ -182,9 +180,7 @@ async def _update_memo(
     await helper_update_memo(main_db_client=main_db_client, payload=payload)
 
     # make response and return response
-    return Response200(
-        message="success"
-    ).to_dict()
+    return Res200(message="success")
 
 
 @agent.post("/download_question")
@@ -200,7 +196,7 @@ async def _download_question(
     return response
 
 
-@agent.post("/deploy")
+@agent.post("/deploy", response_model=Res200)
 @handle_errors()
 async def _deploy(
     payload: DeployPayload,
@@ -229,12 +225,10 @@ async def _deploy(
     )
 
     # make response and return response
-    return Response200(
-        message="success"
-    ).to_dict()
+    return Res200(message="success")
 
 
-@agent.get("/get_deploy_list")
+@agent.get("/get_deploy_list", response_model=Res200)
 @handle_errors()
 async def _get_deploy_list(
     staging_main_db_client: MongoClient = Depends(get_main_db),
@@ -244,13 +238,13 @@ async def _get_deploy_list(
     data = await helper_get_deploy_list(production_main_db_client=production_main_db_client, staging_main_db_client=staging_main_db_client)
 
     # make response
-    return Response200(
+    return Res200(
         message="success",
         data=data
-    ).to_dict()
+    )
 
 
-@agent.post("/rollback")
+@agent.post("/rollback", response_model=Res200)
 @handle_errors()
 async def _rollback(
     payload: RollbackPayload,
@@ -275,10 +269,10 @@ async def _rollback(
         raise ForbiddenError("cannot rollback because Invalid request")
 
     # make response
-    return Response200(message="success").to_dict()
+    return Res200(message="success")
 
 
-@agent.post("/enroll_mcp_server")
+@agent.post("/enroll_mcp_server", response_model=Res200)
 @handle_errors()
 async def enroll_mcp_server(
     payload: EnrollMCPServerPayload,
@@ -294,10 +288,10 @@ async def enroll_mcp_server(
     await main_db_client.insert_one(collection=MCP_SERVER_COLLECTION, document=document)
 
     # make response and return
-    return Response200().to_orjson()
+    return Res200()
 
 
-@agent.post("/create_agent")
+@agent.post("/create_agent", response_model=Res200)
 @handle_errors()
 async def create_agent(
     payload: CreateAgentPayload,
@@ -309,7 +303,7 @@ async def create_agent(
         filter={'agent': payload.agent}
     )
     if existing:
-        return Response400(message=f"Agent '{payload.agent}' already exists").to_orjson()
+        return Res400(message=f"Agent '{payload.agent}' already exists").to_response()
 
     document = {
         'agent': payload.agent,
@@ -319,10 +313,10 @@ async def create_agent(
         document['desc'] = payload.description
 
     await main_db_client.insert_one(collection=AGENT_COLLECTION, document=document)
-    return Response200().to_orjson()
+    return Res200()
 
 
-@agent.get("/get_agents")
+@agent.get("/get_agents", response_model=Res200)
 @handle_errors()
 async def get_agents(
     main_db_client: MongoClient = Depends(get_main_db),
@@ -339,10 +333,10 @@ async def get_agents(
         doc['description'] = doc.get('desc', '')
         doc.pop('desc', None)
         result.append(doc)
-    return Response200(data=result).to_orjson()
+    return Res200(data=result)
 
 
-@agent.post("/update_agent")
+@agent.post("/update_agent", response_model=Res200)
 @handle_errors()
 async def update_agent(
     payload: UpdateAgentPayload,
@@ -355,20 +349,20 @@ async def update_agent(
     if payload.description:
         update["$set"]["desc"] = payload.description
     await main_db_client.update_one(collection=AGENT_COLLECTION, filter=_filter, update=update)
-    return Response200().to_orjson()
+    return Res200()
 
 
-@agent.post("/delete_agent")
+@agent.post("/delete_agent", response_model=Res200)
 @handle_errors()
 async def delete_agent(
     payload: DeleteAgentPayload,
     main_db_client: MongoClient = Depends(get_main_db),
 ):
     await main_db_client.delete_one(collection=AGENT_COLLECTION, filter={"_id": ObjectId(payload.id)})
-    return Response200().to_orjson()
+    return Res200()
 
 
-@agent.post("/create_mcp_toolset")
+@agent.post("/create_mcp_toolset", response_model=Res200)
 @handle_errors()
 async def create_mcp_toolset(
     payload: CreateMCPToolsetPayload,
@@ -388,10 +382,10 @@ async def create_mcp_toolset(
     await main_db_client.insert_one(collection=MCP_TOOLSET_COLLECTION, document=document)
 
     # make response and return
-    return Response200().to_orjson()
+    return Res200()
 
 
-@agent.get("/get_mcp_server")
+@agent.get("/get_mcp_server", response_model=Res200)
 @handle_errors()
 async def get_mcp_server(
     main_db_client: MongoClient = Depends(get_main_db),
@@ -403,8 +397,6 @@ async def get_mcp_server(
     result = []
     for document in documents:
         server_id = str(document['_id'])
-        # uri = document["uri"]   # (원본 - 미사용, 아래 server_info에서 직접 참조)
-        # token = document["token"]  # (원본 - 미사용, 아래 FastMCPClient에서 직접 참조)
 
         server_info = {
             'id': server_id,
@@ -436,10 +428,10 @@ async def get_mcp_server(
 
         result.append(server_info)
 
-    return Response200(data=result).to_orjson()
+    return Res200(data=result)
 
 
-@agent.post("/get_mcp_server_tools")
+@agent.post("/get_mcp_server_tools", response_model=Res200)
 @handle_errors()
 async def get_mcp_server_tools(
     payload: GetMCPServerToolsPayload,
@@ -453,10 +445,10 @@ async def get_mcp_server_tools(
     result = [{'toolName': tool['name'], 'description': tool['description']} for tool in list_tools]
 
     # make response and result
-    return Response200(data=result).to_orjson()
+    return Res200(data=result)
 
 
-@agent.post("/get_mcp_toolset")
+@agent.post("/get_mcp_toolset", response_model=Res200)
 @handle_errors()
 async def get_mcp_toolset(
     payload: GetMCPToolsetPayload,
@@ -471,7 +463,7 @@ async def get_mcp_toolset(
     )
     result = []
     if not documents:
-        return Response200(data=result).to_orjson()
+        return Res200(data=result)
     mcp_server_ids = [_id['serverId'] for document in documents for _id in document['mcpInfo']]
     server_name_documents = await main_db_client.find(collection=MCP_SERVER_COLLECTION, filter={'_id': {'$in': mcp_server_ids}})
     server_names = {str(document['_id']): document['name'] for document in server_name_documents}
@@ -487,10 +479,10 @@ async def get_mcp_toolset(
         document['description'] = document.get('desc', '')
         document.pop('desc', None)
         result.append(document)
-    return Response200(data=result).to_orjson()
+    return Res200(data=result)
 
 
-@agent.post("/update_mcp_server")
+@agent.post("/update_mcp_server", response_model=Res200)
 @handle_errors()
 async def update_mcp_server(
     payload: UpdateMCPServerPayload,
@@ -508,10 +500,10 @@ async def update_mcp_server(
     await main_db_client.update_one(collection=MCP_SERVER_COLLECTION, filter=_filter, update=update)
 
     # make response and return
-    return Response200().to_orjson()
+    return Res200()
 
 
-@agent.post("/update_mcp_toolset")
+@agent.post("/update_mcp_toolset", response_model=Res200)
 @handle_errors()
 async def update_mcp_agent(
     payload: UpdateMCPToolsetPayload,
@@ -528,10 +520,10 @@ async def update_mcp_agent(
     await main_db_client.update_one(collection=MCP_TOOLSET_COLLECTION, filter=_filter, update=update)
 
     # make response and return
-    return Response200().to_orjson()
+    return Res200()
 
 
-@agent.post("/adapt_toolset_on_service")
+@agent.post("/adapt_toolset_on_service", response_model=Res200)
 @handle_errors()
 async def adapt_agent_on_service(
     payload: AdaptToolsetOnServicePayload,
@@ -540,7 +532,7 @@ async def adapt_agent_on_service(
     # verify target toolset exists
     target = await main_db_client.find_one(collection=MCP_TOOLSET_COLLECTION, filter={"_id": ObjectId(payload.id)})
     if not target:
-        return Response400(message="Target toolset not found").to_orjson()
+        return Res400(message="Target toolset not found").to_response()
 
     # step 1: deactivate current active toolset
     false_filter = {"agent": payload.agent, "isService": True}
@@ -559,10 +551,10 @@ async def adapt_agent_on_service(
         raise
 
     # make response and return
-    return Response200().to_orjson()
+    return Res200()
 
 
-@agent.post("/delete_mcp_server")
+@agent.post("/delete_mcp_server", response_model=Res200)
 @handle_errors()
 async def delete_mcp_server(
     payload: DeleteMCPServerPayload,
@@ -575,19 +567,19 @@ async def delete_mcp_server(
     )
     if referencing_toolsets:
         affected_names = [toolset.get('name', 'unknown') for toolset in referencing_toolsets]
-        return Response400(
+        return Res400(
             message=f"Cannot delete server. Referenced by toolsets: {', '.join(affected_names)}"
-        ).to_orjson()
+        ).to_response()
 
     # business logic
     delete_filter = {"_id": ObjectId(payload.id)}
     await main_db_client.delete_one(collection=MCP_SERVER_COLLECTION, filter=delete_filter)
 
     # make response and return
-    return Response200().to_orjson()
+    return Res200()
 
 
-@agent.post("/delete_mcp_toolset")
+@agent.post("/delete_mcp_toolset", response_model=Res200)
 @handle_errors()
 async def delete_mcp_toolset(
     payload: DeleteMCPToolsetPayload,
@@ -598,7 +590,7 @@ async def delete_mcp_toolset(
     await main_db_client.delete_one(collection=MCP_TOOLSET_COLLECTION, filter=delete_filter)
 
     # make response and return
-    return Response200().to_orjson()
+    return Res200()
 
 
 # ==================== Multi Agent Graph ====================
@@ -611,7 +603,7 @@ def _serialize_edges(edges) -> list[dict]:
         for e in edges
     ]
 
-@agent.post("/create_multi_agent_graph")
+@agent.post("/create_multi_agent_graph", response_model=Res200)
 @handle_errors()
 async def create_multi_agent_graph(
     payload: CreateMultiAgentGraphPayload,
@@ -626,21 +618,16 @@ async def create_multi_agent_graph(
         },
         'regDate': pytz.timezone('Asia/Seoul').localize(datetime.now()),
     }
-    # if payload.edges:  # (원본 - _serialize_edges로 추출)
-    #     document['edges'] = [
-    #         {'from': e.source, 'to': e.target, 'condition': e.condition, 'onFailure': e.on_failure, 'maxRetries': e.max_retries}
-    #         for e in payload.edges
-    #     ]
     if payload.edges:
         document['edges'] = _serialize_edges(payload.edges)
     if payload.description:
         document['desc'] = payload.description
 
     await main_db_client.insert_one(collection=MULTI_AGENT_GRAPH_COLLECTION, document=document)
-    return Response200().to_orjson()
+    return Res200()
 
 
-@agent.get("/get_multi_agent_graphs")
+@agent.get("/get_multi_agent_graphs", response_model=Res200)
 @handle_errors()
 async def get_multi_agent_graphs(
     main_db_client: MongoClient = Depends(get_main_db),
@@ -657,10 +644,10 @@ async def get_multi_agent_graphs(
         doc['description'] = doc.get('desc', '')
         doc.pop('desc', None)
         result.append(doc)
-    return Response200(data=result).to_orjson()
+    return Res200(data=result)
 
 
-@agent.post("/get_multi_agent_graph")
+@agent.post("/get_multi_agent_graph", response_model=Res200)
 @handle_errors()
 async def get_multi_agent_graph(
     payload: GetMultiAgentGraphPayload,
@@ -675,10 +662,10 @@ async def get_multi_agent_graph(
         document.pop('_id', None)
         document['description'] = document.get('desc', '')
         document.pop('desc', None)
-    return Response200(data=document).to_orjson()
+    return Res200(data=document)
 
 
-@agent.post("/update_multi_agent_graph")
+@agent.post("/update_multi_agent_graph", response_model=Res200)
 @handle_errors()
 async def update_multi_agent_graph(
     payload: UpdateMultiAgentGraphPayload,
@@ -692,11 +679,6 @@ async def update_multi_agent_graph(
         update["$set"]["graphType"] = payload.graph_type
     if payload.agents:
         update["$set"]["agents"] = [{'agent': a.agent, 'role': a.role} for a in payload.agents]
-    # if payload.edges is not None:  # (원본 - _serialize_edges로 추출)
-    #     update["$set"]["edges"] = [
-    #         {'from': e.source, 'to': e.target, ...}
-    #         for e in payload.edges
-    #     ]
     if payload.edges is not None:
         update["$set"]["edges"] = _serialize_edges(payload.edges)
     if payload.description:
@@ -706,10 +688,10 @@ async def update_multi_agent_graph(
     await main_db_client.update_one(
         collection=MULTI_AGENT_GRAPH_COLLECTION, filter=_filter, update=update
     )
-    return Response200().to_orjson()
+    return Res200()
 
 
-@agent.post("/delete_multi_agent_graph")
+@agent.post("/delete_multi_agent_graph", response_model=Res200)
 @handle_errors()
 async def delete_multi_agent_graph(
     payload: DeleteMultiAgentGraphPayload,
@@ -717,4 +699,4 @@ async def delete_multi_agent_graph(
 ):
     delete_filter = {"_id": ObjectId(payload.id)}
     await main_db_client.delete_one(collection=MULTI_AGENT_GRAPH_COLLECTION, filter=delete_filter)
-    return Response200().to_orjson()
+    return Res200()
