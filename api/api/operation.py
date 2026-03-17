@@ -35,7 +35,7 @@ async def _get_version(
 @handle_errors()
 async def _get_data(
     payload: getDataPayload,
-    main_db_client: MongoClient = Depends(get_main_db),
+    main_db_client: MongoClient = Depends(get_main_db)
 ):
     # server stage
     stage = os.getenv("SERVER_STAGE", "development")
