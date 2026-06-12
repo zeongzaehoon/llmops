@@ -4,7 +4,7 @@ import apiClient from './client'
  * Create session and get JWT tokens
  */
 export function connect(agent) {
-  return apiClient.get('/hello', { _agent: agent })
+  return apiClient.get('/get_token', { _agent: agent })
 }
 
 /**

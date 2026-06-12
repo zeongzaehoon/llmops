@@ -12,6 +12,7 @@
 
 4grit에선 UX 히트맵, 저니맵, VOC, 대시보드 등 다양한 분석 데이터를 LLM에 연결하여 **자연어 기반의 인사이트 도출과 AI 리포트 자동 생성**을 제공하는 엔터프라이즈 플랫폼입니다. 단순 챗봇이 아닌, RAG 파이프라인과 MCP(Model Context Protocol) 에이전트를 결합한 **지능형 분석 인프라**를 설계하고 구현했습니다.
 
+
 ## 포트폴리오 개요
 
 | 항목 | 내용 |
@@ -23,7 +24,12 @@
 | **한 줄 요약** | 동적으로 에이전트를 등록, 테스트, 실 서비스 배포할 수 있도록 돕는 LLMOps 인프라 |
 
 4grit에서 개발했던 내용들을 리팩토링하고 있습니다. Multi Agent 시스템, Agent 평가(할루시네이션 등)의 기능을 추가할 예정입니다.
-
+![Dashboard](./images/1.png)
+![Agent_model](./images/2.png)
+![Agent_Prompt](./images/3.png)
+![MCP](./images/4.png)
+![MultiAgent](./images/5.png)
+![RAG](./images/6.png)
 ---
 
 ## 기술 스택
