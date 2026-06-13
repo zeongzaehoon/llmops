@@ -80,7 +80,7 @@ async def import_files(payload: ImportFilePayload):
                         file_name=file_name
                     )
                     Path(temp_file_path).unlink(missing_ok=True) # delete file after import
-                    upload_result = True if document_name else False
+                    upload_result = bool(document_name)
 
                     document_names.append(document_name)
                     status.append(upload_result)

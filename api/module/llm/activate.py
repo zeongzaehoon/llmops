@@ -28,7 +28,7 @@ class RunLLM:
 
     def __init__(self, args:dict, thread:bool=None, stream:bool=None):
         self.args = args
-        self.thread = thread or True
+        self.thread = thread if thread is not None else True
         self.stream = stream or True
         self.args["streaming"] = self.stream
         self.llmArgs: LLMArgs

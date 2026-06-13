@@ -37,70 +37,40 @@ class RunMCP:
                 yield chunk
 
         except DBError as e:
-            logging.error(f"session_key: {self.args.get('session_key')} | [module.mcp.activate] 🔴 DBError: {e.message}")
-            response = make_error_message(agent=self.args.get("agent"), lang=self.args.get('lang'))
-            yield orjson.dumps(response) if isinstance(response, dict) else response
-            if self.args.get("server_stage") == PRODUCTION and self.args.get("agent") in ON_PRODUCTION_LIST:
-                await record_err_to_main_db(self.args)
-                if self.args.get("message_client"):
-                    message_client:SlackClient = self.args["message_client"]
-                    message = f"🔴 session_key: {self.args.get('session_key')}, agent: {self.args.get('agent')} | [solomon-api] API module Error: DBError"
-                    await message_client.send_message(channel='casual', message=message)
+            async for chunk in self._emit_activate_error("DBError", e.message):
+                yield chunk
 
         except MemoryDBError as e:
-            logging.error(f"session_key: {self.args.get('session_key')} | [module.mcp.activate] 🔴 MemoryDBError: {e.message}")
-            response = make_error_message(agent=self.args.get("agent"), lang=self.args.get('lang'))
-            yield orjson.dumps(response) if isinstance(response, dict) else response
-            if self.args.get("server_stage") == PRODUCTION and self.args.get("agent") in ON_PRODUCTION_LIST:
-                await record_err_to_main_db(self.args)
-                if self.args.get("message_client"):
-                    message_client:SlackClient = self.args["message_client"]
-                    message = f"🔴 session_key: {self.args.get('session_key')}, agent: {self.args.get('agent')} | [solomon-api] API module Error: MemoryDBError"
-                    await message_client.send_message(channel='casual', message=message)
+            async for chunk in self._emit_activate_error("MemoryDBError", e.message):
+                yield chunk
 
         except VectorDBError as e:
-            logging.error(f"session_key: {self.args.get('session_key')} | [module.mcp.activate] 🔴 VectorDBError: {e.message}")
-            response = make_error_message(agent=self.args.get("agent"), lang=self.args.get('lang'))
-            yield orjson.dumps(response) if isinstance(response, dict) else response
-            if self.args.get("server_stage") == PRODUCTION and self.args.get("agent") in ON_PRODUCTION_LIST:
-                await record_err_to_main_db(self.args)
-                if self.args.get("message_client"):
-                    message_client:SlackClient = self.args["message_client"]
-                    message = f"🔴 session_key: {self.args.get('session_key')}, agent: {self.args.get('agent')} | [solomon-api] API module Error: VectorDBError"
-                    await message_client.send_message(channel='casual', message=message)
+            async for chunk in self._emit_activate_error("VectorDBError", e.message):
+                yield chunk
 
         except AWSError as e:
-            logging.error(f"session_key: {self.args.get('session_key')} | [module.mcp.activate] 🔴 AWSError: {e.message}")
-            response = make_error_message(agent=self.args.get("agent"), lang=self.args.get('lang'))
-            yield orjson.dumps(response) if isinstance(response, dict) else response
-            if self.args.get("server_stage") == PRODUCTION and self.args.get("agent") in ON_PRODUCTION_LIST:
-                await record_err_to_main_db(self.args)
-                if self.args.get("message_client"):
-                    message_client:SlackClient = self.args["message_client"]
-                    message = f"🔴 session_key: {self.args.get('session_key')}, agent: {self.args.get('agent')} | [solomon-api] API module Error: AWSError"
-                    await message_client.send_message(channel='casual', message=message)
+            async for chunk in self._emit_activate_error("AWSError", e.message):
+                yield chunk
 
         except LLMStreamingError as e:
-            logging.error(f"session_key: {self.args.get('session_key')} | [module.mcp.activate] 🔴 LLMStreamingError: {e.message}")
-            response = make_error_message(agent=self.args.get("agent"), lang=self.args.get('lang'))
-            yield orjson.dumps(response) if isinstance(response, dict) else response
-            if self.args.get("server_stage") == PRODUCTION and self.args.get("agent") in ON_PRODUCTION_LIST:
-                await record_err_to_main_db(self.args)
-                if self.args.get("message_client"):
-                    message_client:SlackClient = self.args["message_client"]
-                    message = f"🔴 session_key: {self.args.get('session_key')}, agent: {self.args.get('agent')} | [solomon-api] API module Error: LLMStreamingError"
-                    await message_client.send_message(channel='casual', message=message)
+            async for chunk in self._emit_activate_error("LLMStreamingError", e.message):
+                yield chunk
 
         except Exception as e:
-            logging.error(f"session_key: {self.args.get('session_key')} | [module.mcp.activate] 🔴 Exception: {e}")
-            response = make_error_message(agent=self.args.get("agent"), lang=self.args.get('lang'))
-            yield orjson.dumps(response) if isinstance(response, dict) else response
-            if self.args.get("server_stage") == PRODUCTION and self.args.get("agent") in ON_PRODUCTION_LIST:
-                await record_err_to_main_db(self.args)
-                if self.args.get("message_client"):
-                    message_client:SlackClient = self.args["message_client"]
-                    message = f"🔴 session_key: {self.args.get('session_key')}, agent: {self.args.get('agent')} | [solomon-api] API module Error: Exception"
-                    await message_client.send_message(channel='casual', message=message)
+            async for chunk in self._emit_activate_error("Exception", e):
+                yield chunk
+
+
+    async def _emit_activate_error(self, label, detail):
+        logging.error(f"session_key: {self.args.get('session_key')} | [module.mcp.activate] 🔴 {label}: {detail}")
+        response = make_error_message(agent=self.args.get("agent"), lang=self.args.get('lang'))
+        yield orjson.dumps(response) if isinstance(response, dict) else response
+        if self.args.get("server_stage") == PRODUCTION and self.args.get("agent") in ON_PRODUCTION_LIST:
+            await record_err_to_main_db(self.args)
+            if self.args.get("message_client"):
+                message_client:SlackClient = self.args["message_client"]
+                message = f"🔴 session_key: {self.args.get('session_key')}, agent: {self.args.get('agent')} | [solomon-api] API module Error: {label}"
+                await message_client.send_message(channel='casual', message=message)
 
 
     async def _run(self):

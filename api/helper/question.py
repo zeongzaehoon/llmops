@@ -1171,7 +1171,7 @@ async def helper_get_token_for_docent(main_db_client:MongoClient, Id:str, model:
             tokens += token
 
         context_windows = CONTEXT_WINDOWS_SIZE[model]
-        is_alert = True if tokens / context_windows > 0.95 else False
+        is_alert = tokens / context_windows > 0.95
         return {"alert": is_alert, "token": tokens, "context_windows": context_windows}
 
     except DBError as e:

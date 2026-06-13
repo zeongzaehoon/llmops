@@ -445,7 +445,7 @@ async def checking_schema_simple(
         },
         projection={'_id': 1}
     )
-    is_success = True if document else False
+    is_success = bool(document)
 
     # make result and response
     data = {"is_success": is_success}

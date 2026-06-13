@@ -8,7 +8,6 @@ from payload.vector import *
 from helper.vector import *
 from utils.error import *
 from response import Res200
-from client.pinecone import PineconeClient
 from client.groxy import AsyncLLMProxyClient as LLMProxyClient
 from client import get_llm_proxy, get_vector_db
 
@@ -22,7 +21,7 @@ vector = APIRouter(prefix="/vector", tags=["Vector"])
 @handle_errors()
 async def _upsert(
     payload: upsertPayload,
-    vector_db_client: PineconeClient = Depends(get_vector_db),
+    vector_db_client = Depends(get_vector_db),
     llm_proxy_client: LLMProxyClient = Depends(get_llm_proxy),
 ):
     """CREATE & UPDATE VECTOR DATA"""

@@ -1,0 +1,9 @@
+# build context 제외 — Dockerfile은 pyproject.toml/uv.lock 기반 `uv sync` 후 COPY . .
+.venv
+__pycache__
+.idea
+.git
+.env
+*.ipynb
+.previous
+test/

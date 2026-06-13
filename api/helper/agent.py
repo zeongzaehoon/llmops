@@ -392,7 +392,7 @@ def _reform_version_refer_cursor(cursor):
 
 
 def _reform_version_cursor(cursor, kind:str, category:str):
-    getResult = True if kind == QUERY and category not in QUERY_CATEGORY_PROMPT_LIST else False
+    getResult = kind == QUERY and category not in QUERY_CATEGORY_PROMPT_LIST
     result_dict = dict()
     tid_check_set = set()
     is_indepth_check_list = []

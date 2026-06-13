@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 from dotenv import load_dotenv
 
 # fast-api
-from fastapi import FastAPI, Depends, Request
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
@@ -70,6 +70,7 @@ async def lifespan(app: FastAPI):
     app.state.main_db = main_db
     app.state.memory_db = memory_db
     app.state.s3 = s3
+    app.state.vector_db = vector_db
     app.state.llm_proxy = llm_proxy
     app.state.production_db = None
     app.state.message_client = None

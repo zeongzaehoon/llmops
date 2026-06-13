@@ -25,4 +25,4 @@ services:
 
       # MCP
       - ENABLE_MCP=true
-      - MCP_AGENT_URL=http://solomon-mcp:4444/mcp
+      - MCP_AGENT_URL=http://solomon-mcp:8002/mcp

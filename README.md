@@ -517,7 +517,7 @@ MongoDB와 함께 Redis를 대화 컨텍스트 캐시로 활용합니다.
 - 대화 이력 조회 및 평점 시스템
 
 ### 다국어 & 테마
-- vue-i18n 기반 3개 언어 지원 (한국어, 영어, 일본어)
+- react-i18next 기반 3개 언어 지원 (한국어, 영어, 일본어)
 - 동적 컬러 테마 시스템 (localStorage 기반 영속화)
 
 ---
@@ -539,16 +539,16 @@ solomon-docker/
 │   │   └── microagent/           # 마이크로에이전트 (검증)
 │   ├── payload/                  # Pydantic 요청 스키마
 │   └── utils/                    # 유틸리티 (에러, 상수, 응답 포맷)
-├── ui/                           # Vue 3 프론트엔드
+├── ui/                           # React 18 프론트엔드 (Vite)
 │   └── src/
 │       ├── components/
 │       │   ├── aireport/         # AI 리포트 (11개 서브 모듈)
 │       │   ├── playground/       # 채팅 인터페이스 (8개 서브 모듈)
 │       │   └── contactus/        # 고객 문의
 │       ├── api/                  # API 클라이언트 (chat, connect, report, mcp)
-│       ├── store/                # Vuex 상태 관리
-│       ├── router/               # Vue Router
-│       └── locales/              # i18n (ko, en, ja)
+│       ├── store/                # Zustand 상태 관리
+│       ├── router/               # React Router v6
+│       └── lang/                 # i18n (ko, en, ja)
 ├── nginx/                        # Nginx 리버스 프록시
 ├── redis/                        # Redis 캐시
 └── docker-compose.yml            # 컨테이너 오케스트레이션

@@ -2,6 +2,8 @@
 // Responsive Breakpoints & Mixins
 // ============================================================
 
+@use './_tokens.scss' as *;
+
 $bp-mobile: 480px;
 $bp-tablet: 768px;
 $bp-desktop: 1024px;
@@ -98,7 +100,7 @@ $bp-wide: 1280px;
 
 // --- Card mixin ---
 @mixin card-base {
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid #{$sol-gray-200};
   border-radius: $sol-radius-lg;
   box-shadow: $sol-shadow-sm;

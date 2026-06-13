@@ -1,11 +1,10 @@
-from client.pinecone import PineconeClient
 from client.groxy import AsyncLLMProxyClient as LLMProxyClient
 from utils.error import *
 from payload.vector import upsertPayload
 
 
 
-async def helper_upsert(vector_db_client:PineconeClient, llm_proxy_client:LLMProxyClient, payload:upsertPayload, server_stage:str):
+async def helper_upsert(vector_db_client, llm_proxy_client:LLMProxyClient, payload:upsertPayload, server_stage:str):
     try:
         # parse payload
         logging.info(f"[helper.vector.helper_upsert] 3. parse payload")
@@ -15,8 +14,8 @@ async def helper_upsert(vector_db_client:PineconeClient, llm_proxy_client:LLMPro
 
         # translate metadata int to boolean. isOn, isShow
         logging.info(f"[helper.vector.helper_upsert] 4. translate metadata int to boolean. isOn, isShow")
-        has_isOn = True if metadata.get('isOn') is not None and isinstance(metadata['isOn'], (int, bool)) else False
-        has_isShow = True if metadata.get('isShow') is not None and isinstance(metadata['isShow'], (int, bool)) else False
+        has_isOn = metadata.get('isOn') is not None and isinstance(metadata['isOn'], (int, bool))
+        has_isShow = metadata.get('isShow') is not None and isinstance(metadata['isShow'], (int, bool))
 
         # input boolean to metadata
         if has_isOn:

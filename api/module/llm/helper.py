@@ -894,7 +894,7 @@ def redis_format(
         if summary_target:
             form["type"] = "mainReport"
             form["reportReady"] = True
-        if ask_id != None and role == "ai":
+        if ask_id is not None and role == "ai":
             form["id"] = ask_id
             form["rating"] = None
         return str(form)

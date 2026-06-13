@@ -1,9 +1,8 @@
-@import './reset.scss';
-@import './_tokens.scss';
-@import './_animations.scss';
-@import './icon.scss';
+@use './reset.scss';
+@use './_animations.scss';
+@use './icon.scss';
+@use './prism-one-light.scss';
 @import '../assets/fontIcon/fontIcon.css';
-@import './prism-one-light.scss';
 
 body {
   font-family: $sol-font-family;

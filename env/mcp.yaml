@@ -5,9 +5,6 @@ services:
     environment:
       # MCP arg
       - ENVIRONMENT=production
-      - MCP_TRANSPORT=http
-      - MCP_HOST=0.0.0.0
-      - MCP_PORT=8002
 
       # Database Configuration
       - MYSQL_HOST=database

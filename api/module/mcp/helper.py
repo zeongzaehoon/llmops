@@ -249,7 +249,7 @@ def redis_format(role, message, id=None, mcp_tools=None):
         if mcp_tools and role == "human":
             form["mcp_tools"] = mcp_tools
             form["id"] = id
-        if id != None and role == "ai":
+        if id is not None and role == "ai":
             form["id"] = id
             form["rating"] = None
         return str(form)

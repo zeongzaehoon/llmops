@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 .dialog {
   position: fixed;
   top: 0;
@@ -23,7 +25,7 @@
 }
 
 .content {
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid $sol-gray-200;
   border-radius: $sol-radius-xl;
   padding: $sol-space-6;
@@ -73,7 +75,7 @@
 }
 
 .btnConfirm {
-  color: #FFFFFF;
+  color: #ffffff;
 
   &.primary {
     background: $sol-primary;
@@ -89,7 +91,7 @@
     border-color: $sol-danger;
 
     &:hover {
-      background: darken(#EF4444, 8%);
+      background: color.adjust(#ef4444, $lightness: -8%);
     }
   }
 }

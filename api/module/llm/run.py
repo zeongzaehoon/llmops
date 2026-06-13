@@ -12,6 +12,11 @@ from module.microagent.http_validate import agent_http_validate
 from module.microagent.dashboard_data_validation import agent_dashboard_data_validate
 
 
+async def send_casual_message(message_client, message):
+    if message_client:
+        await message_client.send_message(channel='casual', message=message)
+
+
 async def run_llm(llmArgs:LLMArgs):
     try:
         # set user message
@@ -84,9 +89,7 @@ async def run_llm(llmArgs:LLMArgs):
                     llmArgs.is_error = True
                     err_message = "LLM-PROXY send Error. Both initial attempt and retry failed."
                     logging.error(f"session_key: {llmArgs.session_key} | [module.llm.run.run_llm] 🔴 LLMStreamingError: {err_message}")
-                    if llmArgs.message_client:
-                        message = f"🔴 session_key: {llmArgs.session_key}, category: {llmArgs.agent} | [solomon-api] LLM-PROXY send Error. Both initial attempt and retry failed."
-                        await llmArgs.message_client.send_message(channel='casual', message=message)
+                    await send_casual_message(llmArgs.message_client, f"🔴 session_key: {llmArgs.session_key}, category: {llmArgs.agent} | [solomon-api] LLM-PROXY send Error. Both initial attempt and retry failed.")
 
 
         # 완료 후 스테이징 모델 정보 전달
@@ -192,9 +195,7 @@ async def run_voc_llm(llmArgs:LLMArgs):
                     llmArgs.is_error = True
                     err_message = "LLM-PROXY send Error. Both initial attempt and retry failed."
                     logging.error(f"session_key: {llmArgs.session_key} | [module.llm.run.run_voc_llm] 🔴 LLMStreamingError: {err_message}")
-                    if llmArgs.message_client:
-                        message = f"🔴 session_key: {llmArgs.session_key}, category: {llmArgs.agent} | [solomon-api] LLM-PROXY send Error. Both initial attempt and retry failed."
-                        await llmArgs.message_client.send_message(channel='casual', message=message)
+                    await send_casual_message(llmArgs.message_client, f"🔴 session_key: {llmArgs.session_key}, category: {llmArgs.agent} | [solomon-api] LLM-PROXY send Error. Both initial attempt and retry failed.")
 
         # 완료 후 스테이징 모델 정보 전달
         finish_condition=os.getenv('SERVER_STAGE', None) != PRODUCTION and is_changing_vendor and is_changing_model and llmArgs.service not in [JOURNEYMAP_DASHBOARD, JOURNEYMAP_AIREPORT_STAGING]
@@ -310,9 +311,7 @@ async def run_docent_llm(llmArgs:LLMArgs):
                     llmArgs.is_error = True
                     err_message = "LLM-PROXY send Error. Both initial attempt and retry failed."
                     logging.error(f"session_key: {llmArgs.session_key} | [module.llm.run.run_docent_llm] 🔴 LLMStreamingError: {err_message}")
-                    if llmArgs.message_client:
-                        message = f"🔴 session_key: {llmArgs.session_key}, category: {llmArgs.agent} | [solomon-api] LLM-PROXY send Error. Both initial attempt and retry failed."
-                        await llmArgs.message_client.send_message(channel='casual', message=message)
+                    await send_casual_message(llmArgs.message_client, f"🔴 session_key: {llmArgs.session_key}, category: {llmArgs.agent} | [solomon-api] LLM-PROXY send Error. Both initial attempt and retry failed.")
 
 
         # 완료 후 스테이징 모델 정보 전달
@@ -418,9 +417,7 @@ async def run_schematag_llm(llmArgs:LLMArgs):
                     llmArgs.is_error = True
                     err_message = "LLM-PROXY send Error. Both initial attempt and retry failed."
                     logging.error(f"session_key: {llmArgs.session_key} | [module.llm.run.run_schematag_llm] 🔴 LLMStreamingError: {err_message}")
-                    if llmArgs.message_client:
-                        message = f"🔴 session_key: {llmArgs.session_key}, category: {llmArgs.agent} | [solomon-api] LLM-PROXY send Error. Both initial attempt and retry failed."
-                        await llmArgs.message_client.send_message(channel='casual', message=message)
+                    await send_casual_message(llmArgs.message_client, f"🔴 session_key: {llmArgs.session_key}, category: {llmArgs.agent} | [solomon-api] LLM-PROXY send Error. Both initial attempt and retry failed.")
 
         # 완료 후 스테이징 모델 정보 전달
         finish_condition=os.getenv('SERVER_STAGE', None) != PRODUCTION and is_changing_vendor and is_changing_model and llmArgs.service not in [JOURNEYMAP_DASHBOARD, JOURNEYMAP_AIREPORT_STAGING]
@@ -525,9 +522,7 @@ async def run_abtest_llm(llmArgs:LLMArgs):
                     llmArgs.is_error = True
                     err_message = "LLM-PROXY send Error. Both initial attempt and retry failed."
                     logging.error(f"session_key: {llmArgs.session_key} | [module.llm.run.run_abtest_llm] 🔴 LLMStreamingError: {err_message}")
-                    if llmArgs.message_client:
-                        message = f"🔴 session_key: {llmArgs.session_key}, category: {llmArgs.agent} | [solomon-api] LLM-PROXY send Error. Both initial attempt and retry failed."
-                        await llmArgs.message_client.send_message(channel='casual', message=message)
+                    await send_casual_message(llmArgs.message_client, f"🔴 session_key: {llmArgs.session_key}, category: {llmArgs.agent} | [solomon-api] LLM-PROXY send Error. Both initial attempt and retry failed.")
 
         # 완료 후 스테이징 모델 정보 전달
         finish_condition=os.getenv('SERVER_STAGE', None) != PRODUCTION and is_changing_vendor and is_changing_model and llmArgs.service not in [JOURNEYMAP_DASHBOARD, JOURNEYMAP_AIREPORT_STAGING]
@@ -622,9 +617,7 @@ async def run_dashboard_llm(llmArgs:LLMArgs):
                     llmArgs.is_error = True
                     err_message = "LLM-PROXY send Error. Both initial attempt and retry failed."
                     logging.error(f"session_key: {llmArgs.session_key} | [module.llm.run.run_dashboard_llm] 🔴 LLMStreamingError: {err_message}")
-                    if llmArgs.message_client:
-                        message = f"🔴 session_key: {llmArgs.session_key}, category: {llmArgs.agent} | [solomon-api] LLM-PROXY send Error. Both initial attempt and retry failed."
-                        await llmArgs.message_client.send_message(channel='casual', message=message)
+                    await send_casual_message(llmArgs.message_client, f"🔴 session_key: {llmArgs.session_key}, category: {llmArgs.agent} | [solomon-api] LLM-PROXY send Error. Both initial attempt and retry failed.")
 
         # 완료 후 스테이징 모델 정보 전달
         finish_condition=os.getenv('SERVER_STAGE', None) != PRODUCTION and is_changing_vendor and is_changing_model and llmArgs.service not in [JOURNEYMAP_DASHBOARD, JOURNEYMAP_AIREPORT_STAGING]

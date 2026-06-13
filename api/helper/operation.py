@@ -18,7 +18,7 @@ from client.pinecone import PineconeClient
 
 def make_filter(**kwargs):
     """mongoDB find 조건 쿼리 만드는 함수"""
-    filter = {key: value for key, value in kwargs.items() if value != None}
+    filter = {key: value for key, value in kwargs.items() if value is not None}
     return filter
 
 
@@ -423,7 +423,7 @@ def reform_version_refer_cursor(cursor):
     return result
 
 def reform_version_cursor(cursor, kind:str, category:str):
-    getResult = True if kind == QUERY and category not in QUERY_CATEGORY_PROMPT_LIST else False
+    getResult = kind == QUERY and category not in QUERY_CATEGORY_PROMPT_LIST
     result_dict = dict()
     tid_check_set = set()
     is_indepth_check_list = list()
