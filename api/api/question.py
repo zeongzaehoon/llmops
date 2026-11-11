@@ -336,44 +336,6 @@ async def _model(
     )
 
 
-@question.post("/refer", response_model=Res200)
-async def _refer(
-    payload: referPayload,
-    session_key: str = Depends(get_optional_user),
-    main_db_client: MongoClient = Depends(get_main_db),
-    memory_db_client: RedisClient = Depends(get_memory_db),
-    llm_proxy_client: LLMProxyClient = Depends(get_llm_proxy),
-):
-    # get server stage
-    server_stage = os.getenv("SERVER_STAGE", "development")
-
-    # seperator
-    category = payload.agent
-
-    # client (payload 의존적)
-    vector_db_index_name = get_vector_db_index(category=category, server_stage=server_stage)
-    vector_db_client = PineconeClient(index_name=vector_db_index_name)
-
-    # business logic
-    if category in DOCENT_LIST or category in DASHBOARD_LIST:
-        retrieval_data = []
-
-    elif category == REPORTCHAT:
-        retrieval_data = await RunLLMProxy.get_retrieval_data_for_report_chat(
-                memory_db_client=memory_db_client,
-                session_key=session_key
-            )
-    else:
-        service = helper_refer_get_service(category=category, server_stage=server_stage)
-        retrieval_data = await RunLLMProxy.get_retrieval_data_for_view(llm_proxy_client=llm_proxy_client, vector_db_client=vector_db_client, question=payload.question, service=service)
-
-    # make response and return
-    return Res200(
-        message="success",
-        data={"refer":retrieval_data}
-    )
-
-
 @question.get("/get", response_model=Res200)
 async def _get_report_chat_datas(
     session_key: str = Depends(get_optional_user),

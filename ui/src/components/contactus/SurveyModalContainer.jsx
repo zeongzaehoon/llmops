@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { getImageUrl } from '@/utils/parse'
-import { updateSurveyResponse } from '@/api/chatApi'
+import { updateSurveyResponse } from '@/api/chat'
 import styles from './SurveyModalContainer.module.scss'
 
 export default function SurveyModalContainer({ agent, reset, onClose }) {

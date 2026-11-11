@@ -35,50 +35,6 @@ class GetPromptDataPayload(BaseModel):
     id: str = Field(...)
 
 
-class GetVersionPayload(BaseModel):
-    agent: str = Field(...)
-    kind: str = Field(...)
-    role_name: Optional[str] = Field(None, alias="roleName")
-
-
-class GetPromptPayload(BaseModel):
-    id: str = Field(...)
-
-
-class GetDataPayload(BaseModel):
-    agent: str = Field(...)
-    kind: str = Field(...)
-    id: str = Field(...)
-    page: Optional[str] = Field(None)
-
-
-class GetTokenSizePayload(BaseModel):
-    prompt: str = Field(...)
-
-
-class UpdateMemoPayload(BaseModel):
-    agent: str = Field(...)
-    kind: str = Field(...)
-    id: str = Field(...)
-    memo: Optional[str] = Field(None)
-
-
-class DownloadQuestionPayload(BaseModel):
-    id: str = Field(...)
-
-
-class DeployPayload(BaseModel):
-    password: str = Field(...)
-    stage: str = Field(..., alias="server")
-    agent: Optional[str] = Field(None)
-
-
-class RollbackPayload(BaseModel):
-    password: str = Field(...)
-    stage: str = Field(..., alias="server")
-    agent: Optional[str] = Field(None)
-
-
 class EnrollMCPServerPayload(BaseModel):
     name: str = Field(...)
     uri: str = Field(...)
@@ -107,10 +63,6 @@ class CreateMCPToolsetPayload(BaseModel):
     name: str = Field(...)
     mcp_info: list[dict] | None = Field(..., alias="mcpInfo")
     description: Optional[str] = Field(None)
-
-
-class GetMCPServerToolsPayload(BaseModel):
-    id: str = Field(...)
 
 
 class GetMCPToolsetPayload(BaseModel):

@@ -79,14 +79,6 @@ class GetModelQueryParams(BaseModel):
     agent: Optional[str] = Field(None)
 
 
-class referPayload(BaseModel):
-    agent:str
-    question:Optional[str] = Field(None, alias="prompt")
-
-    class Config:
-        populate_by_name = True
-
-
 class updateRatingPayload(BaseModel):
     id:str
     rating:Optional[int] = None

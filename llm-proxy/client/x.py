@@ -65,19 +65,11 @@ class XClient:
                         response = await httpx_client.get(_image)
                         image_bytes = response.content
                         image_base64 = base64.b64encode(image_bytes).decode('utf-8')
-                        detected_type = detect_image_format(image_bytes)
-                        if detected_type:
-                            media_type = f"image/{detected_type}"
-                        else:
-                            media_type = "image/jpeg"
+                        media_type = resolve_image_media_type(image_bytes)
                         image_url = f"data:{media_type};base64,{image_base64}"
 
                     else: # base64
-                        detected_type = detect_image_format(_image)
-                        if detected_type:
-                            media_type = f"image/{detected_type}"
-                        else:
-                            media_type = "image/jpeg"
+                        media_type = resolve_image_media_type(_image)
                         image_url = f"data:{media_type};base64,{_image}"
 
                     user_args.append(image(image_url=image_url, detail="high"))
@@ -178,51 +170,3 @@ class XClient:
                 raise FirstTryError()
             else:
                 return make_error_response()
-
-
-    async def stream_with_queue(self, is_retry: bool = False):
-        try:
-            client = self.get_client()
-            messages = await self.get_messages()
-            model = self.data.model if not is_retry and self.data.model in XAI_MODEL_LIST else XAI_MODEL_LIST[0]
-
-            chat = client.chat.create(model=model)
-            for message in messages:
-                chat.append(message)
-
-            logging.info(f"session_key: {self.data.session_key} | [client.x.xAIClient.stream_with_queue] service: {self.data.service} | model: {model} | is_retry: {is_retry} | REQUEST to xAI")
-
-            is_first_res = True
-            async for response, chunk in chat.stream():
-                response_dict = make_response(0)
-                if is_first_res and response and hasattr(response, "model"):
-                    response_dict["vendor"] = XAI
-                    response_dict["model"] = model
-                if response and hasattr(response, "outputs") and isinstance(response.outputs, dict) and response.outputs.get("finish_reason"):
-                    response_dict["is_end"] = True
-                if chunk and isinstance(chunk, Chunk) and hasattr(chunk, "content"):
-                    response_dict["text"] = chunk.content
-                    if is_first_res:
-                        is_first_res = False
-                        if not self.async_data.event.is_set():
-                            self.async_data.event.set()
-                        if self.data.time:
-                            time_first_req = time()
-                            elapsed = timedelta(seconds=int(time_first_req - self.data.time))
-                            logging.info(f"session_key: {self.data.session_key} | [TIMETEST] ⏱️ TIME from xAI: {elapsed}")
-
-                if any([response_dict['text'], response_dict['model'], response_dict['tool_name'], response_dict['tool_text'], response_dict['is_end']]):
-                    result = serialize_response(response_dict)
-                    await self.async_data.queue.put(result)
-                    await asyncio.sleep(0)
-
-            await self.async_data.queue.put(None)
-
-        except Exception as e:
-            logging.error(f"session_key: {self.data.session_key} | [client.x.xAIClient.stream_with_queue] ERROR: {e}")
-            if not is_retry:
-                raise FirstTryError()
-            else:
-                result = make_error_response()
-                await self.async_data.queue.put(result)
-                await self.async_data.queue.put(None)

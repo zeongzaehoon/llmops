@@ -14,46 +14,6 @@ from client import get_main_db, get_production_db
 operation = APIRouter(prefix="/operation", tags=["Operation"])
 
 
-
-@operation.post("/get_version", response_model=Res200)
-@handle_errors()
-async def _get_version(
-    payload: getVersionPayload,
-    main_db_client: MongoClient = Depends(get_main_db),
-):
-    # business logic
-    data = await helper_get_version(main_db_client=main_db_client, payload=payload)
-
-    # make response
-    return Res200(
-        message="success",
-        data=data
-    )
-
-
-@operation.post("/get_data", response_model=Res200)
-@handle_errors()
-async def _get_data(
-    payload: getDataPayload,
-    main_db_client: MongoClient = Depends(get_main_db)
-):
-    # server stage
-    stage = os.getenv("SERVER_STAGE", "development")
-
-    # client
-    vector_db_index_name = get_vector_db_index(category=payload.agent, server_stage=stage)
-    vector_db_client = PineconeClient(index_name=vector_db_index_name)
-
-    # business logic
-    data = await helper_get_data(main_db_client=main_db_client, vector_db_client=vector_db_client, payload=payload)
-
-    # make response
-    return Res200(
-        message="success",
-        data=data
-    )
-
-
 @operation.post("/download_question")
 @handle_errors()
 async def _download_question(

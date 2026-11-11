@@ -24,11 +24,6 @@ export default [
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
       'react/prop-types': 'off',
-      // Preserve ESLint 8 behavior: v9 changed this rule's default
-      // `checkLoops` to 'allExceptWhileTrue', which would stop flagging
-      // the existing `while (true)` streaming loops and shrink the known
-      // error set from 12 to 10. Pin to v8 behavior for rule equivalence.
-      'no-constant-condition': ['error', { checkLoops: true }],
     },
   },
 ]

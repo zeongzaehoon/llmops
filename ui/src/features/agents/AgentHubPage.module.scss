@@ -4,6 +4,10 @@
   gap: $sol-space-6;
 }
 
+.tabBar {
+  border-bottom: 1px solid $sol-gray-200;
+}
+
 .newForm {
   display: flex;
   flex-direction: column;
@@ -11,7 +15,7 @@
   padding: $sol-space-5;
   border: 1px solid $sol-gray-200;
   border-radius: $sol-radius-lg;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
@@ -37,7 +41,7 @@
   padding: $sol-space-2 $sol-space-3;
   border: 1px solid $sol-gray-200;
   border-radius: $sol-radius-md;
-  background: #FFF;
+  background: #fff;
   font-size: $sol-font-base;
   color: $sol-gray-900;
   outline: none;
@@ -78,7 +82,7 @@
   flex-direction: column;
   gap: $sol-space-3;
   padding: $sol-space-5;
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid $sol-gray-200;
   border-radius: $sol-radius-lg;
   transition: all $sol-duration-normal $sol-ease-default;
@@ -86,7 +90,9 @@
 
   &:hover {
     border-color: $sol-primary;
-    box-shadow: 0 4px 16px rgba(79, 70, 229, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+    box-shadow:
+      0 4px 16px rgba(79, 70, 229, 0.08),
+      0 1px 4px rgba(0, 0, 0, 0.04);
     transform: translateY(-1px);
   }
 }

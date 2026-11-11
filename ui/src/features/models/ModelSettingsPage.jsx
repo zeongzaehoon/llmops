@@ -55,32 +55,25 @@ export default function ModelSettingsPage() {
     }
 
     setModelMutation.mutate(
-      { agent, vendor: selectedVendor, model: selectedModel },
+      { agent, company: selectedVendor, model: selectedModel },
       {
         onSuccess: () => {
           toast.success(`Model updated for ${agent}`)
         },
         onError: () => {
           toast.error('Failed to update model')
-        },
-      },
+        }
+      }
     )
   }
 
   return (
     <div className={styles.page}>
-      <PageHeader
-        title="Model Settings"
-        description="Configure LLM vendor and model per agent"
-      />
+      <PageHeader title="Model Settings" description="Configure LLM vendor and model per agent" />
 
       <section className={styles.section}>
         <h3 className={styles.sectionTitle}>Agent</h3>
-        <CategorySelector
-          categories={DEFAULT_CATEGORIES}
-          active={agent}
-          onSelect={setAgent}
-        />
+        <CategorySelector categories={DEFAULT_CATEGORIES} active={agent} onSelect={setAgent} />
       </section>
 
       <section className={styles.section}>
@@ -90,7 +83,7 @@ export default function ModelSettingsPage() {
             <span className={styles.loadingText}>Loading...</span>
           ) : currentModel ? (
             <>
-              <span className={styles.currentVendor}>{currentModel.vendor}</span>
+              <span className={styles.currentVendor}>{currentModel.company}</span>
               <span className={styles.currentSep}>/</span>
               <span className={styles.currentName}>{currentModel.model}</span>
             </>
@@ -103,10 +96,7 @@ export default function ModelSettingsPage() {
       {modelsLoading ? (
         <div className={styles.loading}>Loading models...</div>
       ) : vendors.length === 0 ? (
-        <EmptyState
-          title="No models available"
-          description="No LLM models have been registered"
-        />
+        <EmptyState title="No models available" description="No LLM models have been registered" />
       ) : (
         <>
           <section className={styles.section}>

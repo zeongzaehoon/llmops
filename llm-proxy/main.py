@@ -16,7 +16,6 @@ import uvicorn
 
 # route
 from api.llm import llm
-from api.file import file
 
 
 
@@ -30,7 +29,6 @@ logging.basicConfig(
 # api setting
 app = FastAPI()
 app.include_router(llm)
-app.include_router(file)
 
 # CORS
 app.add_middleware(

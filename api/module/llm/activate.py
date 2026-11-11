@@ -240,21 +240,3 @@ class RunLLM:
 
 
     # for client
-    @classmethod
-    async def get_retrieval_data_for_view(cls, llm_proxy_client, vector_db_client, question, service, k:int=4):
-        return await get_retrieval_data_for_view(llm_proxy_client, vector_db_client, question, service, k=k)
-
-
-    @classmethod
-    async def get_retrieval_data_for_report_chat(cls, memory_db_client, session_key):
-        tasks = [
-            memory_db_client.get(key=f"rc:{session_key}"),
-            memory_db_client.get(key=f"rc_id:{session_key}")
-        ]
-        result = await asyncio.gather(*tasks)
-        return [
-            {
-                "content": result[0],
-                "subject": result[1]
-            }
-        ]

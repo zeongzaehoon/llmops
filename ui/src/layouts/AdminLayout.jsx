@@ -6,7 +6,8 @@ import {
   GitFork,
   MessageSquare,
   BookOpen,
-  Settings,
+  FileText,
+  Settings
 } from 'lucide-react'
 import styles from './AdminLayout.module.scss'
 
@@ -15,13 +16,12 @@ const NAV_ITEMS = [
   { path: '/admin/agents', label: 'Agents', icon: Bot },
   { path: '/admin/servers', label: 'Servers', icon: Server },
   { path: '/admin/graphs', label: 'Graphs', icon: GitFork },
+  { path: '/admin/prompts', label: 'Prompts', icon: FileText },
   { path: '/admin/playground', label: 'Playground', icon: MessageSquare },
-  { path: '/admin/knowledge', label: 'Knowledge', icon: BookOpen },
+  { path: '/admin/knowledge', label: 'Knowledge', icon: BookOpen }
 ]
 
-const BOTTOM_ITEMS = [
-  { path: '/admin/settings', label: 'Settings', icon: Settings },
-]
+const BOTTOM_ITEMS = [{ path: '/admin/settings', label: 'Settings', icon: Settings }]
 
 export default function AdminLayout() {
   const location = useLocation()
@@ -52,9 +52,7 @@ export default function AdminLayout() {
                 key={item.path}
                 to={item.path}
                 end={item.end}
-                className={({ isActive }) =>
-                  `${styles.navItem} ${isActive ? styles.active : ''}`
-                }
+                className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}
               >
                 <span className={styles.navIcon}>
                   <Icon size={18} strokeWidth={1.8} />
@@ -72,9 +70,7 @@ export default function AdminLayout() {
               <NavLink
                 key={item.path}
                 to={item.path}
-                className={({ isActive }) =>
-                  `${styles.navItem} ${isActive ? styles.active : ''}`
-                }
+                className={({ isActive }) => `${styles.navItem} ${isActive ? styles.active : ''}`}
               >
                 <span className={styles.navIcon}>
                   <Icon size={18} strokeWidth={1.8} />

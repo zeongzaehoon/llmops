@@ -2,7 +2,6 @@ import re
 import base64
 import logging
 from urllib.parse import urlparse
-from asyncio import Queue
 from client.common import detect_image_format
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
@@ -227,14 +226,6 @@ async def safe_embeddings(
             logging.error("[helper.llm.safe_embeddings] second try is failed. send error message to client")
             logging.error(f"[helper.llm.safe_embeddings] error: {e}")
             raise ProxyServerError()
-
-
-async def stream_from_queue(queue:Queue):
-    while True:
-        chunk = await queue.get()
-        if chunk is None:
-            break
-        yield chunk
 
 
 def clear_data_in_base64(text:str):

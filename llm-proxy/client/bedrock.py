@@ -110,11 +110,7 @@ class BedrockClient(Boto3Session):
                         response = await client.get(image)
                         image_bytes = response.content
                         image_base64 = base64.b64encode(image_bytes).decode('utf-8')
-                        detected_type = detect_image_format(image_bytes)
-                        if detected_type:
-                            media_type = f"image/{detected_type}"
-                        else:
-                            media_type = "image/jpeg"
+                        media_type = resolve_image_media_type(image_bytes)
 
                         content.append({
                             "type": "image",
@@ -672,29 +668,3 @@ class BedrockClient(Boto3Session):
                 raise FirstTryError()
             else:
                 return make_error_response()
-
-
-@dataclass
-class S3Client(Boto3Session):
-    access_key: str = os.getenv("AWS_ACCESS_KEY_ID")
-    secret_key: str = os.getenv("AWS_SECRET_ACCESS_KEY")
-    region: str = os.getenv("AWS_DEFAULT_REGION")
-
-
-    def get_async_client(self):
-        """context manager 반환"""
-        session = self.get_async_session()
-        return session.client(
-            's3',
-            aws_access_key_id=self.access_key,
-            aws_secret_access_key=self.secret_key
-        )
-
-    async def download_file_to_path(self, bucket:str, key:str, path:Path):
-        try:
-            async with self.get_async_client() as s3:
-                with path.open("wb") as f:
-                    await s3.download_fileobj(bucket, key, f)
-        except Exception as e:
-            logging.error(f"🔴 [client.bedrock.S3Client.download_file] Failed to download file from S3: {e}")
-            raise Exception(e)

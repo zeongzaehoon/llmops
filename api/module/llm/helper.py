@@ -399,37 +399,6 @@ async def get_retrieval_data_for_rag(llm_proxy_client:LLMProxyClient, vector_db_
         raise e
 
 
-async def get_retrieval_data_for_view(llm_proxy_client:LLMProxyClient, vector_db_client:PineconeClient, question, service, k:int=4):
-    try:
-        if isinstance(question, list):
-            fetchRes = await vector_db_client.fetch(question)
-            docs = [doc for doc in fetchRes.vectors.values()]
-        else:
-            vector = await llm_proxy_client.embeddings(text=question, service=service)
-            docs = await vector_db_client.find(vector, k, filter={"isOn": True})
-        result = [
-            {
-                'category': "solomon" if document.metadata.get("postGroupingCodeId") == 7 else "notice" if document.metadata.get("postGroupingCodeId") == 3 else document.metadata.get("source", None),
-                'subject': document.metadata.get('chapter', None) or document.metadata.get('subject', None),
-                'content': document.metadata.get('text', None) or document.page_content,
-                'url': document.metadata.get('url', None),
-                'imageURL': document.metadata.get('imageURL', None),
-                'contentAdmin': document.metadata.get('contentAdmin', None),
-            } for document in docs
-        ]
-        return result
-
-    except VectorDBError as e:
-        logging.error(f"[module.llm.helper.get_retrieval_data_for_view] 🔴 VectorDBError: {e.message}")
-        raise VectorDBError(e.message)
-    except LLMProxyError as e:
-        logging.error(f"[module.llm.helper.get_retrieval_data_for_view] 🔴 LLMProxyError: {e.message}")
-        raise LLMProxyError(e.message)
-    except Exception as e:
-        logging.error(f"[module.llm.helper.get_retrieval_data_for_view] 🔴 Exception: {e}")
-        raise e
-
-
 async def get_conversation_history_for_view(memory_db_client:RedisClient, session_key:str):
     try:
         conversations_from_redis = await memory_db_client.lrange(session_key, 0, -1)

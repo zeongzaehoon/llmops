@@ -538,61 +538,6 @@ class AnthropicClient:
                 raise FirstTryError()
             else:
                 return make_error_response()
-
-
-    async def stream_with_queue(self, is_retry: bool = False):
-        try:
-            system_prompt = self.get_system_prompt()
-            client = self.get_client()
-            messages = self.get_messages()
-            model = self.get_model(is_retry=is_retry)
-            thinking = ThinkingConfigDisabledParam(type="disabled") if self.data.service in KNITLOG_SERVICES else NOT_GIVEN
-
-            logging.info(f"session_key: {self.data.session_key} | [client.anthropic.AnthropicClient.stream_with_queue] service: {self.data.service} | model: {model} | is_retry: {is_retry} | REQUEST to ANTHROPIC")
-
-            is_first_res = True
-            async with client.messages.stream(
-                model=model,
-                system=system_prompt,
-                max_tokens=50000 if "opus" not in model else 32000,
-                messages=messages,
-                thinking=thinking
-            ) as response:
-                async for chunk in response:
-                    response_dict = make_response(iteration=0)
-                    if isinstance(chunk, TextEvent):
-                        if is_first_res:
-                            is_first_res = False
-                            if not self.async_data.event.is_set():
-                                self.async_data.event.set()
-                            if self.data.time:
-                                time_first_req = time()
-                                elapsed = timedelta(seconds=int(time_first_req - self.data.time))
-                                logging.info(f"session_key: {self.data.session_key} | [TIMETEST] ⏱️ TIME from ANTHROPIC: {elapsed}")
-                        response_dict["text"] = chunk.text
-                    elif isinstance(chunk, RawMessageStartEvent):
-                        response_dict["model"] = chunk.message.model
-                        response_dict["vendor"] = ANTHROPIC
-                    elif isinstance(chunk, MessageStopEvent):
-                        response_dict["is_end"] = True
-
-                    if any([response_dict['text'], response_dict['model'], response_dict['tool_name'], response_dict['tool_text'], response_dict['is_end'], response_dict['thinking']]):
-                        result = serialize_response(response_dict)
-                        await self.async_data.queue.put(result)
-                        await asyncio.sleep(0)
-
-            await self.async_data.queue.put(None)
-
-        except Exception as e:
-            logging.error(f"session_key: {self.data.session_key} | [client.anthropic.AnthropicClient.stream_with_queue] ERROR: {e}")
-            if not is_retry:
-                raise FirstTryError()
-            else:
-                result = make_error_response()
-                await self.async_data.queue.put(result)
-                await self.async_data.queue.put(None)
-
-
     def translate_mcp_tools_to_anthropic_format(self, mcp_tools: list[dict]) -> list[dict]:
         """MCP 도구를 Anthropic 형식으로 변환"""
         anthropic_tools = []

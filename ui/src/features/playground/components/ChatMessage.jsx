@@ -43,12 +43,8 @@ function markdownToHtml(text) {
   return html
 }
 
-export default function ChatMessage({
-  message,
-  isStreaming = false,
-  agent,
-}) {
-  const { id, role, content, askCode, rating: initialRating, stopped } = message
+export default function ChatMessage({ message, isStreaming = false, agent }) {
+  const { role, content, askCode, rating: initialRating, stopped } = message
   const [rating, setRating] = useState(initialRating || null)
   const [copied, setCopied] = useState(false)
 
@@ -64,7 +60,7 @@ export default function ChatMessage({
         try {
           await updateRating(agent, {
             ask_code: askCode,
-            rating: newRating,
+            rating: newRating
           })
         } catch {
           // Silently fail
@@ -93,9 +89,7 @@ export default function ChatMessage({
           />
         )}
         {isStreaming && <span className={styles.cursor} />}
-        {stopped && (
-          <div className={styles.stopped}>[Generation stopped]</div>
-        )}
+        {stopped && <div className={styles.stopped}>[Generation stopped]</div>}
 
         {(showRating || !isUser) && (
           <div className={`${styles.actions} ${showRating ? styles.visible : ''}`}>
@@ -117,11 +111,7 @@ export default function ChatMessage({
                 </button>
               </>
             )}
-            <button
-              className={styles.actionBtn}
-              onClick={handleCopy}
-              title="Copy"
-            >
+            <button className={styles.actionBtn} onClick={handleCopy} title="Copy">
               {copied ? 'Copied!' : 'Copy'}
             </button>
           </div>

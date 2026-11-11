@@ -49,24 +49,7 @@ class AzureClient:
 
 
     def translate_conversation_history(self):
-        if not self.data.conversation_history:
-            return None
-
-        result = []
-        pending_user = None
-
-        for data in self.data.conversation_history:
-            role = "assistant" if data.get("role") in ["ai", "assistant"] else "user"
-            content = data.get("message") or data.get("content")
-
-            if role == "user":
-                pending_user = {"role": "user", "content": content}
-            elif role == "assistant" and pending_user:
-                # user-assistant 쌍 완성
-                result.extend([pending_user, {"role": "assistant", "content": content}])
-                pending_user = None
-
-        return result if result else None
+        return translate_openai_conversation_history(self.data.conversation_history)
 
 
     def get_messages(self):
@@ -204,64 +187,3 @@ class AzureClient:
                 raise FirstTryError()
             else:
                 return make_error_response()
-
-
-    async def stream_with_queue(self, is_retry: bool = False):
-        try:
-            client = self.get_client()
-            model = self.data.model if not is_retry and self.data.model in OPENAI_MODEL_LIST else "gpt-4o"
-            instruction = self.get_system_prompt()
-            input = self.get_messages()
-            reasoning = None
-            if model in OPENAI_REASONING_MODEL_LIST:
-                reasoning = {"effort": "medium" if self.data.service in ["reportchat", "baAIReport"] else "low"}
-
-            logging.info(f"session_key: {self.data.session_key} | [client.azure.AzureClient.stream_with_queue] service: {self.data.service} | model: {model} | is_retry: {is_retry} | REQEUST to AZURE")
-
-            response = await client.responses.create(
-                model = model,
-                instructions=instruction,
-                input=input,
-                stream=True,
-                reasoning=reasoning
-            )
-
-            is_first_res = True
-            async for chunk in response:
-                response_dict = make_response(iteration=0)
-                if isinstance(chunk, ResponseTextDeltaEvent) and hasattr(chunk, "delta"):
-                    if is_first_res:
-                        if not self.async_data.event.is_set():
-                            self.async_data.event.set()
-                        response_dict["text"] = chunk.delta
-                        is_first_res = False
-                        if self.data.time:
-                            time_first_req = time()
-                            elapsed = timedelta(seconds=int(time_first_req - self.data.time))
-                            logging.info(f"session_key: {self.data.session_key} | [TIMETEST] ⏱️ TIME from AZURE: {elapsed}")
-                    else:
-                        response_dict["text"] = chunk.delta
-                if isinstance(chunk, ResponseInProgressEvent) and hasattr(chunk, "model"):
-                    response_dict["model"] = chunk.model
-                    response_dict["vendor"] = AZURE
-                if isinstance(chunk, ResponseOutputItemDoneEvent):
-                    response_dict["is_end"] = True
-                if isinstance(chunk, ResponseError):
-                    response_dict["is_error"] = True
-
-                if any([response_dict['text'], response_dict['model'], response_dict['tool_name'], response_dict['tool_text'], response_dict['is_end']]):
-                    result = serialize_response(response_dict)
-                    await self.async_data.queue.put(result)
-                    await asyncio.sleep(0)
-
-            await self.async_data.queue.put(None)  # 스트림 종료 신호
-
-        except Exception as e:
-            # 에러 로깅
-            logging.error(f"session_key: {self.data.session_key} | [client.azure.AzureClient.stream_with_queue] ERROR: {e}")
-            if not is_retry:
-                raise FirstTryError()
-            else:
-                result = make_error_response()
-                await self.async_data.queue.put(result)
-                await self.async_data.queue.put(None)

@@ -29,24 +29,7 @@ class LocalClient:
 
 
     def translate_conversation_history(self):
-        if not self.data.conversation_history:
-            return None
-
-        result = []
-        pending_user = None
-
-        for data in self.data.conversation_history:
-            role = "assistant" if data.get("role") in ["ai", "assistant"] else "user"
-            content = data.get("message") or data.get("content")
-
-            if role == "user":
-                pending_user = {"role": "user", "content": content}
-            elif role == "assistant" and pending_user:
-                # user-assistant 쌍 완성
-                result.extend([pending_user, {"role": "assistant", "content": content}])
-                pending_user = None
-
-        return result if result else None
+        return translate_openai_conversation_history(self.data.conversation_history)
 
 
     async def get_messages(self):
@@ -431,57 +414,3 @@ class LocalClient:
                     logging.info(f"session_key: {self.data.session_key} | [client.local.stream_with_mcp] MCP client disconnected")
                 except Exception as e:
                     logging.error(f"session_key: {self.data.session_key} | [client.local.stream_with_mcp] Error disconnecting MCP client: {e}")
-
-
-
-    async def stream_with_queue(self, is_retry: bool = False):
-        try:
-            client = await self.get_client()
-            messages = await self.get_messages()
-
-            logging.info(f"session_key: {self.data.session_key} | [client.local.LocalClient.stream_with_queue] service: {self.data.service} | is_retry: {is_retry} | REQUEST to LocalLLM")
-            args = {
-                "model": "gpt-oss:20b",
-                "messages": messages,
-                "stream": True,
-            }
-            if args["model"] not in LOCAL_REASONING_MODEL_LIST:
-                args["temperature"] = self.data.temperature or DEFAULT_TEMPERATURE
-            else:
-                args["reasoning_effort"] = "medium" if self.data.service in ["reportchat", "baAIReport"] else "low"
-
-            response = await client.chat.completions.create(**args)
-
-            is_first_res = True
-            async for chunk in response:
-                response_dict = make_response(iteration=0)
-                if is_first_res:
-                    response_dict["model"] = chunk.model if hasattr(chunk, "model") else ""
-                    response_dict["vendor"] = "LMSTUDIO"
-                    is_first_res = False
-                    if not self.async_data.event.is_set():
-                        self.async_data.event.set()
-                    if self.data.time:
-                        time_first_req = time()
-                        elapsed = timedelta(seconds=int(time_first_req - self.data.time))
-                        logging.info(f"session_key: {self.data.session_key} | [TIMETEST] ⏱️ TIME from LMSTUDIO: {elapsed}")
-                if hasattr(chunk, "choices") and isinstance(chunk.choices, (list, tuple)) and chunk.choices and hasattr(chunk.choices[0], "delta") and hasattr(chunk.choices[0].delta, "content"):
-                    response_dict["text"] = chunk.choices[0].delta.content
-                if hasattr(chunk, "choices") and isinstance(chunk.choices, (list, tuple)) and chunk.choices and hasattr(chunk.choices[0], "finish_reason") and chunk.choices[0].finish_reason:
-                    response_dict["is_end"] = True
-
-                if any([response_dict['text'], response_dict['model'], response_dict['tool_name'], response_dict['tool_text'], response_dict['is_end']]):
-                    result = serialize_response(response_dict)
-                    await self.async_data.queue.put(result)
-                    await asyncio.sleep(0)
-
-            await self.async_data.queue.put(None)
-
-        except Exception as e:
-            logging.error(f"session_key: {self.data.session_key} | [client.local.LocalClient.stream_with_queue] ERROR: {e}")
-            if not is_retry:
-                raise FirstTryError()
-            else:
-                result = make_error_response()
-                await self.async_data.queue.put(result)
-                await self.async_data.queue.put(None)

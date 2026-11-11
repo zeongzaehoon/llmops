@@ -1,12 +1,10 @@
 import { useParams, useLocation } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import { useMemo } from 'react'
 import { REPORT_META } from '@/utils/constants'
 
 export default function ReportLayout() {
   const { id } = useParams()
   const location = useLocation()
-  const { t } = useTranslation()
 
   const reportType = useMemo(() => {
     const path = location.pathname.split('/')[1]

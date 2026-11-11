@@ -17,9 +17,9 @@ export function askStream(agent, payload, { onStart, onData, onEnd, onError } = 
     signal: aborter.signal,
     headers: {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify(payload)
   })
     .then((response) => {
       if (!response.ok) {
@@ -62,7 +62,7 @@ export function askStream(agent, payload, { onStart, onData, onEnd, onError } = 
 export function getHistory(agent) {
   return apiClient.get('/question/get', {
     _agent: agent,
-    params: { agent },
+    params: { agent }
   })
 }
 
@@ -78,4 +78,11 @@ export function updateRating(agent, data) {
  */
 export function refer(agent, data) {
   return apiClient.post('/question/refer', data, { _agent: agent })
+}
+
+/**
+ * Update survey response (contact-us "not satisfied" flow)
+ */
+export function updateSurveyResponse(agent, data) {
+  return apiClient.post('/operation/update_not_satisfy', data, { _agent: agent })
 }

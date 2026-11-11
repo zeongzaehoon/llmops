@@ -6,20 +6,6 @@ from typing import Optional
 from utils.constants import *
 
 
-
-class getVersionPayload(BaseModel):
-    agent: str = Field(..., description="에이전트")
-    kind: str = Field(..., description="종류")
-    role_name: Optional[str] = Field(None, alias="roleName")
-
-
-class getDataPayload(BaseModel):
-    agent: str = Field(..., description="에이전트")
-    kind: str = Field(..., description="종류")
-    id: str = Field(..., description="ID")
-    page: Optional[str] = Field(None, description="페이지")
-
-
 class downloadQuestionPayload(BaseModel):
     id: str = Field(..., description="ID")
 

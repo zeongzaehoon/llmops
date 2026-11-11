@@ -16,6 +16,8 @@ const PlaygroundPage = lazy(() => import('@/features/playground/PlaygroundPage')
 const ChatPage = lazy(() => import('@/features/playground/ChatPage'))
 const KnowledgePage = lazy(() => import('@/features/vectors/KnowledgePage'))
 const HistoryPage = lazy(() => import('@/features/history/HistoryPage'))
+const PromptLabPage = lazy(() => import('@/features/prompts/PromptLabPage'))
+const ModelSettingsPage = lazy(() => import('@/features/models/ModelSettingsPage'))
 
 // Existing pages (lazy)
 const ReportLayout = lazy(() => import('@/components/aireport/common/ReportLayout'))
@@ -37,7 +39,7 @@ function LazyPage({ Component }) {
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Navigate to="/admin" replace />,
+    element: <Navigate to="/admin" replace />
   },
   {
     path: '/admin',
@@ -60,35 +62,38 @@ export const router = createBrowserRouter([
       { path: 'playground/:agent', element: <LazyPage Component={ChatPage} /> },
       { path: 'knowledge', element: <LazyPage Component={KnowledgePage} /> },
       { path: 'history/:agent', element: <LazyPage Component={HistoryPage} /> },
-    ],
+      { path: 'prompts', element: <LazyPage Component={PromptLabPage} /> },
+      { path: 'prompts/:agent', element: <LazyPage Component={PromptLabPage} /> },
+      { path: 'settings', element: <LazyPage Component={ModelSettingsPage} /> }
+    ]
   },
   // Existing report/chat routes
   {
     path: '/heatmap/:id',
-    element: <LazyPage Component={ReportLayout} />,
+    element: <LazyPage Component={ReportLayout} />
   },
   {
     path: '/scroll/:id',
-    element: <LazyPage Component={ScrollReport} />,
+    element: <LazyPage Component={ScrollReport} />
   },
   {
     path: '/schemaTag/:id',
-    element: <LazyPage Component={ReportLayout} />,
+    element: <LazyPage Component={ReportLayout} />
   },
   {
     path: '/whitePaper/:id',
-    element: <LazyPage Component={ReportLayout} />,
+    element: <LazyPage Component={ReportLayout} />
   },
   {
     path: '/cxTrends/:id',
-    element: <LazyPage Component={ReportLayout} />,
+    element: <LazyPage Component={ReportLayout} />
   },
   {
     path: '/beusChat',
-    element: <LazyPage Component={BeusChatContainer} />,
+    element: <LazyPage Component={BeusChatContainer} />
   },
   {
     path: '/schemaChat',
-    element: <LazyPage Component={BeusChatContainer} />,
-  },
+    element: <LazyPage Component={BeusChatContainer} />
+  }
 ])

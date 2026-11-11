@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { askQuestion, abortRendering } from '@/api/chatApi'
+import { askStream } from '@/api/chat'
 import { connect } from '@/api/connectApi'
 import { askAgent } from '@/utils/constants'
 import ChatHeader from './ChatHeader'
@@ -21,6 +21,7 @@ export default function ChatContainer() {
 
   const userInfoRef = useRef(null)
   const messagesRef = useRef([])
+  const aborterRef = useRef(null)
 
   const setConnection = useCallback((version) => {
     setIsConnected(true)
@@ -54,6 +55,16 @@ export default function ChatContainer() {
     setIsAnswering(false)
   }, [])
 
+  // 401 refresh / error path: end answering and surface a string message
+  // in the chat bubble, mirroring the previous chatApi behavior.
+  const handleStreamError = useCallback(
+    (err) => {
+      endAnswering()
+      if (typeof err === 'string') onAnswering(err)
+    },
+    [endAnswering, onAnswering]
+  )
+
   const handleSubmitQuestion = useCallback(
     (question) => {
       const newMessages = [
@@ -71,9 +82,15 @@ export default function ChatContainer() {
         info: userInfoRef.current
       }
 
-      askQuestion(agent, questionData, startAnswering, onAnswering, endAnswering)
+      aborterRef.current?.abort()
+      aborterRef.current = askStream(agent, questionData, {
+        onStart: startAnswering,
+        onData: onAnswering,
+        onEnd: endAnswering,
+        onError: handleStreamError
+      })
     },
-    [startAnswering, onAnswering, endAnswering]
+    [startAnswering, onAnswering, endAnswering, handleStreamError]
   )
 
   const initChatting = useCallback(
@@ -127,7 +144,7 @@ export default function ChatContainer() {
 
   const stopAnswering = () => {
     setIsAnswering(false)
-    abortRendering()
+    aborterRef.current?.abort()
   }
 
   const resetHistoryMessages = () => {

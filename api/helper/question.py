@@ -1214,20 +1214,6 @@ async def helper_get_vendor_and_model_from_database(
         raise e
 
 
-def helper_refer_get_service(category:str, server_stage:str):
-    if category == REPORTCHAT:
-        service = REPORTCHAT_PRODUCTION if server_stage == PRODUCTION else REPORTCHAT_STAGING
-    elif category in UXGPT_LIST:
-        service = CS_PRODUCTION if server_stage == PRODUCTION else CS_STAGING
-    elif category == VOC:
-        service = VOC_PRODUCTION if server_stage == PRODUCTION else VOC_STAGING
-    elif category in HEATMAP_LIST:
-        service = UXHEATMAP_AIREPORT_PRODUCTION if server_stage == PRODUCTION else UXHEATMAP_AIREPORT_STAGING
-    else:
-        service = "solomon"
-    return service
-
-
 def get_public_url(s3_path, region=None):
     region = region or 'ap-northeast-2'
     if isinstance(s3_path, str):

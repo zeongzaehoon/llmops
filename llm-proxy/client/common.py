@@ -36,6 +36,12 @@ def detect_image_format(data: bytes) -> str | None:
 
 
 
+def resolve_image_media_type(data):
+    """이미지 magic bytes로 MIME 타입 판별. 감지 실패 시 image/jpeg fallback."""
+    detected = detect_image_format(data)
+    return f"image/{detected}" if detected else "image/jpeg"
+
+
 def make_response(iteration):
     return {
         # for common
@@ -76,6 +82,29 @@ def serialize_response(response_dict: dict):
     if response_dict.get('text'):
         response_dict['text'] = clean_surrogates(response_dict['text'])
     return orjson.dumps(response_dict) + b"\n"
+
+
+def translate_openai_conversation_history(conversation_history):
+    """OpenAI-호환(open_ai/azure/fourgrit/local) 대화이력 → message dict 리스트 변환.
+    user-assistant 쌍이 완성된 경우만 포함한다."""
+    if not conversation_history:
+        return None
+
+    result = []
+    pending_user = None
+
+    for data in conversation_history:
+        role = "assistant" if data.get("role") in ["ai", "assistant"] else "user"
+        content = data.get("message") or data.get("content")
+
+        if role == "user":
+            pending_user = {"role": "user", "content": content}
+        elif role == "assistant" and pending_user:
+            # user-assistant 쌍 완성
+            result.extend([pending_user, {"role": "assistant", "content": content}])
+            pending_user = None
+
+    return result if result else None
 
 
 async def iter_with_first_text_timeout(vendor, response, instance=None, timeout=None, session_key=None):
